@@ -1,0 +1,819 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.2/css/all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.css">
+  <script src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.js"></script>
+
+<script class="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"blog.ch34k.xyz","root":"/","images":"/images","scheme":"Mist","version":"8.2.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"gitalk","storage":true,"lazyload":false,"nav":null,"activeClass":"gitalk"},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}};
+  </script>
+<meta name="description" content="UESTClife小程序后端开发日志这并不是readme，而是灌水用的日记。请不要指望在此找到任何有价值的内容。接口文档去看API.md。 2019-01-27idas更新了，现在登录提交的表单中密码会经过加密，加密方式应该是AES-128-CBC，然后用base64编码。 密钥就在获取的HTML上，一个script标签里面，变量名是pwdDefaultEncryptSalt，那个标签里面还有个s">
+<meta property="og:type" content="article">
+<meta property="og:title" content="清水时光小程序后端开发日志">
+<meta property="og:url" content="https://blog.ch34k.xyz/2019/01/27/%E6%B8%85%E6%B0%B4%E6%97%B6%E5%85%89%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%90%8E%E7%AB%AF%E5%BC%80%E5%8F%91%E6%97%A5%E5%BF%97/index.html">
+<meta property="og:site_name" content="水厂日志">
+<meta property="og:description" content="UESTClife小程序后端开发日志这并不是readme，而是灌水用的日记。请不要指望在此找到任何有价值的内容。接口文档去看API.md。 2019-01-27idas更新了，现在登录提交的表单中密码会经过加密，加密方式应该是AES-128-CBC，然后用base64编码。 密钥就在获取的HTML上，一个script标签里面，变量名是pwdDefaultEncryptSalt，那个标签里面还有个s">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2019-01-27T02:55:30.000Z">
+<meta property="article:modified_time" content="2021-03-06T11:32:09.640Z">
+<meta property="article:author" content="MrThanlon">
+<meta property="article:tag" content="开发日志">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://blog.ch34k.xyz/2019/01/27/%E6%B8%85%E6%B0%B4%E6%97%B6%E5%85%89%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%90%8E%E7%AB%AF%E5%BC%80%E5%8F%91%E6%97%A5%E5%BF%97/">
+
+
+<script class="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+<title>清水时光小程序后端开发日志 | 水厂日志</title>
+  
+
+
+
+
+  <noscript>
+  <style>
+  body { margin-top: 2rem; }
+
+  .use-motion .menu-item,
+  .use-motion .sidebar,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header {
+    visibility: visible;
+  }
+
+  .use-motion .header,
+  .use-motion .site-brand-container .toggle,
+  .use-motion .footer { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle,
+  .use-motion .custom-logo-image {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line {
+    transform: scaleX(1);
+  }
+
+  .search-pop-overlay, .sidebar-nav { display: none; }
+  .sidebar-panel { display: block; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">水厂日志</h1>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
+        <li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#UESTClife%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%90%8E%E7%AB%AF%E5%BC%80%E5%8F%91%E6%97%A5%E5%BF%97"><span class="nav-number">1.</span> <span class="nav-text">UESTClife小程序后端开发日志</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#2019-01-27"><span class="nav-number">1.1.</span> <span class="nav-text">2019-01-27</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2019-01-20"><span class="nav-number">1.2.</span> <span class="nav-text">2019-01-20</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2018-12-22"><span class="nav-number">1.3.</span> <span class="nav-text">2018-12-22</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2018-12-19"><span class="nav-number">1.4.</span> <span class="nav-text">2018-12-19</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2018-12-17"><span class="nav-number">1.5.</span> <span class="nav-text">2018-12-17</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2018-12-16"><span class="nav-number">1.6.</span> <span class="nav-text">2018-12-16</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2018-12-13"><span class="nav-number">1.7.</span> <span class="nav-text">2018-12-13</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2018-12-08"><span class="nav-number">1.8.</span> <span class="nav-text">2018-12-08</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2018-12-07"><span class="nav-number">1.9.</span> <span class="nav-text">2018-12-07</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2018-12-03"><span class="nav-number">1.10.</span> <span class="nav-text">2018-12-03</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2018-11-08"><span class="nav-number">1.11.</span> <span class="nav-text">2018-11-08</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2018-11-05"><span class="nav-number">1.12.</span> <span class="nav-text">2018-11-05</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2018-10-29"><span class="nav-number">1.13.</span> <span class="nav-text">2018-10-29</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2018-10-28"><span class="nav-number">1.14.</span> <span class="nav-text">2018-10-28</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2018-10-12"><span class="nav-number">1.15.</span> <span class="nav-text">2018-10-12</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2018-10-10"><span class="nav-number">1.16.</span> <span class="nav-text">2018-10-10</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2018-10-09"><span class="nav-number">1.17.</span> <span class="nav-text">2018-10-09</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2018-10-08"><span class="nav-number">1.18.</span> <span class="nav-text">2018-10-08</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2018-10-07"><span class="nav-number">1.19.</span> <span class="nav-text">2018-10-07</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2018-09-24"><span class="nav-number">1.20.</span> <span class="nav-text">2018-09-24</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2018-09-19"><span class="nav-number">1.21.</span> <span class="nav-text">2018-09-19</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2018-09-18"><span class="nav-number">1.22.</span> <span class="nav-text">2018-09-18</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2018-09-17"><span class="nav-number">1.23.</span> <span class="nav-text">2018-09-17</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2018-09-16"><span class="nav-number">1.24.</span> <span class="nav-text">2018-09-16</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2018-09-11"><span class="nav-number">1.25.</span> <span class="nav-text">2018-09-11</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2018-09-10"><span class="nav-number">1.26.</span> <span class="nav-text">2018-09-10</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2018-09-05"><span class="nav-number">1.27.</span> <span class="nav-text">2018-09-05</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2018-09-02"><span class="nav-number">1.28.</span> <span class="nav-text">2018-09-02</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2018-08-23"><span class="nav-number">1.29.</span> <span class="nav-text">2018-08-23</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2018-08-22"><span class="nav-number">1.30.</span> <span class="nav-text">2018-08-22</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2018-08-19"><span class="nav-number">1.31.</span> <span class="nav-text">2018-08-19</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2018-08-17"><span class="nav-number">1.32.</span> <span class="nav-text">2018-08-17</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2018-08-16"><span class="nav-number">1.33.</span> <span class="nav-text">2018-08-16</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2018-08-14"><span class="nav-number">1.34.</span> <span class="nav-text">2018-08-14</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2018-08-06"><span class="nav-number">1.35.</span> <span class="nav-text">2018-08-06</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2018-08-04"><span class="nav-number">1.36.</span> <span class="nav-text">2018-08-04</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2018-08-01"><span class="nav-number">1.37.</span> <span class="nav-text">2018-08-01</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2018-07-31"><span class="nav-number">1.38.</span> <span class="nav-text">2018-07-31</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2018-07-30"><span class="nav-number">1.39.</span> <span class="nav-text">2018-07-30</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2018-07-29"><span class="nav-number">1.40.</span> <span class="nav-text">2018-07-29</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2018-07-27"><span class="nav-number">1.41.</span> <span class="nav-text">2018-07-27</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%AA%8C%E8%AF%81%E7%A0%81"><span class="nav-number">1.41.1.</span> <span class="nav-text">验证码</span></a></li></ol></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">MrThanlon</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">45</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">45</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">52</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/MrThanlon" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;MrThanlon" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:i@anclx.cc" title="E-Mail → mailto:i@anclx.cc" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+  <div class="cc-license site-overview-item animated" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+  <div class="links-of-blogroll site-overview-item animated">
+    <div class="links-of-blogroll-title"><i class="fa fa-globe fa-fw"></i>
+      Links
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://blog.simplenaive.cn/" title="https:&#x2F;&#x2F;blog.simplenaive.cn" rel="noopener" target="_blank">Yidadaa</a>
+        </li>
+    </ul>
+  </div>
+
+        </div>
+      </div>
+        <div class="back-to-top animated" role="button">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="reading-progress-bar"></div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+  <a href="https://github.com/MrThanlon" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://blog.ch34k.xyz/2019/01/27/%E6%B8%85%E6%B0%B4%E6%97%B6%E5%85%89%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%90%8E%E7%AB%AF%E5%BC%80%E5%8F%91%E6%97%A5%E5%BF%97/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="MrThanlon">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="水厂日志">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          清水时光小程序后端开发日志
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2019-01-27 10:55:30" itemprop="dateCreated datePublished" datetime="2019-01-27T10:55:30+08:00">2019-01-27</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2021-03-06 19:32:09" itemprop="dateModified" datetime="2021-03-06T19:32:09+08:00">2021-03-06</time>
+      </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h1 id="UESTClife小程序后端开发日志"><a href="#UESTClife小程序后端开发日志" class="headerlink" title="UESTClife小程序后端开发日志"></a>UESTClife小程序后端开发日志</h1><p>这并不是readme，而是灌水用的日记。<br>请不要指望在此找到任何有价值的内容。<br>接口文档去看API.md。</p>
+<h2 id="2019-01-27"><a href="#2019-01-27" class="headerlink" title="2019-01-27"></a>2019-01-27</h2><p>idas更新了，现在登录提交的表单中密码会经过加密，加密方式应该是<code>AES-128-CBC</code>，然后用base64编码。</p>
+<p>密钥就在获取的HTML上，一个script标签里面，变量名是<code>pwdDefaultEncryptSalt</code>，那个标签里面还有个<code>secure=&quot;false&quot;</code>我不是很清楚什么意思，貌似也没有用到。</p>
+<p>明文前部是64字节的随机字符串接上密码字符串，iv随机指定一个16字节的字符串就行。</p>
+<h2 id="2019-01-20"><a href="#2019-01-20" class="headerlink" title="2019-01-20"></a>2019-01-20</h2><p>放假回家啦。</p>
+<p>现在可以发现的是一卡通登录失败，历史遗留问题，一卡通使用老的接口登录，而不是统一验证。神奇的是一卡通网站的密码和统一验证用的不是同一套系统。现在决定重写一卡通登录模块，用统一验证的入口。</p>
+<p>根据抓包分析的结果，请求的URL应该是</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http:&#x2F;&#x2F;idas.uestc.edu.cn&#x2F;authserver&#x2F;login?service&#x3D;http%3A%2F%2Fecard.uestc.edu.cn%2Fcaslogin.jsp</span><br></pre></td></tr></table></figure>
+
+<p>这个</p>
+<h2 id="2018-12-22"><a href="#2018-12-22" class="headerlink" title="2018-12-22"></a>2018-12-22</h2><p>全部重构完毕，暂时没有接入研究生系统。顺带修复了<code>grade.php</code>无法获取成绩总览的bug和<code>check_token.php</code>无法检测教务处的bug。</p>
+<p>同时更新了下服务器端的配置文件。</p>
+<h2 id="2018-12-19"><a href="#2018-12-19" class="headerlink" title="2018-12-19"></a>2018-12-19</h2><p>准备接入研究生系统，又要挖接口了。</p>
+<blockquote>
+<p>登录接口  </p>
+<p>删除Cookie后可能导致需要重新设置密保，具体原因不明。</p>
+<p>注意下面两个方法使用的密码可能是不同的，这里有疑问，具体等老哥答复。</p>
+<p>方法一：使用独立登录页面，需要验证码</p>
+<ol>
+<li>GET<code>http://yjsjy.uestc.edu.cn/pyxx/account/login</code>，获得一个Cookie，<code>JSESSIONID</code></li>
+<li>请求验证码，GET<code>http://yjsjy.uestc.edu.cn/pyxx/captcha/imageCode</code></li>
+<li>登录，POST<code>http://yjsjy.uestc.edu.cn/pyxx/account/logon</code>，带表单，四个键值对：<ul>
+<li><code>targetUrl</code>=””</li>
+<li><code>username</code>=”学号”</li>
+<li><code>password</code>=”密码”</li>
+<li><code>captcha</code>=”验证码”  </li>
+</ul>
+</li>
+<li>完成，如果跳转到<code>/pyxx/home/index</code>就是登录成功了，登录失败则是跳转到<code>/pyxx/account/login?error=x</code>，x为错误的类型：<ul>
+<li>1=密码错误</li>
+<li>2=学号不存在</li>
+<li>3=验证码有误</li>
+<li>4=请先在迎新系统进行学院报道</li>
+</ul>
+</li>
+</ol>
+<p>方法二：使用统一登录(idas)，先登录<code>portal</code>，再登录<code>yjsjy</code>，不需要验证码。</p>
+</blockquote>
+<blockquote>
+<p>成绩接口：</p>
+<p>GET<code>http://yjsjy.uestc.edu.cn/pyxx/pygl/cjcx</code></p>
+</blockquote>
+<blockquote>
+</blockquote>
+<h2 id="2018-12-17"><a href="#2018-12-17" class="headerlink" title="2018-12-17"></a>2018-12-17</h2><p>打算先搞定JWT部分，顺便整理一下错误码。</p>
+<h2 id="2018-12-16"><a href="#2018-12-16" class="headerlink" title="2018-12-16"></a>2018-12-16</h2><p>差不多可以启动重构了，使用JWT标准，使用比较标准的日志记录，在抛异常的时候记录更多有用的信息便于排错，区分error和warning。</p>
+<p>开了个用于重构的分支，revision1。</p>
+<h2 id="2018-12-13"><a href="#2018-12-13" class="headerlink" title="2018-12-13"></a>2018-12-13</h2><p>学号2018091613028，考试信息读取不到。</p>
+<p>好像是可以获取的，大概是用户没有清除缓存。</p>
+<h2 id="2018-12-08"><a href="#2018-12-08" class="headerlink" title="2018-12-08"></a>2018-12-08</h2><p>修复了check_token.php的问题，idas那个页面居然重定向了80多次，不知道那个zz写的。</p>
+<h2 id="2018-12-07"><a href="#2018-12-07" class="headerlink" title="2018-12-07"></a>2018-12-07</h2><p>学号2018091613028，课程表和注册信息读取不到。</p>
+<p>已修复，URL发生一些变化，打了个临时补丁修复了。</p>
+<h2 id="2018-12-03"><a href="#2018-12-03" class="headerlink" title="2018-12-03"></a>2018-12-03</h2><p>课程表接口失效，体现为请求结果为空，开始抢修。</p>
+<h2 id="2018-11-08"><a href="#2018-11-08" class="headerlink" title="2018-11-08"></a>2018-11-08</h2><p>学校升级了统一验证页面，现在需要重写eams登录和idas登录。</p>
+<h2 id="2018-11-05"><a href="#2018-11-05" class="headerlink" title="2018-11-05"></a>2018-11-05</h2><p>稍微修改了下接口文档的格式，然后放到网站上。<a target="_blank" rel="noopener" href="https://ch34k.xyz/docs/UESTC-Miniapp-Backend/API%E3%80%82">https://ch34k.xyz/docs/UESTC-Miniapp-Backend/API。</a></p>
+<h2 id="2018-10-29"><a href="#2018-10-29" class="headerlink" title="2018-10-29"></a>2018-10-29</h2><p>把check_token.php干了，<br>现在当静态文件用，只返回</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line"><span class="attr">&quot;success&quot;</span>:<span class="literal">true</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>这个后期我会解决，<br>另外就是下次准备用Guzzle重构，<br>替换掉使用了url.php的部分。<br>原来<em>http for human</em>在php也是存在的！！</p>
+<h2 id="2018-10-28"><a href="#2018-10-28" class="headerlink" title="2018-10-28"></a>2018-10-28</h2><p>check_token出现迷之错误，<br>get请求返回null，<br>用postman则正常。</p>
+<h2 id="2018-10-12"><a href="#2018-10-12" class="headerlink" title="2018-10-12"></a>2018-10-12</h2><p>用Exception重写了login.php，<br>有种优雅了许多的错觉。<br>工作量似乎比我预想的小一些？</p>
+<p>顺便跟新了接口文档，<br>加入status功能。</p>
+<h2 id="2018-10-10"><a href="#2018-10-10" class="headerlink" title="2018-10-10"></a>2018-10-10</h2><p>试一下做个自动部署。</p>
+<p>顺便还有那个login接口的status也要搞定，<br>心累。</p>
+<h2 id="2018-10-09"><a href="#2018-10-09" class="headerlink" title="2018-10-09"></a>2018-10-09</h2><p>再次修复history.php中json字符串错乱。<br>对php的数组了解不够透彻，<br>还需要深入学习。<br>API更新了注册信息模块，<br>这里爬取方式。</p>
+<p>请求方式为GET，URL是</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http:&#x2F;&#x2F;eams.uestc.edu.cn&#x2F;eams&#x2F;registerApply!search.action</span><br></pre></td></tr></table></figure>
+<p>带一个参数<code>_</code>，<br>参数值为unix时间戳（毫秒）。<br>请求得到的字符串为HTML代码，<br>表格的内容就在第三个<code>tbody</code>标签里面，<br>直接上正则就行。</p>
+<p>注册信息开发完成，<br>貌似这玩意只是当个装饰？<br>服了老哥了。</p>
+<h2 id="2018-10-08"><a href="#2018-10-08" class="headerlink" title="2018-10-08"></a>2018-10-08</h2><p>修复了history响应中array变object的问题。</p>
+<p>以后写完代码还是得测试才行啊。</p>
+<h2 id="2018-10-07"><a href="#2018-10-07" class="headerlink" title="2018-10-07"></a>2018-10-07</h2><p>啊，国庆假期结束啦。</p>
+<p>在ecard/info.php里面把名字加上了。</p>
+<h2 id="2018-09-24"><a href="#2018-09-24" class="headerlink" title="2018-09-24"></a>2018-09-24</h2><p>今天大概可以把交易流水搞定吧。<br>顺便修改下接口文档。<br>请求URL为</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http:&#x2F;&#x2F;ecard.uestc.edu.cn&#x2F;web&#x2F;guest&#x2F;personal?</span><br></pre></td></tr></table></figure>
+<p>方式是POST，带一堆参数：</p>
+<ul>
+<li><code>p_p_id=transDtl_WAR_ecardportlet</code></li>
+<li><code>p_p_lifecycle=0</code></li>
+<li><code>p_p_state=exclusive</code></li>
+<li><code>p_p_mode=view</code></li>
+<li><code>p_p_col_id=column-4</code></li>
+<li><code>p_p_col_count=1</code></li>
+<li><code>_transDtl_WAR_ecardportlet_action=dtlmoreview</code></li>
+</ul>
+<p>都是固定的。<br>还带一个表单，完整版如下：</p>
+<ul>
+<li><code>_transDtl_WAR_ecardportlet_cur</code>=页数</li>
+<li><code>_transDtl_WAR_ecardportlet_delta</code>=总页数</li>
+<li><code>_transDtl_WAR_ecardportlet_qdate</code>=查询时间（7|30|60|180）</li>
+<li><code>_transDtl_WAR_ecardportlet_qtype</code>=交易类型（1=充值|2=消费|3=易支付电控）</li>
+</ul>
+<p>差不多就这样，另外查第一页不用前面两个。</p>
+<p>写完了。<br>教务处网站又双叒叕挂了，<br>现在不好测试，先放着不推了。</p>
+<h2 id="2018-09-19"><a href="#2018-09-19" class="headerlink" title="2018-09-19"></a>2018-09-19</h2><p>更新了.gitignore，<br>以后有空还是做一下git推送自动部署，<br>每次ssh感觉还是挺麻烦的。<br>当然搞定samba然后直接把工程文件放上去就更好了。</p>
+<p>三个图表的接口搞定了，<br>下一步是那个比较麻烦的交易流水。<br>最近还是懒得做重构，<br>毕竟能跑就行（笑），<br>而且把验证放过去还会降低性能。<br>比较有必要的是login.php的多线程，<br>可以把登录速度加快点。</p>
+<p>靠，出问题了，<br>不能直接返回过去，<br>得放到json中的data部分，<br>靠。<br>已解决。</p>
+<h2 id="2018-09-18"><a href="#2018-09-18" class="headerlink" title="2018-09-18"></a>2018-09-18</h2><p>一卡通的登录会经过一个跳转到idas，<br>然后再跳转回来，<br>这一过程中会进行Set-Cookie。<br>关键是跳转特别快，这就有点坑了。</p>
+<p>用postman直接请求会读取到一卡通登录页面，<br>postman有重定向自动跟随，<br>但是浏览器打开则会跳转到统一认证，<br>也就是说这里的跳转是通过js实现的，<br>把浏览器的js关掉后没有发生跳转也说明了这点。</p>
+<p>另外可以确定的一点是，<br>登录idas之后会发生302跳转到ecard，<br>链接中有个参数为ticket，<br>似乎就是用这个参数来实现跨站验证的。<br>而且跳转过去的时候一定要快，<br>否则报500错误。<br>但是从请求的结果来看，<br>十分奇怪。<br>带ticket的URL请求，<br>没有任何Set-Cookie，<br>而浏览器会携带几个cookie。<br>我的理解是，<br>第一次请求的时候设置了cookie，<br>然后ticket作为一个激活码，<br>学校后端接到这个激活码后将原来的cookie生效。</p>
+<p>不过我又试了下关闭js的时候，<br>一卡通页面依然可以通过表单的POST请求来登录。<br>如果这样登录不影响其他cookie，<br>那么就决定使用这个方式来登录一卡通。<br>一卡通有三个cookie</p>
+<ul>
+<li><code>COOKIE_SUPPORT=true</code></li>
+<li><code>GUEST_LANGUAGE_ID=zh_CN</code></li>
+<li><code>JSESSIONID=...</code>这个应该就是用于验证的了</li>
+</ul>
+<p>其中<code>JSESSIONID</code>会在请求<code>http://ecard.uestc.edu.cn/</code>的时候设置。<br>登录时候POST的URL是</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http:&#x2F;&#x2F;ecard.uestc.edu.cn&#x2F;c&#x2F;portal&#x2F;login</span><br></pre></td></tr></table></figure>
+<p>登录时候提交的表单有三个数据</p>
+<ul>
+<li><code>_58_login_type=_58_login_type</code></li>
+<li><code>_58_login</code>学号</li>
+<li><code>_58_password</code>密码</li>
+</ul>
+<p>如果登录成功的话会302跳转到</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http:&#x2F;&#x2F;ecard.uestc.edu.cn&#x2F;web&#x2F;guest&#x2F;personal</span><br></pre></td></tr></table></figure>
+<p>并且会设置新的<code>JSESSIONID</code>并加上一个<code>GUEST_LANGUAGE_ID=zh_CN</code>  </p>
+<p>如果登录失败则一般会跳转到</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http:&#x2F;&#x2F;192.168.254.154&#x2F;web&#x2F;guest&#x2F;index?_yktlogin_WAR_ecardportlet_err&#x3D;1</span><br></pre></td></tr></table></figure>
+<p>这里做个判断就可以。</p>
+<p>再次感觉到重构的必要了，<br>有必要用上异常处理，<br>免得返回的内容不准确，<br>写得像坨shit。</p>
+<p>忘了说了，读取一卡通信息的URL是</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http:&#x2F;&#x2F;ecard.uestc.edu.cn&#x2F;web&#x2F;guest&#x2F;personal</span><br></pre></td></tr></table></figure>
+<h2 id="2018-09-17"><a href="#2018-09-17" class="headerlink" title="2018-09-17"></a>2018-09-17</h2><p>突然发现似乎要登录一卡通了，<br>也就是<code>ecard.uestc.edu.cn</code>这个域名。<br>所以login.php和check_token.php可能要新增代码了。</p>
+<h2 id="2018-09-16"><a href="#2018-09-16" class="headerlink" title="2018-09-16"></a>2018-09-16</h2><p>正式开始写一卡通部分，这一块内容有点多，可能要放缓了。前端部分估计工作量也比较大，今年内应该没法上线。</p>
+<p>写一下内容吧，以下几点（突然学起领导的口气了呢）</p>
+<ul>
+<li>一卡通信息，包括卡号，余额，状态等</li>
+<li>交易流水，明细</li>
+<li>消费趋势</li>
+<li>消费地点</li>
+<li>充值趋势</li>
+</ul>
+<p>最后三点就是“我的活动”里面的那三个图，分别对应三个POST，响应都是json，基本上直接发回去就行，URL都是</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http:&#x2F;&#x2F;ecard.uestc.edu.cn&#x2F;web&#x2F;guest&#x2F;myactive</span><br></pre></td></tr></table></figure>
+<p>包含8个链接参数</p>
+<ul>
+<li><code>p_p_id=myActive_WAR_ecardportlet</code></li>
+<li><code>p_p_lifecycle=2</code></li>
+<li><code>p_p_state=normal</code></li>
+<li><code>p_p_mode=view</code></li>
+<li><code>p_p_resource_id</code>有三个值，<br><code>consumeStat</code>,<code>consumeComp</code>,<code>dpsStat</code>，<br>分别对应三张表的数据。</li>
+<li><code>p_p_cacheability=cacheLevelPage</code></li>
+<li><code>p_p_col_id=column-1</code></li>
+<li><code>p_p_col_count=1</code></li>
+</ul>
+<p>以及一个Form-Data</p>
+<ul>
+<li><code>_myActive_WAR_ecardportlet_days=30</code></li>
+</ul>
+<p>前面两个就从页面获取，信息没什么说的，老样子。交易明细是一个HTML table，在后端做解析json再发回。因为学长的需求，就把一卡通部分的接口都放到一个目录下。  </p>
+<p>是时候重构一波了，复用验证请求和token部分的代码。  </p>
+<p>一卡通信息比较好做，就先做这个。</p>
+<h2 id="2018-09-11"><a href="#2018-09-11" class="headerlink" title="2018-09-11"></a>2018-09-11</h2><p>个人信息部分写完了，<br>简单测试了一下，貌似没有问题。<br>有时间重构一下，<br>可以复用验证的部分。</p>
+<h2 id="2018-09-10"><a href="#2018-09-10" class="headerlink" title="2018-09-10"></a>2018-09-10</h2><p>教师节，苦逼军训，呵呵。<br>准备添加个人信息功能，<br>URL如下</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http:&#x2F;&#x2F;eams.uestc.edu.cn&#x2F;eams&#x2F;stdDetail.action?_&#x3D;</span><br></pre></td></tr></table></figure>
+<p>请求方式为GET，<br>带一个参数<code>_</code>，<br>参数值为当前时间(unix时间戳，毫秒)。<br>请求需要cookie，应该只用两个就行</p>
+<ul>
+<li><code>JSESSIONID</code></li>
+<li><code>iPlanetDirectoryPro</code></li>
+</ul>
+<p>返回的数据主要是HTML的表格，<br>老样子，正则大法好。</p>
+<h2 id="2018-09-05"><a href="#2018-09-05" class="headerlink" title="2018-09-05"></a>2018-09-05</h2><p>这几天在军训，比较严，没有拿笔记本出来。<br>目前考试信息出现bug，<br>体现为出现空键，<br>猜测是数组越界。<br>目前问题已经解决，并且更新了文档。</p>
+<h2 id="2018-09-02"><a href="#2018-09-02" class="headerlink" title="2018-09-02"></a>2018-09-02</h2><p>现在出了一个问题，<br>就是我自己的课表总是爬不出来。<br>经过检测发现应该是POST的表单中ids的问题。<br>用袁仁义的账号时<code>ids=142846</code>，<br>而我的是<code>ids=159778</code>，<br>大概每个年级都不一样。<br>我现在掌握的账号有限，<br>学校后端也不开源，<br>这种开发真是相当心累了。<br>关于这个键的获取方式，应该可以GET</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http:&#x2F;&#x2F;eams.uestc.edu.cn&#x2F;eams&#x2F;courseTableForStd.action?_&#x3D;</span><br></pre></td></tr></table></figure>
+<p>这个URL来获取，<br>老样子，<code>_</code>的值是unix时间戳（毫秒）。<br>请求之后可以用正则的方式来从html代码中获取，<br>那一行一般类似于</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bg.form.addInput(form,&quot;ids&quot;,&quot;159778&quot;);</span><br></pre></td></tr></table></figure>
+<p>那么正则的方式就是</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bg\.form\.addInput\(form\,\&quot;ids\&quot;\,\&quot;(.*?)\&quot;\)\;</span><br></pre></td></tr></table></figure>
+<p>注意一般有两个，取第一个，<br>第二个是班级课表。<br>一般是6位，如果不是则抛异常。</p>
+<h2 id="2018-08-23"><a href="#2018-08-23" class="headerlink" title="2018-08-23"></a>2018-08-23</h2><p>真是想怼死张义飞。<br>课程表用第一周的。</p>
+<h2 id="2018-08-22"><a href="#2018-08-22" class="headerlink" title="2018-08-22"></a>2018-08-22</h2><p>又偷懒了几天。<br>准备开始写课程表了。<br>对于semesterId为空的情况，<br>需要手动获取当前的smesterId。<br>不出意外的话，<br>可以请求</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http:&#x2F;&#x2F;eams.uestc.edu.cn&#x2F;eams&#x2F;courseTableForStd.action</span><br></pre></td></tr></table></figure>
+<p>这个链接，GET方式，带一个参数<code>_</code>，<br>参数值为当前时间，unix时间戳，毫秒。<br>然后会有Set-Cookie，<br>其中包含了<code>semester.id</code>，<br>它的值应该就是我们需要的。<br>我在写这些文字的时候是203。</p>
+<h2 id="2018-08-19"><a href="#2018-08-19" class="headerlink" title="2018-08-19"></a>2018-08-19</h2><p>成绩信息里面，如果有重修的话，<br>会有span标签。  用正则替换搞定了。</p>
+<p>又双叒叕出bug了。<br>如果有重修之类的数据，<br>在成绩详细信息就会有9个项目，<br>多了一个补考成绩，<br>放在第8位。<br>目前处理是，<br>去掉这个补考成绩，<br>主要保留的是最终成绩，<br>总评可有可无。<br>当然对我来说，<br>要处理的就是把补考给去掉就行。<br>如果该科没有补考，那么那一项是空的。<br>通过正则把td标签部分解析成数组之后，<br>判断数组的长度，如果是9就直接扔掉第8位。</p>
+<p>嘛，最终还是决定把补考加上。<br>原因当然是比较方便改。</p>
+<h2 id="2018-08-17"><a href="#2018-08-17" class="headerlink" title="2018-08-17"></a>2018-08-17</h2><p>修复check_token.php。<br>居然会有idas没过期，eams过期这种奇葩的情况。<br>check_token.php是之前写的，<br>当时还没有处理eams的情况。现在把eams的确认也加到check_token里面了。</p>
+<p>学长果然是有做产品经理的潜力。<br>成绩信息部分改为获取全部，<br>几乎得重写，靠。<br>请求的URL为</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http:&#x2F;&#x2F;eams.uestc.edu.cn&#x2F;eams&#x2F;teach&#x2F;grade&#x2F;course&#x2F;person!historyCourseGrade.action?projectType&#x3D;MAJOR</span><br></pre></td></tr></table></figure>
+<p>请求方式为POST，但是只提交一个<br><code>projectType=MAJOR</code>  反正我是看不懂这是什么操作。</p>
+<p>最终还是在后端解析，用了几次正则，<br>把原来的那个全部注释了。<br>虽然有git，但是恢复起来并不是十分方便，<br>而且按PM的尿性，大家懂的。</p>
+<h2 id="2018-08-16"><a href="#2018-08-16" class="headerlink" title="2018-08-16"></a>2018-08-16</h2><p>学校开放了eams，也就是教务处，<br>现在理论上是可以登录的，<br>然而小程序似乎还是不工作，<br>不太清楚为什么，等老哥上线吧。</p>
+<p>同时修复了exam，grade等等的问题，login的时候塞入了明文token，已经修正。</p>
+<p>小程序的问题似乎是没有POST数据，<br>不确定是不是格式的问题，<br>www-urlencoded或者form-data。<br>总之PHP是没收到数据，从日志来看。</p>
+<h2 id="2018-08-14"><a href="#2018-08-14" class="headerlink" title="2018-08-14"></a>2018-08-14</h2><p>好多天没有写了。主要是懒，对，我被学长感染了。<br>学长把接口文档修改成他希望的样子，<br>很多地方有比较大的改动，<br>真是有做产品经理的潜力啊。<br>域名备案终于过了，感谢祖国。</p>
+<h2 id="2018-08-06"><a href="#2018-08-06" class="headerlink" title="2018-08-06"></a>2018-08-06</h2><p>课程表内容在js中，<br>首先还是得提取字符串。<br>关于响应的格式，<br>老哥让我自己去看他写的。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https:&#x2F;&#x2F;github.com&#x2F;Yidadaa&#x2F;UESTC_Helper&#x2F;blob&#x2F;master&#x2F;src&#x2F;components&#x2F;course&#x2F;parser.js#L95</span><br></pre></td></tr></table></figure>
+<p>实在是太秀了。</p>
+<p>总的来说，最后决定直接用老哥的代码。<br>在服务器搭建node环境，<br>然后php调用。</p>
+<p>目前要做的就是爬取课程表html数据了。<br>URL如下</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http:&#x2F;&#x2F;eams.uestc.edu.cn&#x2F;eams&#x2F;courseTableForStd!courseTable.action</span><br></pre></td></tr></table></figure>
+<p>请求方式为POST，参数包括</p>
+<ul>
+<li><code>ignoreHead</code> = 不知道，默认是1</li>
+<li><code>setting.kind</code> = 学生课表:std/班级课表:class</li>
+<li><code>startWeek</code> = 第几周</li>
+<li><code>project.id</code> = 不知道，默认是1</li>
+<li><code>semester.id</code> = 学期学年，老眼熟了</li>
+<li><code>ids</code> = 貌似是学生课表(142846)/班级课表（5522）</li>
+</ul>
+<h2 id="2018-08-04"><a href="#2018-08-04" class="headerlink" title="2018-08-04"></a>2018-08-04</h2><p>前几天有点颓，就没做。</p>
+<p>课程表似乎是用了js进行加载，<br>这就有些麻烦了。</p>
+<p>考试信息似乎可以直接请求到，链接是</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http:&#x2F;&#x2F;eams.uestc.edu.cn&#x2F;eams&#x2F;stdExamTable!examTable.action?semester.id&#x3D;xxx&amp;examType.id&#x3D;1&amp;_&#x3D;xxx</span><br></pre></td></tr></table></figure>
+<p>和成绩信息类似，不过多了一个<code>examType.id</code>，<br>应该是用来指定考试类型的。如下：</p>
+<ul>
+<li>1 = 期末考试</li>
+<li>2 = 期中考试</li>
+<li>3 = 补考</li>
+<li>4 = 缓考</li>
+</ul>
+<p>另外两个参数就没什么了，和之前一样。</p>
+<ul>
+<li><code>semester.id</code> = 学年学期</li>
+<li><code>_</code> = 时间（unix时间戳，毫秒）</li>
+</ul>
+<p>其中<code>semester.id</code>的默认值可以通过请求下面这个链接</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http:&#x2F;&#x2F;eams.uestc.edu.cn&#x2F;eams&#x2F;stdExamTable.action</span><br></pre></td></tr></table></figure>
+<p>响应值中的Set-Cookie中应该会有。</p>
+<p>请求返回的html中包含一个table，<br>里面的内容就是课程信息了。<br>不过与成绩信息不同的是，其中可能会有</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[考试情况尚未发布]</span><br></pre></td></tr></table></figure>
+<p>这种值。<br>单独占用掉5个td标签，<br>属性中包含</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">colspan&#x3D;&quot;5&quot;</span><br></pre></td></tr></table></figure>
+<p>用正则应该是可以处理的，并不是太难。<br>我在想怎么响应到客户端，<br>学长还没给我回复，<br>不知道最近又在约哪个妹子。</p>
+<h2 id="2018-08-01"><a href="#2018-08-01" class="headerlink" title="2018-08-01"></a>2018-08-01</h2><p>计算token那一段感觉需要再处理下，只计算一轮hash就可以了。</p>
+<p>另外就是目前token并没有防爆破，也没设置过期时间。</p>
+<p>关于读取成绩信息，请求的URL为</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http:&#x2F;&#x2F;eams.uestc.edu.cn&#x2F;eams&#x2F;teach&#x2F;grade&#x2F;course&#x2F;person!search.action?semesterId&#x3D;xxx&amp;projectType&#x3D;&amp;_&#x3D;xxx</span><br></pre></td></tr></table></figure>
+<p>显然，有三个参数</p>
+<ul>
+<li><code>semesterId</code>=学期（比如2017-2018第二学期=183）</li>
+<li><code>projectType</code>=留空</li>
+<li><code>_</code>=当前时间（unix时间戳，毫秒）<br>同时，提交的cookie也多了一个<code>semester.id</code>，<br>从数值上看应该是与<code>semesterId</code>一致的。<br>当然这个值是通过Set-Cookie获取的，<br>所以我只能从经验来判断规律了。</li>
+</ul>
+<hr>
+<p>学长说他会把<code>semesterId</code>通过post提交上来，那我就不关心那玩意了。</p>
+<p>还有一种情况就是，读取默认学期。<br>比如正常浏览的时候会发现，虽然有2018-2019学年第1学期，<br>但是系统默认并不会跳转到那个位置，<br>而是给出了2017-2018学年第2学期。<br>从加载的情况来看，应该是这个URL的作用</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http:&#x2F;&#x2F;eams.uestc.edu.cn&#x2F;eams&#x2F;teach&#x2F;grade&#x2F;course&#x2F;person.action</span><br></pre></td></tr></table></figure>
+<p>在不提交<code>semester.id</code>这个cookie的情况下，<br>该URL的响应包含Set-Cookie。<br>当然就是<code>semester.id</code>。它的值应该就是那个默认的学年学期。</p>
+<p>成绩查询模块开发完成。<br>眼睛有点累，老王又不陪我打球，唉。<br>大概后期会放慢一些速度，<br>目前主要还剩课程表和考试信息，<br>搞定那两个就差不多了。<br>最后分析一下安全，<br>项目大概就可以进入稳定期。</p>
+<h2 id="2018-07-31"><a href="#2018-07-31" class="headerlink" title="2018-07-31"></a>2018-07-31</h2><p>域名还没备案，无法接入微信。</p>
+<h2 id="2018-07-30"><a href="#2018-07-30" class="headerlink" title="2018-07-30"></a>2018-07-30</h2><p>目前还是决定用这个URL来检测登录</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http:&#x2F;&#x2F;eams.uestc.edu.cn&#x2F;eams&#x2F;home!submenus.action?menu.id&#x3D;</span><br></pre></td></tr></table></figure>
+<p>发生302表示cookie失效，<br>如果是200则表示成功。<br>当然在此之前还是先处理下如何登录的问题。<br>PHP的CURL虽然支持302自动跳转，<br>但是导致的问题是header部分会全部串到一个字符串，<br>而显然我目前写的url库并不支持这样的处理，<br>所以我决定在目前不更新url库的情况下，<br>手动处理302。<br>这样的好处当然是能够处理同名但是不同域的cookie，<br>比如route和JSESSIONID。<br>对，就是这么恶心。<br>我大概会在某些时候写一个类似requests那样的库，<br>并且支持session对象，<br>用cookieJar的方式保存cookie等等。<br>但那是后话了，目前这个虽然不怎么好用，<br>但我个人觉得还是可以的。<br>最近学了一点正则，<br>修改了<code>url.php</code>中处理header字符串的方式。  </p>
+<p>又出问题了，关于确认token有效的php。<br>学校似乎加了防御，总之就是我用了这个URL做验证</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http:&#x2F;&#x2F;idas.uestc.edu.cn&#x2F;authserver&#x2F;index.do</span><br></pre></td></tr></table></figure>
+<p>判断方式是302/200，<br>200=有效，302=无效。<br>然而现在发生的情况是会302跳转到某位置，然后再跳回来。<br>好像就是为了验证爬虫有没有302跳转能力？我擦，搞笑呢？<br>但是没办法，毕竟这不是我写的，我也改不了。<br>好歹改起来不算麻烦，把get模式设置为自动跳转，  </p>
+<p>最后判断一下网页标题就OK。</p>
+<p>回到eams。<br>网站有个三级域的cookie是<code>iPlanetDirectoryPro</code>。<br>我个人是感觉这玩意没有什么卵用，<br>登录idas之后，如果浏览器没有提交这么个cookie的话，<br>服务器会继续Set-Cookie，<br>但是这个cookie似乎并不参与验证，<br>只是丢失的话会通过302再Set回来。<br>最坑的是，服务器似乎也并不保存这么个玩意，<br>因为每次Set-Cookie的值都不一样……  </p>
+<p>当然话是这么说，该加上去的还是加上去吧。</p>
+<p>重新理一下eams的登录获取cookie的过程。<br>首先eams有三个cookie，其中一个是三级域名</p>
+<ul>
+<li><code>iPlanetDirectoryPro</code>（这个是三级域名的）</li>
+<li><code>JSESSIONID</code></li>
+<li><code>sto-id-20480</code></li>
+</ul>
+<p>具体过程就是，  </p>
+<ul>
+<li>请求<code>http://eams.uestc.edu.cn/eams/home!submenus.action</code></li>
+<li>获得cookie:<code>sto-id-20480</code></li>
+<li>跳转<code>http://idas.uestc.edu.cn/authserver/login?service=http%3A%2F%2Feams.uestc.edu.cn%2Feams%2Fhome%21submenus.action</code></li>
+<li>提交idas的cookie，登录idas</li>
+<li>获得cookie:<code>JSESSIONID_ids1</code><br>(注意这里会设置一个新的cookie，建议入库)</li>
+<li>跳转<code>http://eams.uestc.edu.cn/eams/home!submenus.action?ticket=xxxxx</code><br>(需要注意的是这里ticket应该是用于验证，跳转速度一定要快，不然会500错误，<br>至于多快我就不知道了，反正尽量快吧)</li>
+<li>跳转<code>http://eams.uestc.edu.cn/eams/home!submenus.action;jsessionid=xxxxx</code><br>(同上，这里的jsessionid大概也是用于验证)</li>
+<li>状态码200，获得cookie:<code>JSESSIONID</code></li>
+</ul>
+<p>不过理论上来说，这里还没完，<br>最后一步跳转的页面显示是重复登录的情况，然后要点击继续。<br>然而那个点击此处，不出以外的话，其实是和请求的URL一样的。<br>这里不想揣测学校后台是个什么逻辑，<br>总之按照步骤最终获取<code>JSESSINID</code>就可以进入登录状态了。<br>还有一件事就是，<br>如果在请求第二个URL的时候没有附上<code>iPlanetDirectoryPro</code>，<br>那么这个页面会重新Set-Cookie，而且值一般是不同的。<br>当然有时候即使附上了，依然会有Set-Cookie。<br>反正我是看不到教务系统的操作了。<br>同时在第二个URL时，<br>一般会修改idas域的cookie<code>JSESSIONID_ids1</code>的值。<br>如果只是获取<code>JSESSIONID</code>，<br>那么在倒数第二个URL中就已经给出了。<br>但是为了方便使用，<br>建议最后再请求一次来“激活”（？）。</p>
+<h2 id="2018-07-29"><a href="#2018-07-29" class="headerlink" title="2018-07-29"></a>2018-07-29</h2><p>感觉学校的网站，cookie用得十分玄学。<br>学校使用一个页面来完成登录（idas），<br>该页面只能生成该页面的cookie，以及一个主域名cookie。<br>对于新登录的情况，其他页面没有cookie，<br>这时候会一个302到idas，<br>把验证方式加到URL中的参数（ticket），然后再302，get，<br>到一个ticket页面，<br>同样的URL带参数。这一过程中会设定几个cookie，<br>ticket最后再302到原来的页面。</p>
+<h2 id="2018-07-27"><a href="#2018-07-27" class="headerlink" title="2018-07-27"></a>2018-07-27</h2><p>首先是登录时候提交的表单，<br>表单一般分为form-data和x-www-urlencoded。<br>学校登录的那个网站是</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http:&#x2F;&#x2F;idas.uestc.edu.cn&#x2F;authserver&#x2F;login</span><br></pre></td></tr></table></figure>
+<p>表单格式是后者(x-www-urlencoded)，<br>但是我被chrome坑了，<br>因为chrome上写的是Form Data。<br>如果提交的表单是form-data，<br>会导致响应500错误。<br>如果登录成功，应该会响应302，<br>然后会有几个Set-Cookie，建议全部保留。<br>实际上主要起作用的cookie就是CASTGC，<br>即使只有这一个，依然是登录状态。<br>或者也可以使用route和JSESSIONID_ids1(有时候是ids2之类的)，<br>这样登录的话会导致一个302跳转，<br>然后再次获取CASTGC。<br>登录其他网站的时候用到的cookie是iPlanetDirectoryPro，<br>虽然我不太理解为什么单独做一个用来跨站，<br>而且这个cookie还不能用来直接登录idas，<br>总之很坑爹就是了。<br>所以我建议保留所有的cookie，<br>大多数爬虫没有自动302跳转功能（至少curl没有），<br>跨站的时候要从idas获取一个地址用于跳转（比如portal的话是ticket），<br>跳转的那个页面会响应Set-Cookie，最后再跳转回来。<br>这一系列操作，如果爬虫不支持自动跳转的话，简直就是灾难。<br>不同的域名提交不同的cookie也需要注意，<br>cookieJar还是很有必要的（然而curl就是没有，你气不气？好怀念Python）。</p>
+<h3 id="验证码"><a href="#验证码" class="headerlink" title="验证码"></a>验证码</h3><p>大概说一下验证码。<br>是否需要验证码，可以通过一下链接来确定</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http:&#x2F;&#x2F;idas.uestc.edu.cn&#x2F;authserver&#x2F;needCaptcha.html</span><br></pre></td></tr></table></figure>
+<p>需要两个参数（不含引号）</p>
+<ul>
+<li><code>username</code> = 学号</li>
+<li><code>_</code> = 当前时间（unix时间戳，单位毫秒），对，就是一个下划线，你没看错</li>
+</ul>
+<p>返回的内容一般有两种（不含引号）</p>
+<ul>
+<li><code>true\n</code> = 需要验证码，可以让用户先手动登录一次再退出</li>
+<li><code>false\n</code> = 不需要验证码，可以直接登录</li>
+</ul>
+<p>如果不想太麻烦用户的话，可以直接获取验证码输入就行。<br>链接是</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http:&#x2F;&#x2F;idas.uestc.edu.cn&#x2F;authserver&#x2F;captcha.html</span><br></pre></td></tr></table></figure>
+
+<p>这个连接是写在js里面的，<br>有时候（就是点换一张的时候）需要加一个参数ts，<br>至于值是多少我就不确定了，自己去看js代码吧。</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>本文作者： </strong>MrThanlon
+  </li>
+  <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="https://blog.ch34k.xyz/2019/01/27/%E6%B8%85%E6%B0%B4%E6%97%B6%E5%85%89%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%90%8E%E7%AB%AF%E5%BC%80%E5%8F%91%E6%97%A5%E5%BF%97/" title="清水时光小程序后端开发日志">https://blog.ch34k.xyz/2019/01/27/清水时光小程序后端开发日志/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+          <div class="followme">
+  <span>欢迎关注我的其它发布渠道</span>
+
+  <div class="social-list">
+
+      <div class="social-item">
+        <a target="_blank" class="social-link" href="/atom.xml">
+          <span class="icon">
+            <i class="fa fa-rss"></i>
+          </span>
+
+          <span class="label">RSS</span>
+        </a>
+      </div>
+  </div>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/%E5%BC%80%E5%8F%91%E6%97%A5%E5%BF%97/" rel="tag"># 开发日志</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2018/11/11/%E5%91%A8%E5%B0%8F%E8%AE%B02018-11-11/" rel="prev" title="周小记2018-11-11">
+                  <i class="fa fa-chevron-left"></i> 周小记2018-11-11
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2019/03/14/%E9%94%BB%E7%82%BC%E4%BD%A0%E7%9A%84%E8%AE%A1%E7%AE%97%E5%8A%9B%EF%BC%81/" rel="next" title="锻炼你的计算力！">
+                  锻炼你的计算力！ <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments gitalk-container"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      const activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      const commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="beian"><a href="https://beian.miit.gov.cn/" rel="noopener" target="_blank">桂ICP备 18007829号-1 </a>
+      <img src="http://www.beian.gov.cn/portal/download" style="display: inline-block;">
+  </div>
+
+<div class="copyright">
+  &copy; 2015 – 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">MrThanlon</span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/mist/" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script><script src="/js/bookmark.js"></script>
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+  <script>
+    NProgress.configure({
+      showSpinner: true
+    });
+    NProgress.start();
+    document.addEventListener('readystatechange', () => {
+      if (document.readyState === 'interactive') {
+        NProgress.inc(0.8);
+      }
+      if (document.readyState === 'complete') {
+        NProgress.done();
+      }
+    });
+    document.addEventListener('pjax:send', () => {
+      NProgress.start();
+    });
+    document.addEventListener('pjax:success', () => {
+      NProgress.done();
+    });
+  </script>
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+  
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1.7.0/dist/gitalk.css">
+
+<script>
+NexT.utils.loadComments('.gitalk-container', () => {
+  NexT.utils.getScript('https://cdn.jsdelivr.net/npm/gitalk@1.7.0/dist/gitalk.min.js', () => {
+    var gitalk = new Gitalk({
+      clientID    : '654514b5a085bc016570',
+      clientSecret: '889c18646946d97bf639bcbf9a9025df129c9c5a',
+      repo        : 'ch34k.github.io',
+      owner       : 'MrThanlon',
+      admin       : ['MrThanlon'],
+      id          : '0c55e883cd147343de92abf36d0fa217',
+      proxy       : 'https://cors-anywhere.herokuapp.com/https://github.com/login/oauth/access_token',
+        language: '',
+      distractionFreeMode: true
+    });
+    gitalk.render(document.querySelector('.gitalk-container'));
+  }, window.Gitalk);
+});
+</script>
+
+</body>
+</html>
