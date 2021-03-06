@@ -1,0 +1,653 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>水厂日志</title>
+  
+  
+  <link href="https://blog.ch34k.xyz/atom.xml" rel="self"/>
+  
+  <link href="https://blog.ch34k.xyz/"/>
+  <updated>2021-03-06T12:22:52.280Z</updated>
+  <id>https://blog.ch34k.xyz/</id>
+  
+  <author>
+    <name>MrThanlon</name>
+    
+  </author>
+  
+  <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>微软2021春招实习生笔试</title>
+    <link href="https://blog.ch34k.xyz/2021/03/06/%E5%BE%AE%E8%BD%AF2021%E6%98%A5%E6%8B%9B%E5%AE%9E%E4%B9%A0%E7%94%9F%E7%AC%94%E8%AF%95/"/>
+    <id>https://blog.ch34k.xyz/2021/03/06/%E5%BE%AE%E8%BD%AF2021%E6%98%A5%E6%8B%9B%E5%AE%9E%E4%B9%A0%E7%94%9F%E7%AC%94%E8%AF%95/</id>
+    <published>2021-03-06T08:43:40.000Z</published>
+    <updated>2021-03-06T12:22:52.280Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html"></summary>
+        
+      
+    
+    
+    
+    <category term="招聘" scheme="https://blog.ch34k.xyz/categories/%E6%8B%9B%E8%81%98/"/>
+    
+    <category term="微软" scheme="https://blog.ch34k.xyz/categories/%E6%8B%9B%E8%81%98/%E5%BE%AE%E8%BD%AF/"/>
+    
+    
+    <category term="刷题" scheme="https://blog.ch34k.xyz/tags/%E5%88%B7%E9%A2%98/"/>
+    
+    <category term="微软" scheme="https://blog.ch34k.xyz/tags/%E5%BE%AE%E8%BD%AF/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>在树莓派上使用SATA设备(ASM1062/ASM1061)</title>
+    <link href="https://blog.ch34k.xyz/2021/01/30/%E5%9C%A8%E6%A0%91%E8%8E%93%E6%B4%BE%E4%B8%8A%E4%BD%BF%E7%94%A8SATA%E8%AE%BE%E5%A4%87-ASM1062-ASM1061/"/>
+    <id>https://blog.ch34k.xyz/2021/01/30/%E5%9C%A8%E6%A0%91%E8%8E%93%E6%B4%BE%E4%B8%8A%E4%BD%BF%E7%94%A8SATA%E8%AE%BE%E5%A4%87-ASM1062-ASM1061/</id>
+    <published>2021-01-30T12:33:50.000Z</published>
+    <updated>2021-03-06T11:32:09.644Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html"></summary>
+        
+      
+    
+    
+    
+    <category term="嵌入式开发" scheme="https://blog.ch34k.xyz/categories/%E5%B5%8C%E5%85%A5%E5%BC%8F%E5%BC%80%E5%8F%91/"/>
+    
+    <category term="树莓派" scheme="https://blog.ch34k.xyz/categories/%E5%B5%8C%E5%85%A5%E5%BC%8F%E5%BC%80%E5%8F%91/%E6%A0%91%E8%8E%93%E6%B4%BE/"/>
+    
+    
+    <category term="GNU/Linux" scheme="https://blog.ch34k.xyz/tags/GNU-Linux/"/>
+    
+    <category term="树莓派" scheme="https://blog.ch34k.xyz/tags/%E6%A0%91%E8%8E%93%E6%B4%BE/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>记一次LVM误操作引发的事故</title>
+    <link href="https://blog.ch34k.xyz/2021/01/08/%E8%AE%B0%E4%B8%80%E6%AC%A1LVM%E8%AF%AF%E6%93%8D%E4%BD%9C%E5%BC%95%E5%8F%91%E7%9A%84%E4%BA%8B%E6%95%85/"/>
+    <id>https://blog.ch34k.xyz/2021/01/08/%E8%AE%B0%E4%B8%80%E6%AC%A1LVM%E8%AF%AF%E6%93%8D%E4%BD%9C%E5%BC%95%E5%8F%91%E7%9A%84%E4%BA%8B%E6%95%85/</id>
+    <published>2021-01-08T13:42:27.000Z</published>
+    <updated>2021-03-06T11:32:09.620Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html"></summary>
+        
+      
+    
+    
+    
+    
+    <category term="GNU/Linux" scheme="https://blog.ch34k.xyz/tags/GNU-Linux/"/>
+    
+    <category term="小记" scheme="https://blog.ch34k.xyz/tags/%E5%B0%8F%E8%AE%B0/"/>
+    
+    <category term="LVM" scheme="https://blog.ch34k.xyz/tags/LVM/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>NRF24L01 调试笔记</title>
+    <link href="https://blog.ch34k.xyz/2020/07/30/NRF24L01-%E8%B0%83%E8%AF%95%E7%AC%94%E8%AE%B0/"/>
+    <id>https://blog.ch34k.xyz/2020/07/30/NRF24L01-%E8%B0%83%E8%AF%95%E7%AC%94%E8%AE%B0/</id>
+    <published>2020-07-30T03:37:08.000Z</published>
+    <updated>2021-03-06T11:32:09.623Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html"></summary>
+        
+      
+    
+    
+    
+    <category term="嵌入式开发" scheme="https://blog.ch34k.xyz/categories/%E5%B5%8C%E5%85%A5%E5%BC%8F%E5%BC%80%E5%8F%91/"/>
+    
+    <category term="NRF24L01" scheme="https://blog.ch34k.xyz/categories/%E5%B5%8C%E5%85%A5%E5%BC%8F%E5%BC%80%E5%8F%91/NRF24L01/"/>
+    
+    
+    <category term="嵌入式开发" scheme="https://blog.ch34k.xyz/tags/%E5%B5%8C%E5%85%A5%E5%BC%8F%E5%BC%80%E5%8F%91/"/>
+    
+    <category term="SPI" scheme="https://blog.ch34k.xyz/tags/SPI/"/>
+    
+    <category term="NRF24L01" scheme="https://blog.ch34k.xyz/tags/NRF24L01/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>如何优雅地开发STM32(Clion,CubeMX,ST-Link)</title>
+    <link href="https://blog.ch34k.xyz/2020/07/25/%E5%A6%82%E4%BD%95%E4%BC%98%E9%9B%85%E5%9C%B0%E5%BC%80%E5%8F%91STM32-Clion-CubeMX-ST-Link/"/>
+    <id>https://blog.ch34k.xyz/2020/07/25/%E5%A6%82%E4%BD%95%E4%BC%98%E9%9B%85%E5%9C%B0%E5%BC%80%E5%8F%91STM32-Clion-CubeMX-ST-Link/</id>
+    <published>2020-07-25T02:30:24.000Z</published>
+    <updated>2021-03-06T11:32:09.592Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html"></summary>
+        
+      
+    
+    
+    
+    <category term="嵌入式开发" scheme="https://blog.ch34k.xyz/categories/%E5%B5%8C%E5%85%A5%E5%BC%8F%E5%BC%80%E5%8F%91/"/>
+    
+    <category term="STM32" scheme="https://blog.ch34k.xyz/categories/%E5%B5%8C%E5%85%A5%E5%BC%8F%E5%BC%80%E5%8F%91/STM32/"/>
+    
+    
+    <category term="嵌入式开发" scheme="https://blog.ch34k.xyz/tags/%E5%B5%8C%E5%85%A5%E5%BC%8F%E5%BC%80%E5%8F%91/"/>
+    
+    <category term="STM32" scheme="https://blog.ch34k.xyz/tags/STM32/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>UESTC 2503</title>
+    <link href="https://blog.ch34k.xyz/2020/07/08/UESTC-2503/"/>
+    <id>https://blog.ch34k.xyz/2020/07/08/UESTC-2503/</id>
+    <published>2020-07-08T08:10:38.000Z</published>
+    <updated>2021-03-06T11:32:09.618Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html"></summary>
+        
+      
+    
+    
+    
+    <category term="ICPC训练" scheme="https://blog.ch34k.xyz/categories/ICPC%E8%AE%AD%E7%BB%83/"/>
+    
+    <category term="数学与几何" scheme="https://blog.ch34k.xyz/categories/ICPC%E8%AE%AD%E7%BB%83/%E6%95%B0%E5%AD%A6%E4%B8%8E%E5%87%A0%E4%BD%95/"/>
+    
+    <category term="博弈论" scheme="https://blog.ch34k.xyz/categories/ICPC%E8%AE%AD%E7%BB%83/%E6%95%B0%E5%AD%A6%E4%B8%8E%E5%87%A0%E4%BD%95/%E5%8D%9A%E5%BC%88%E8%AE%BA/"/>
+    
+    
+    <category term="刷题" scheme="https://blog.ch34k.xyz/tags/%E5%88%B7%E9%A2%98/"/>
+    
+    <category term="博弈论" scheme="https://blog.ch34k.xyz/tags/%E5%8D%9A%E5%BC%88%E8%AE%BA/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>如何优雅地调用web接口(api.js)</title>
+    <link href="https://blog.ch34k.xyz/2020/06/22/%E5%A6%82%E4%BD%95%E4%BC%98%E9%9B%85%E5%9C%B0%E8%B0%83%E7%94%A8web%E6%8E%A5%E5%8F%A3-api-js/"/>
+    <id>https://blog.ch34k.xyz/2020/06/22/%E5%A6%82%E4%BD%95%E4%BC%98%E9%9B%85%E5%9C%B0%E8%B0%83%E7%94%A8web%E6%8E%A5%E5%8F%A3-api-js/</id>
+    <published>2020-06-22T07:27:05.000Z</published>
+    <updated>2021-03-06T11:32:09.617Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html"></summary>
+        
+      
+    
+    
+    
+    <category term="Web" scheme="https://blog.ch34k.xyz/categories/Web/"/>
+    
+    <category term="JavaScript" scheme="https://blog.ch34k.xyz/categories/Web/JavaScript/"/>
+    
+    <category term="Proxy" scheme="https://blog.ch34k.xyz/categories/Web/JavaScript/Proxy/"/>
+    
+    
+    <category term="JavaScript" scheme="https://blog.ch34k.xyz/tags/JavaScript/"/>
+    
+    <category term="Web" scheme="https://blog.ch34k.xyz/tags/Web/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>UESTC 2459</title>
+    <link href="https://blog.ch34k.xyz/2020/06/20/UESTC-2459/"/>
+    <id>https://blog.ch34k.xyz/2020/06/20/UESTC-2459/</id>
+    <published>2020-06-20T03:00:59.000Z</published>
+    <updated>2021-03-06T11:32:09.595Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html"></summary>
+        
+      
+    
+    
+    
+    <category term="ICPC训练" scheme="https://blog.ch34k.xyz/categories/ICPC%E8%AE%AD%E7%BB%83/"/>
+    
+    <category term="字符串与搜索" scheme="https://blog.ch34k.xyz/categories/ICPC%E8%AE%AD%E7%BB%83/%E5%AD%97%E7%AC%A6%E4%B8%B2%E4%B8%8E%E6%90%9C%E7%B4%A2/"/>
+    
+    <category term="KMP" scheme="https://blog.ch34k.xyz/categories/ICPC%E8%AE%AD%E7%BB%83/%E5%AD%97%E7%AC%A6%E4%B8%B2%E4%B8%8E%E6%90%9C%E7%B4%A2/KMP/"/>
+    
+    
+    <category term="刷题" scheme="https://blog.ch34k.xyz/tags/%E5%88%B7%E9%A2%98/"/>
+    
+    <category term="KMP" scheme="https://blog.ch34k.xyz/tags/KMP/"/>
+    
+    <category term="字符串" scheme="https://blog.ch34k.xyz/tags/%E5%AD%97%E7%AC%A6%E4%B8%B2/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>UESTC 2382</title>
+    <link href="https://blog.ch34k.xyz/2020/06/19/UESTC-2382/"/>
+    <id>https://blog.ch34k.xyz/2020/06/19/UESTC-2382/</id>
+    <published>2020-06-19T08:00:59.000Z</published>
+    <updated>2021-03-06T11:32:09.642Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html"></summary>
+        
+      
+    
+    
+    
+    <category term="ICPC训练" scheme="https://blog.ch34k.xyz/categories/ICPC%E8%AE%AD%E7%BB%83/"/>
+    
+    <category term="图论" scheme="https://blog.ch34k.xyz/categories/ICPC%E8%AE%AD%E7%BB%83/%E5%9B%BE%E8%AE%BA/"/>
+    
+    <category term="欧拉图" scheme="https://blog.ch34k.xyz/categories/ICPC%E8%AE%AD%E7%BB%83/%E5%9B%BE%E8%AE%BA/%E6%AC%A7%E6%8B%89%E5%9B%BE/"/>
+    
+    
+    <category term="刷题" scheme="https://blog.ch34k.xyz/tags/%E5%88%B7%E9%A2%98/"/>
+    
+    <category term="欧拉图" scheme="https://blog.ch34k.xyz/tags/%E6%AC%A7%E6%8B%89%E5%9B%BE/"/>
+    
+    <category term="图论" scheme="https://blog.ch34k.xyz/tags/%E5%9B%BE%E8%AE%BA/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>UESTC 2440</title>
+    <link href="https://blog.ch34k.xyz/2020/05/23/UESTC-2440/"/>
+    <id>https://blog.ch34k.xyz/2020/05/23/UESTC-2440/</id>
+    <published>2020-05-23T02:25:30.000Z</published>
+    <updated>2021-03-06T11:32:09.628Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html"></summary>
+        
+      
+    
+    
+    
+    <category term="ICPC训练" scheme="https://blog.ch34k.xyz/categories/ICPC%E8%AE%AD%E7%BB%83/"/>
+    
+    <category term="动态规划" scheme="https://blog.ch34k.xyz/categories/ICPC%E8%AE%AD%E7%BB%83/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/"/>
+    
+    <category term="背包DP" scheme="https://blog.ch34k.xyz/categories/ICPC%E8%AE%AD%E7%BB%83/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/%E8%83%8C%E5%8C%85DP/"/>
+    
+    
+    <category term="刷题" scheme="https://blog.ch34k.xyz/tags/%E5%88%B7%E9%A2%98/"/>
+    
+    <category term="动态规划" scheme="https://blog.ch34k.xyz/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/"/>
+    
+    <category term="背包DP" scheme="https://blog.ch34k.xyz/tags/%E8%83%8C%E5%8C%85DP/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>UESTC 2431</title>
+    <link href="https://blog.ch34k.xyz/2020/05/23/UESTC-2431/"/>
+    <id>https://blog.ch34k.xyz/2020/05/23/UESTC-2431/</id>
+    <published>2020-05-23T02:25:27.000Z</published>
+    <updated>2021-03-06T11:32:09.631Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html"></summary>
+        
+      
+    
+    
+    
+    <category term="ICPC训练" scheme="https://blog.ch34k.xyz/categories/ICPC%E8%AE%AD%E7%BB%83/"/>
+    
+    <category term="动态规划" scheme="https://blog.ch34k.xyz/categories/ICPC%E8%AE%AD%E7%BB%83/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/"/>
+    
+    <category term="LCS" scheme="https://blog.ch34k.xyz/categories/ICPC%E8%AE%AD%E7%BB%83/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/LCS/"/>
+    
+    
+    <category term="动态规划" scheme="https://blog.ch34k.xyz/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/"/>
+    
+    <category term="LCS" scheme="https://blog.ch34k.xyz/tags/LCS/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>UESTC 2430</title>
+    <link href="https://blog.ch34k.xyz/2020/05/23/UESTC-2430/"/>
+    <id>https://blog.ch34k.xyz/2020/05/23/UESTC-2430/</id>
+    <published>2020-05-23T02:25:24.000Z</published>
+    <updated>2021-03-06T11:32:09.637Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html"></summary>
+        
+      
+    
+    
+    
+    <category term="ICPC训练" scheme="https://blog.ch34k.xyz/categories/ICPC%E8%AE%AD%E7%BB%83/"/>
+    
+    <category term="动态规划" scheme="https://blog.ch34k.xyz/categories/ICPC%E8%AE%AD%E7%BB%83/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/"/>
+    
+    <category term="背包DP" scheme="https://blog.ch34k.xyz/categories/ICPC%E8%AE%AD%E7%BB%83/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/%E8%83%8C%E5%8C%85DP/"/>
+    
+    
+    <category term="刷题" scheme="https://blog.ch34k.xyz/tags/%E5%88%B7%E9%A2%98/"/>
+    
+    <category term="动态规划" scheme="https://blog.ch34k.xyz/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/"/>
+    
+    <category term="背包DP" scheme="https://blog.ch34k.xyz/tags/%E8%83%8C%E5%8C%85DP/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>UESTC 2429</title>
+    <link href="https://blog.ch34k.xyz/2020/05/23/UESTC-2429/"/>
+    <id>https://blog.ch34k.xyz/2020/05/23/UESTC-2429/</id>
+    <published>2020-05-23T02:25:20.000Z</published>
+    <updated>2021-03-06T11:32:09.592Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html"></summary>
+        
+      
+    
+    
+    
+    <category term="ICPC训练" scheme="https://blog.ch34k.xyz/categories/ICPC%E8%AE%AD%E7%BB%83/"/>
+    
+    <category term="动态规划" scheme="https://blog.ch34k.xyz/categories/ICPC%E8%AE%AD%E7%BB%83/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/"/>
+    
+    <category term="状压DP" scheme="https://blog.ch34k.xyz/categories/ICPC%E8%AE%AD%E7%BB%83/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/%E7%8A%B6%E5%8E%8BDP/"/>
+    
+    
+    <category term="刷题" scheme="https://blog.ch34k.xyz/tags/%E5%88%B7%E9%A2%98/"/>
+    
+    <category term="动态规划" scheme="https://blog.ch34k.xyz/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/"/>
+    
+    <category term="状压DP" scheme="https://blog.ch34k.xyz/tags/%E7%8A%B6%E5%8E%8BDP/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>UESTC 2428</title>
+    <link href="https://blog.ch34k.xyz/2020/05/23/UESTC-2428/"/>
+    <id>https://blog.ch34k.xyz/2020/05/23/UESTC-2428/</id>
+    <published>2020-05-23T02:25:15.000Z</published>
+    <updated>2021-03-06T11:32:09.609Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html"></summary>
+        
+      
+    
+    
+    
+    <category term="ICPC训练" scheme="https://blog.ch34k.xyz/categories/ICPC%E8%AE%AD%E7%BB%83/"/>
+    
+    <category term="动态规划" scheme="https://blog.ch34k.xyz/categories/ICPC%E8%AE%AD%E7%BB%83/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/"/>
+    
+    <category term="状压DP" scheme="https://blog.ch34k.xyz/categories/ICPC%E8%AE%AD%E7%BB%83/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/%E7%8A%B6%E5%8E%8BDP/"/>
+    
+    
+    <category term="刷题" scheme="https://blog.ch34k.xyz/tags/%E5%88%B7%E9%A2%98/"/>
+    
+    <category term="动态规划" scheme="https://blog.ch34k.xyz/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/"/>
+    
+    <category term="状压DP" scheme="https://blog.ch34k.xyz/tags/%E7%8A%B6%E5%8E%8BDP/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>UESTC 2427</title>
+    <link href="https://blog.ch34k.xyz/2020/05/23/UESTC-2427/"/>
+    <id>https://blog.ch34k.xyz/2020/05/23/UESTC-2427/</id>
+    <published>2020-05-23T02:25:12.000Z</published>
+    <updated>2021-03-06T11:32:09.613Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html"></summary>
+        
+      
+    
+    
+    
+    <category term="ICPC训练" scheme="https://blog.ch34k.xyz/categories/ICPC%E8%AE%AD%E7%BB%83/"/>
+    
+    <category term="动态规划" scheme="https://blog.ch34k.xyz/categories/ICPC%E8%AE%AD%E7%BB%83/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/"/>
+    
+    <category term="区间DP" scheme="https://blog.ch34k.xyz/categories/ICPC%E8%AE%AD%E7%BB%83/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/%E5%8C%BA%E9%97%B4DP/"/>
+    
+    
+    <category term="刷题" scheme="https://blog.ch34k.xyz/tags/%E5%88%B7%E9%A2%98/"/>
+    
+    <category term="动态规划" scheme="https://blog.ch34k.xyz/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/"/>
+    
+    <category term="区间DP" scheme="https://blog.ch34k.xyz/tags/%E5%8C%BA%E9%97%B4DP/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>UESTC 2404</title>
+    <link href="https://blog.ch34k.xyz/2020/05/23/UESTC-2404/"/>
+    <id>https://blog.ch34k.xyz/2020/05/23/UESTC-2404/</id>
+    <published>2020-05-23T02:25:03.000Z</published>
+    <updated>2021-03-06T11:32:09.638Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html"></summary>
+        
+      
+    
+    
+    
+    <category term="ICPC训练" scheme="https://blog.ch34k.xyz/categories/ICPC%E8%AE%AD%E7%BB%83/"/>
+    
+    <category term="动态规划" scheme="https://blog.ch34k.xyz/categories/ICPC%E8%AE%AD%E7%BB%83/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/"/>
+    
+    <category term="树形DP" scheme="https://blog.ch34k.xyz/categories/ICPC%E8%AE%AD%E7%BB%83/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/%E6%A0%91%E5%BD%A2DP/"/>
+    
+    
+    <category term="刷题" scheme="https://blog.ch34k.xyz/tags/%E5%88%B7%E9%A2%98/"/>
+    
+    <category term="动态规划" scheme="https://blog.ch34k.xyz/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/"/>
+    
+    <category term="斜率优化" scheme="https://blog.ch34k.xyz/tags/%E6%96%9C%E7%8E%87%E4%BC%98%E5%8C%96/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>UESTC 2398</title>
+    <link href="https://blog.ch34k.xyz/2020/05/23/UESTC-2398/"/>
+    <id>https://blog.ch34k.xyz/2020/05/23/UESTC-2398/</id>
+    <published>2020-05-23T02:24:55.000Z</published>
+    <updated>2021-03-06T11:32:09.630Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html"></summary>
+        
+      
+    
+    
+    
+    <category term="ICPC训练" scheme="https://blog.ch34k.xyz/categories/ICPC%E8%AE%AD%E7%BB%83/"/>
+    
+    <category term="动态规划" scheme="https://blog.ch34k.xyz/categories/ICPC%E8%AE%AD%E7%BB%83/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/"/>
+    
+    <category term="斜率优化" scheme="https://blog.ch34k.xyz/categories/ICPC%E8%AE%AD%E7%BB%83/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/%E6%96%9C%E7%8E%87%E4%BC%98%E5%8C%96/"/>
+    
+    
+    <category term="刷题" scheme="https://blog.ch34k.xyz/tags/%E5%88%B7%E9%A2%98/"/>
+    
+    <category term="动态规划" scheme="https://blog.ch34k.xyz/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/"/>
+    
+    <category term="斜率优化" scheme="https://blog.ch34k.xyz/tags/%E6%96%9C%E7%8E%87%E4%BC%98%E5%8C%96/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>UESTC 2402</title>
+    <link href="https://blog.ch34k.xyz/2020/05/08/UESTC-2402/"/>
+    <id>https://blog.ch34k.xyz/2020/05/08/UESTC-2402/</id>
+    <published>2020-05-08T05:06:22.000Z</published>
+    <updated>2021-03-06T11:32:09.615Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html"></summary>
+        
+      
+    
+    
+    
+    <category term="ICPC训练" scheme="https://blog.ch34k.xyz/categories/ICPC%E8%AE%AD%E7%BB%83/"/>
+    
+    <category term="数据结构" scheme="https://blog.ch34k.xyz/categories/ICPC%E8%AE%AD%E7%BB%83/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"/>
+    
+    <category term="珂朵莉树" scheme="https://blog.ch34k.xyz/categories/ICPC%E8%AE%AD%E7%BB%83/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E7%8F%82%E6%9C%B5%E8%8E%89%E6%A0%91/"/>
+    
+    
+    <category term="刷题" scheme="https://blog.ch34k.xyz/tags/%E5%88%B7%E9%A2%98/"/>
+    
+    <category term="数据结构" scheme="https://blog.ch34k.xyz/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"/>
+    
+    <category term="珂朵莉树" scheme="https://blog.ch34k.xyz/tags/%E7%8F%82%E6%9C%B5%E8%8E%89%E6%A0%91/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>UESTC 2367</title>
+    <link href="https://blog.ch34k.xyz/2020/05/07/UESTC-2367/"/>
+    <id>https://blog.ch34k.xyz/2020/05/07/UESTC-2367/</id>
+    <published>2020-05-07T12:46:21.000Z</published>
+    <updated>2021-03-06T11:32:09.591Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html"></summary>
+        
+      
+    
+    
+    
+    <category term="ICPC训练" scheme="https://blog.ch34k.xyz/categories/ICPC%E8%AE%AD%E7%BB%83/"/>
+    
+    <category term="数据结构" scheme="https://blog.ch34k.xyz/categories/ICPC%E8%AE%AD%E7%BB%83/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"/>
+    
+    <category term="分块" scheme="https://blog.ch34k.xyz/categories/ICPC%E8%AE%AD%E7%BB%83/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E5%88%86%E5%9D%97/"/>
+    
+    
+    <category term="刷题" scheme="https://blog.ch34k.xyz/tags/%E5%88%B7%E9%A2%98/"/>
+    
+    <category term="数据结构" scheme="https://blog.ch34k.xyz/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"/>
+    
+    <category term="分块" scheme="https://blog.ch34k.xyz/tags/%E5%88%86%E5%9D%97/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>UESTC 2363</title>
+    <link href="https://blog.ch34k.xyz/2020/05/07/UESTC-2363/"/>
+    <id>https://blog.ch34k.xyz/2020/05/07/UESTC-2363/</id>
+    <published>2020-05-07T06:53:29.000Z</published>
+    <updated>2021-03-06T11:32:09.593Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html"></summary>
+        
+      
+    
+    
+    
+    <category term="ICPC训练" scheme="https://blog.ch34k.xyz/categories/ICPC%E8%AE%AD%E7%BB%83/"/>
+    
+    <category term="数据结构" scheme="https://blog.ch34k.xyz/categories/ICPC%E8%AE%AD%E7%BB%83/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"/>
+    
+    <category term="线段树" scheme="https://blog.ch34k.xyz/categories/ICPC%E8%AE%AD%E7%BB%83/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E7%BA%BF%E6%AE%B5%E6%A0%91/"/>
+    
+    
+    <category term="刷题" scheme="https://blog.ch34k.xyz/tags/%E5%88%B7%E9%A2%98/"/>
+    
+    <category term="数据结构" scheme="https://blog.ch34k.xyz/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"/>
+    
+    <category term="线段树" scheme="https://blog.ch34k.xyz/tags/%E7%BA%BF%E6%AE%B5%E6%A0%91/"/>
+    
+  </entry>
+  
+</feed>
