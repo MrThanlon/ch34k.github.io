@@ -23,7 +23,7 @@
 
 <script class="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"blog.ch34k.xyz","root":"/","images":"/images","scheme":"Mist","version":"8.2.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"gitalk","storage":true,"lazyload":false,"nav":null,"activeClass":"gitalk"},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}};
+    var CONFIG = {"hostname":"blog.ch34k.xyz","root":"/","images":"/images","scheme":"Mist","version":"8.2.2","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"gitalk","storage":true,"lazyload":false,"nav":null,"activeClass":"gitalk"},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}};
   </script>
 <meta name="description" content="关键字：并查集；  快慢指针法这个方法来自于判断链表中是否存在环，原理很直观，就是加入一个移动较慢的指针（一般是快指针速度的一半），如果链表中有环的话，就会导致两个指针出发了一段时间后“撞”在一起。所以只要在出发后判断两个指针是否相等即可确定链表中是否有环。 题解并查集模板题，快慢指针法判断是否成环，再加个路径压缩就完事。复杂度$o(n)$，这题限时是200ms，太极限了。 代码AC代码1234">
 <meta property="og:type" content="article">
@@ -36,8 +36,8 @@
 <meta property="article:modified_time" content="2021-03-06T11:32:09.642Z">
 <meta property="article:author" content="MrThanlon">
 <meta property="article:tag" content="刷题">
-<meta property="article:tag" content="并查集">
 <meta property="article:tag" content="数据结构">
+<meta property="article:tag" content="并查集">
 <meta name="twitter:card" content="summary">
 
 
@@ -171,6 +171,8 @@
 
         <div class="site-overview-wrap sidebar-panel">
           <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="MrThanlon"
+      src="/images/avatar.jpg">
   <p class="site-author-name" itemprop="name">MrThanlon</p>
   <div class="site-description" itemprop="description"></div>
 </div>
@@ -262,7 +264,7 @@
     <link itemprop="mainEntityOfPage" href="https://blog.ch34k.xyz/2020/05/05/UESTC-2361/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="image" content="/images/avatar.jpg">
       <meta itemprop="name" content="MrThanlon">
       <meta itemprop="description" content="">
     </span>
@@ -380,8 +382,8 @@
 
           <div class="post-tags">
               <a href="/tags/%E5%88%B7%E9%A2%98/" rel="tag"># 刷题</a>
-              <a href="/tags/%E5%B9%B6%E6%9F%A5%E9%9B%86/" rel="tag"># 并查集</a>
               <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" rel="tag"># 数据结构</a>
+              <a href="/tags/%E5%B9%B6%E6%9F%A5%E9%9B%86/" rel="tag"># 并查集</a>
           </div>
 
         

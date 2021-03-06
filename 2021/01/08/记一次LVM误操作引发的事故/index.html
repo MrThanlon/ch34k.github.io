@@ -23,7 +23,7 @@
 
 <script class="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"blog.ch34k.xyz","root":"/","images":"/images","scheme":"Mist","version":"8.2.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"gitalk","storage":true,"lazyload":false,"nav":null,"activeClass":"gitalk"},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}};
+    var CONFIG = {"hostname":"blog.ch34k.xyz","root":"/","images":"/images","scheme":"Mist","version":"8.2.2","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"gitalk","storage":true,"lazyload":false,"nav":null,"activeClass":"gitalk"},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}};
   </script>
 <meta name="description" content="总之是闯了大祸，好在最后数据都没事。主要问题是我对LVM操作不熟练，以及对文件系统和磁盘没有比较清晰的认识，具体来说就是我以为LVM在进行lvresize时会自动处理文件系统，这当然是错误的，文件系统应该使用resize2fs命令来调整，LVM管理的是块设备，不会处理文件系统上的问题。 过程事情的起因是论坛502了，一般是请求量过大，过一会就好了，但是这次一直持续了8分钟，然后我就上服务器看了下，">
 <meta property="og:type" content="article">
@@ -171,6 +171,8 @@
 
         <div class="site-overview-wrap sidebar-panel">
           <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="MrThanlon"
+      src="/images/avatar.jpg">
   <p class="site-author-name" itemprop="name">MrThanlon</p>
   <div class="site-description" itemprop="description"></div>
 </div>
@@ -262,7 +264,7 @@
     <link itemprop="mainEntityOfPage" href="https://blog.ch34k.xyz/2021/01/08/%E8%AE%B0%E4%B8%80%E6%AC%A1LVM%E8%AF%AF%E6%93%8D%E4%BD%9C%E5%BC%95%E5%8F%91%E7%9A%84%E4%BA%8B%E6%95%85/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="image" content="/images/avatar.jpg">
       <meta itemprop="name" content="MrThanlon">
       <meta itemprop="description" content="">
     </span>
