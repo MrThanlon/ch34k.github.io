@@ -6,7 +6,7 @@
   <link href="https://blog.ch34k.xyz/atom.xml" rel="self"/>
   
   <link href="https://blog.ch34k.xyz/"/>
-  <updated>2021-03-06T12:22:52.280Z</updated>
+  <updated>2021-03-20T08:54:48.665Z</updated>
   <id>https://blog.ch34k.xyz/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>那些CSS动画</title>
+    <link href="https://blog.ch34k.xyz/2021/03/20/%E9%82%A3%E4%BA%9BCSS%E5%8A%A8%E7%94%BB/"/>
+    <id>https://blog.ch34k.xyz/2021/03/20/%E9%82%A3%E4%BA%9BCSS%E5%8A%A8%E7%94%BB/</id>
+    <published>2021-03-20T08:46:52.000Z</published>
+    <updated>2021-03-20T08:54:48.665Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;众所周知，CSS可以实现很多矢量动画。&lt;/p&gt;
+&lt;p class=&quot;codepen&quot; data-height=&quot;303&quot; data-theme-id=&quot;dark&quot; data-default-tab=&quot;css,result&quot; data-user=&quot;mrthanlon&quot; data-slug-hash=&quot;PobMbLv&quot; style=&quot;height: 303px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;&quot; data-pen-title=&quot;Menu button&quot;&gt;
+  &lt;span&gt;See the Pen &lt;a href=&quot;https://codepen.io/mrthanlon/pen/PobMbLv&quot;&gt;
+  Menu button&lt;/a&gt; by hzy (&lt;a href=&quot;https://codepen.io/mrthanlon&quot;&gt;@mrthanlon&lt;/a&gt;)
+  on &lt;a href=&quot;https://codepen.io&quot;&gt;CodePen&lt;/a&gt;.&lt;/span&gt;
+&lt;/p&gt;
+&lt;script async src=&quot;https://cpwebassets.codepen.io/assets/embed/ei.js&quot;&gt;&lt;/script&gt;</summary>
+    
+    
+    
+    
+    <category term="动画" scheme="https://blog.ch34k.xyz/tags/%E5%8A%A8%E7%94%BB/"/>
+    
+    <category term="CSS" scheme="https://blog.ch34k.xyz/tags/CSS/"/>
+    
+  </entry>
   
   <entry>
     <title>微软2021春招实习生笔试</title>
@@ -614,39 +639,6 @@
     <category term="数据结构" scheme="https://blog.ch34k.xyz/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"/>
     
     <category term="分块" scheme="https://blog.ch34k.xyz/tags/%E5%88%86%E5%9D%97/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>UESTC 2363</title>
-    <link href="https://blog.ch34k.xyz/2020/05/07/UESTC-2363/"/>
-    <id>https://blog.ch34k.xyz/2020/05/07/UESTC-2363/</id>
-    <published>2020-05-07T06:53:29.000Z</published>
-    <updated>2021-03-06T11:32:09.593Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html"></summary>
-        
-      
-    
-    
-    
-    <category term="ICPC训练" scheme="https://blog.ch34k.xyz/categories/ICPC%E8%AE%AD%E7%BB%83/"/>
-    
-    <category term="数据结构" scheme="https://blog.ch34k.xyz/categories/ICPC%E8%AE%AD%E7%BB%83/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"/>
-    
-    <category term="线段树" scheme="https://blog.ch34k.xyz/categories/ICPC%E8%AE%AD%E7%BB%83/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E7%BA%BF%E6%AE%B5%E6%A0%91/"/>
-    
-    
-    <category term="刷题" scheme="https://blog.ch34k.xyz/tags/%E5%88%B7%E9%A2%98/"/>
-    
-    <category term="数据结构" scheme="https://blog.ch34k.xyz/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"/>
-    
-    <category term="线段树" scheme="https://blog.ch34k.xyz/tags/%E7%BA%BF%E6%AE%B5%E6%A0%91/"/>
     
   </entry>
   
