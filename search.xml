@@ -869,6 +869,8 @@
     <title>在树莓派上使用SATA设备(ASM1062/ASM1061)</title>
     <url>/2021/01/30/%E5%9C%A8%E6%A0%91%E8%8E%93%E6%B4%BE%E4%B8%8A%E4%BD%BF%E7%94%A8SATA%E8%AE%BE%E5%A4%87-ASM1062-ASM1061/</url>
     <content><![CDATA[<p>众所周知，树莓派4使用的BCM2711拥有一个千兆以太网口，以及一条PCIe2.0 1x，也就是说如果我们把PCIe转接到SATA，就可以用树莓派当NAS了，岂不美哉？</p>
+<!--mode-->
+
 <p>当然，对于树莓派4B来说，它的PCIe已经分配给了USB3.0，所以我们这次要用的是树莓派CM4，它引出了大多数引脚，包括以太网口和PCIe。如果是自己画板子，要注意PCIe是差分对，需要等长布线，我这里为了方便直接买了官方出的底板，一样的用法。</p>
 <p>淘宝上比较便宜的方案是ASM1061/ASM1062，这俩都能引出两个SATA口，而且Linux已经包含了它的驱动程序，直接就能使用。关于这玩意的讨论可以看看<a href="https://github.com/geerlingguy/raspberry-pi-pcie-devices/issues/30">这个issue</a>。</p>
 <p>买到这个卡之后直接插上开机，输入<code>lspci</code>就直接能看到ASM1062，如下</p>
@@ -996,6 +998,8 @@
     <url>/2021/03/06/%E5%BE%AE%E8%BD%AF2021%E6%98%A5%E6%8B%9B%E5%AE%9E%E4%B9%A0%E7%94%9F%E7%AC%94%E8%AF%95/</url>
     <content><![CDATA[<p>两个小时，三道题，第二题实在是粗心了，正确率应该能提到100%的，忘记对结果进行特判。</p>
 <p><img src="1FB3584CBBD8AB424975EBD88F150712.jpg" alt="结果"></p>
+<!--mode-->
+
 <h2 id="A题"><a href="#A题" class="headerlink" title="A题"></a>A题</h2><p>第一题可以选择中文或者英文题面，不过题目好像不太一样，我做的中文题。</p>
 <h3 id="题面"><a href="#题面" class="headerlink" title="题面"></a>题面</h3><blockquote>
 <p>给一个数组，求其中元素大于等于3的<strong>等差数列</strong>子串的数量。只评测正确率，不评测运行时间。</p>
@@ -1109,6 +1113,8 @@
     <title>记一次LVM误操作引发的事故</title>
     <url>/2021/01/08/%E8%AE%B0%E4%B8%80%E6%AC%A1LVM%E8%AF%AF%E6%93%8D%E4%BD%9C%E5%BC%95%E5%8F%91%E7%9A%84%E4%BA%8B%E6%95%85/</url>
     <content><![CDATA[<p>总之是闯了大祸，好在最后数据都没事。主要问题是我对LVM操作不熟练，以及对文件系统和磁盘没有比较清晰的认识，具体来说就是我以为<del>LVM在进行lvresize时会自动处理文件系统</del>，这当然是错误的，<strong>文件系统应该使用resize2fs命令来调整，LVM管理的是块设备</strong>，不会处理文件系统上的问题。</p>
+<!--mode-->
+
 <h2 id="过程"><a href="#过程" class="headerlink" title="过程"></a>过程</h2><p>事情的起因是论坛502了，一般是请求量过大，过一会就好了，但是这次一直持续了8分钟，然后我就上服务器看了下，nginx和php都跑着，挂载根目录的磁盘满了，老规矩删日志，删完还剩500M左右，我就想着能不能处理一下，不然不一会儿又满了。</p>
 <p>服务器使用了LVM，好像有硬件RAID（但是操作系统上好像没有对应的软件查看），卷组的大小是1.1T左右，分出了三个逻辑卷</p>
 <ul>
@@ -1513,14 +1519,15 @@
     <url>/2021/03/20/%E9%82%A3%E4%BA%9BCSS%E5%8A%A8%E7%94%BB/</url>
     <content><![CDATA[<p>众所周知，CSS可以实现很多矢量动画。</p>
 <p>比如这个菜单按钮</p>
+<span id="more"></span>
+
+
 <p class="codepen" data-height="303" data-theme-id="dark" data-default-tab="css,result" data-user="mrthanlon" data-slug-hash="PobMbLv" style="height: 303px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;" data-pen-title="Menu button">
   <span>See the Pen <a href="https://codepen.io/mrthanlon/pen/PobMbLv">
   Menu button</a> by hzy (<a href="https://codepen.io/mrthanlon">@mrthanlon</a>)
   on <a href="https://codepen.io">CodePen</a>.</span>
 </p>
 <script async src="https://cpwebassets.codepen.io/assets/embed/ei.js"></script>
-
-<span id="more"></span>
 
 <p>三角形的加载动画</p>
 <p class="codepen" data-height="265" data-theme-id="dark" data-default-tab="css,result" data-user="mrthanlon" data-slug-hash="NWbQdyb" style="height: 265px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;" data-pen-title="Triangle animation">

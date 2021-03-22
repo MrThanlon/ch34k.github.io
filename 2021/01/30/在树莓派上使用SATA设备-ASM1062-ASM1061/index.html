@@ -25,15 +25,15 @@
     var NexT = window.NexT || {};
     var CONFIG = {"hostname":"blog.ch34k.xyz","root":"/","images":"/images","scheme":"Mist","version":"8.2.2","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"gitalk","storage":true,"lazyload":false,"nav":null,"activeClass":"gitalk"},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}};
   </script>
-<meta name="description" content="众所周知，树莓派4使用的BCM2711拥有一个千兆以太网口，以及一条PCIe2.0 1x，也就是说如果我们把PCIe转接到SATA，就可以用树莓派当NAS了，岂不美哉？ 当然，对于树莓派4B来说，它的PCIe已经分配给了USB3.0，所以我们这次要用的是树莓派CM4，它引出了大多数引脚，包括以太网口和PCIe。如果是自己画板子，要注意PCIe是差分对，需要等长布线，我这里为了方便直接买了官方出的底">
+<meta name="description" content="众所周知，树莓派4使用的BCM2711拥有一个千兆以太网口，以及一条PCIe2.0 1x，也就是说如果我们把PCIe转接到SATA，就可以用树莓派当NAS了，岂不美哉？   当然，对于树莓派4B来说，它的PCIe已经分配给了USB3.0，所以我们这次要用的是树莓派CM4，它引出了大多数引脚，包括以太网口和PCIe。如果是自己画板子，要注意PCIe是差分对，需要等长布线，我这里为了方便直接买了官方出">
 <meta property="og:type" content="article">
 <meta property="og:title" content="在树莓派上使用SATA设备(ASM1062&#x2F;ASM1061)">
 <meta property="og:url" content="https://blog.ch34k.xyz/2021/01/30/%E5%9C%A8%E6%A0%91%E8%8E%93%E6%B4%BE%E4%B8%8A%E4%BD%BF%E7%94%A8SATA%E8%AE%BE%E5%A4%87-ASM1062-ASM1061/index.html">
 <meta property="og:site_name" content="水厂日志">
-<meta property="og:description" content="众所周知，树莓派4使用的BCM2711拥有一个千兆以太网口，以及一条PCIe2.0 1x，也就是说如果我们把PCIe转接到SATA，就可以用树莓派当NAS了，岂不美哉？ 当然，对于树莓派4B来说，它的PCIe已经分配给了USB3.0，所以我们这次要用的是树莓派CM4，它引出了大多数引脚，包括以太网口和PCIe。如果是自己画板子，要注意PCIe是差分对，需要等长布线，我这里为了方便直接买了官方出的底">
+<meta property="og:description" content="众所周知，树莓派4使用的BCM2711拥有一个千兆以太网口，以及一条PCIe2.0 1x，也就是说如果我们把PCIe转接到SATA，就可以用树莓派当NAS了，岂不美哉？   当然，对于树莓派4B来说，它的PCIe已经分配给了USB3.0，所以我们这次要用的是树莓派CM4，它引出了大多数引脚，包括以太网口和PCIe。如果是自己画板子，要注意PCIe是差分对，需要等长布线，我这里为了方便直接买了官方出">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2021-01-30T12:33:50.000Z">
-<meta property="article:modified_time" content="2021-03-06T11:32:09.644Z">
+<meta property="article:modified_time" content="2021-03-22T11:57:58.160Z">
 <meta property="article:author" content="MrThanlon">
 <meta property="article:tag" content="GNU&#x2F;Linux">
 <meta property="article:tag" content="树莓派">
@@ -290,7 +290,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-03-06 19:32:09" itemprop="dateModified" datetime="2021-03-06T19:32:09+08:00">2021-03-06</time>
+        <time title="修改时间：2021-03-22 19:57:58" itemprop="dateModified" datetime="2021-03-22T19:57:58+08:00">2021-03-22</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -324,6 +324,8 @@
     
     <div class="post-body" itemprop="articleBody">
         <p>众所周知，树莓派4使用的BCM2711拥有一个千兆以太网口，以及一条PCIe2.0 1x，也就是说如果我们把PCIe转接到SATA，就可以用树莓派当NAS了，岂不美哉？</p>
+<!--mode-->
+
 <p>当然，对于树莓派4B来说，它的PCIe已经分配给了USB3.0，所以我们这次要用的是树莓派CM4，它引出了大多数引脚，包括以太网口和PCIe。如果是自己画板子，要注意PCIe是差分对，需要等长布线，我这里为了方便直接买了官方出的底板，一样的用法。</p>
 <p>淘宝上比较便宜的方案是ASM1061/ASM1062，这俩都能引出两个SATA口，而且Linux已经包含了它的驱动程序，直接就能使用。关于这玩意的讨论可以看看<a target="_blank" rel="noopener" href="https://github.com/geerlingguy/raspberry-pi-pcie-devices/issues/30">这个issue</a>。</p>
 <p>买到这个卡之后直接插上开机，输入<code>lspci</code>就直接能看到ASM1062，如下</p>
