@@ -6,7 +6,7 @@
   <link href="https://blog.ch34k.xyz/atom.xml" rel="self"/>
   
   <link href="https://blog.ch34k.xyz/"/>
-  <updated>2021-03-22T11:57:22.585Z</updated>
+  <updated>2021-03-22T12:09:03.454Z</updated>
   <id>https://blog.ch34k.xyz/</id>
   
   <author>
@@ -21,11 +21,17 @@
     <link href="https://blog.ch34k.xyz/2021/03/20/%E9%82%A3%E4%BA%9BCSS%E5%8A%A8%E7%94%BB/"/>
     <id>https://blog.ch34k.xyz/2021/03/20/%E9%82%A3%E4%BA%9BCSS%E5%8A%A8%E7%94%BB/</id>
     <published>2021-03-20T08:46:52.000Z</published>
-    <updated>2021-03-22T11:57:22.585Z</updated>
+    <updated>2021-03-22T12:09:03.454Z</updated>
     
     
     <summary type="html">&lt;p&gt;众所周知，CSS可以实现很多矢量动画。&lt;/p&gt;
-&lt;p&gt;比如这个菜单按钮&lt;/p&gt;</summary>
+&lt;p&gt;比如这个菜单按钮&lt;/p&gt;
+&lt;p class=&quot;codepen&quot; data-height=&quot;303&quot; data-theme-id=&quot;dark&quot; data-default-tab=&quot;css,result&quot; data-user=&quot;mrthanlon&quot; data-slug-hash=&quot;PobMbLv&quot; style=&quot;height: 303px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;&quot; data-pen-title=&quot;Menu button&quot;&gt;
+  &lt;span&gt;See the Pen &lt;a href=&quot;https://codepen.io/mrthanlon/pen/PobMbLv&quot;&gt;
+  Menu button&lt;/a&gt; by hzy (&lt;a href=&quot;https://codepen.io/mrthanlon&quot;&gt;@mrthanlon&lt;/a&gt;)
+  on &lt;a href=&quot;https://codepen.io&quot;&gt;CodePen&lt;/a&gt;.&lt;/span&gt;
+&lt;/p&gt;
+&lt;script async src=&quot;https://cpwebassets.codepen.io/assets/embed/ei.js&quot;&gt;&lt;/script&gt;</summary>
     
     
     
@@ -41,16 +47,12 @@
     <link href="https://blog.ch34k.xyz/2021/03/06/%E5%BE%AE%E8%BD%AF2021%E6%98%A5%E6%8B%9B%E5%AE%9E%E4%B9%A0%E7%94%9F%E7%AC%94%E8%AF%95/"/>
     <id>https://blog.ch34k.xyz/2021/03/06/%E5%BE%AE%E8%BD%AF2021%E6%98%A5%E6%8B%9B%E5%AE%9E%E4%B9%A0%E7%94%9F%E7%AC%94%E8%AF%95/</id>
     <published>2021-03-06T08:43:40.000Z</published>
-    <updated>2021-03-22T11:57:41.439Z</updated>
+    <updated>2021-03-22T12:08:44.175Z</updated>
     
     
-      
-      
-        
-        
-    <summary type="html"></summary>
-        
-      
+    <summary type="html">&lt;p&gt;两个小时，三道题，第二题实在是粗心了，正确率应该能提到100%的，忘记对结果进行特判。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;1FB3584CBBD8AB424975EBD88F150712.jpg&quot; alt=&quot;结果&quot;&gt;&lt;/p&gt;
+&lt;h2 id=&quot;A题&quot;&gt;&lt;a href=&quot;#A题&quot; class=&quot;headerlink&quot; title=&quot;A题&quot;&gt;&lt;/a&gt;A题&lt;/h2&gt;&lt;p&gt;第一题可以选择中文或者英文题面，不过题目好像不太一样，我做的中文题。&lt;/p&gt;</summary>
     
     
     
@@ -70,16 +72,10 @@
     <link href="https://blog.ch34k.xyz/2021/01/30/%E5%9C%A8%E6%A0%91%E8%8E%93%E6%B4%BE%E4%B8%8A%E4%BD%BF%E7%94%A8SATA%E8%AE%BE%E5%A4%87-ASM1062-ASM1061/"/>
     <id>https://blog.ch34k.xyz/2021/01/30/%E5%9C%A8%E6%A0%91%E8%8E%93%E6%B4%BE%E4%B8%8A%E4%BD%BF%E7%94%A8SATA%E8%AE%BE%E5%A4%87-ASM1062-ASM1061/</id>
     <published>2021-01-30T12:33:50.000Z</published>
-    <updated>2021-03-22T11:57:58.160Z</updated>
+    <updated>2021-03-22T12:09:20.669Z</updated>
     
     
-      
-      
-        
-        
-    <summary type="html"></summary>
-        
-      
+    <summary type="html">&lt;p&gt;众所周知，树莓派4使用的BCM2711拥有一个千兆以太网口，以及一条PCIe2.0 1x，也就是说如果我们把PCIe转接到SATA，就可以用树莓派当NAS了，岂不美哉？&lt;/p&gt;</summary>
     
     
     
@@ -99,16 +95,10 @@
     <link href="https://blog.ch34k.xyz/2021/01/08/%E8%AE%B0%E4%B8%80%E6%AC%A1LVM%E8%AF%AF%E6%93%8D%E4%BD%9C%E5%BC%95%E5%8F%91%E7%9A%84%E4%BA%8B%E6%95%85/"/>
     <id>https://blog.ch34k.xyz/2021/01/08/%E8%AE%B0%E4%B8%80%E6%AC%A1LVM%E8%AF%AF%E6%93%8D%E4%BD%9C%E5%BC%95%E5%8F%91%E7%9A%84%E4%BA%8B%E6%95%85/</id>
     <published>2021-01-08T13:42:27.000Z</published>
-    <updated>2021-03-22T11:58:12.499Z</updated>
+    <updated>2021-03-22T12:10:24.811Z</updated>
     
     
-      
-      
-        
-        
-    <summary type="html"></summary>
-        
-      
+    <summary type="html">&lt;p&gt;总之是闯了大祸，好在最后数据都没事。主要问题是我对LVM操作不熟练，以及对文件系统和磁盘没有比较清晰的认识，具体来说就是我以为&lt;del&gt;LVM在进行lvresize时会自动处理文件系统&lt;/del&gt;，这当然是错误的，&lt;strong&gt;文件系统应该使用resize2fs命令来调整，LVM管理的是块设备&lt;/strong&gt;，不会处理文件系统上的问题。&lt;/p&gt;</summary>
     
     
     
@@ -126,16 +116,10 @@
     <link href="https://blog.ch34k.xyz/2020/07/30/NRF24L01-%E8%B0%83%E8%AF%95%E7%AC%94%E8%AE%B0/"/>
     <id>https://blog.ch34k.xyz/2020/07/30/NRF24L01-%E8%B0%83%E8%AF%95%E7%AC%94%E8%AE%B0/</id>
     <published>2020-07-30T03:37:08.000Z</published>
-    <updated>2021-03-06T11:32:09.623Z</updated>
+    <updated>2021-03-22T12:11:25.027Z</updated>
     
     
-      
-      
-        
-        
-    <summary type="html"></summary>
-        
-      
+    <summary type="html">&lt;h2 id=&quot;引&quot;&gt;&lt;a href=&quot;#引&quot; class=&quot;headerlink&quot; title=&quot;引&quot;&gt;&lt;/a&gt;引&lt;/h2&gt;&lt;p&gt;前几天想要做一个开源航模接收机，于是去淘宝看了下无线模块，以前有了解过NRF24L01，于是就下单了三片，一片才8块钱，真的划算。&lt;/p&gt;</summary>
     
     
     
@@ -157,16 +141,11 @@
     <link href="https://blog.ch34k.xyz/2020/07/25/%E5%A6%82%E4%BD%95%E4%BC%98%E9%9B%85%E5%9C%B0%E5%BC%80%E5%8F%91STM32-Clion-CubeMX-ST-Link/"/>
     <id>https://blog.ch34k.xyz/2020/07/25/%E5%A6%82%E4%BD%95%E4%BC%98%E9%9B%85%E5%9C%B0%E5%BC%80%E5%8F%91STM32-Clion-CubeMX-ST-Link/</id>
     <published>2020-07-25T02:30:24.000Z</published>
-    <updated>2021-03-06T11:32:09.592Z</updated>
+    <updated>2021-03-22T12:12:02.523Z</updated>
     
     
-      
-      
-        
-        
-    <summary type="html"></summary>
-        
-      
+    <summary type="html">&lt;h2 id=&quot;引&quot;&gt;&lt;a href=&quot;#引&quot; class=&quot;headerlink&quot; title=&quot;引&quot;&gt;&lt;/a&gt;引&lt;/h2&gt;&lt;p&gt;与时髦的应用层码农不同，我们这些嵌入式码农在写单片机程序的时候大多使用上古的Keil，不得不说，Keil确实好用，编译、调试都可以一键完成，但只提供Windows版本，而且界面还停留在上个世纪，也没有自动补全等现代IDE的功能。&lt;/p&gt;
+&lt;p&gt;自从前段时间换了MacBook Pro之后我就基本上用它来干活了，虚拟机跑Keil实在是得不偿失，更换嵌入式开发环境在所难免。&lt;/p&gt;</summary>
     
     
     
@@ -186,16 +165,10 @@
     <link href="https://blog.ch34k.xyz/2020/07/08/UESTC-2503/"/>
     <id>https://blog.ch34k.xyz/2020/07/08/UESTC-2503/</id>
     <published>2020-07-08T08:10:38.000Z</published>
-    <updated>2021-03-06T11:32:09.618Z</updated>
+    <updated>2021-03-22T12:12:40.998Z</updated>
     
     
-      
-      
-        
-        
-    <summary type="html"></summary>
-        
-      
+    <summary type="html">&lt;h2 id=&quot;题目&quot;&gt;&lt;a href=&quot;#题目&quot; class=&quot;headerlink&quot; title=&quot;题目&quot;&gt;&lt;/a&gt;题目&lt;/h2&gt;&lt;p&gt;Alice 和 Bob 在做游戏。有一个长度为$n$的正整数序列，Alice 先手，两人轮流操作。Alice 需要删掉一个非空连续子段，子段和为奇数；Bob 需要删掉一个非空连续子段，子段和为偶数。删除子段后左右两段拼接起来形成新的序列。不能操作的人输。如果两个人都足够聪明，那么谁会获胜？&lt;/p&gt;</summary>
     
     
     
@@ -217,16 +190,10 @@
     <link href="https://blog.ch34k.xyz/2020/06/22/%E5%A6%82%E4%BD%95%E4%BC%98%E9%9B%85%E5%9C%B0%E8%B0%83%E7%94%A8web%E6%8E%A5%E5%8F%A3-api-js/"/>
     <id>https://blog.ch34k.xyz/2020/06/22/%E5%A6%82%E4%BD%95%E4%BC%98%E9%9B%85%E5%9C%B0%E8%B0%83%E7%94%A8web%E6%8E%A5%E5%8F%A3-api-js/</id>
     <published>2020-06-22T07:27:05.000Z</published>
-    <updated>2021-03-06T11:32:09.617Z</updated>
+    <updated>2021-03-22T12:08:39.667Z</updated>
     
     
-      
-      
-        
-        
-    <summary type="html"></summary>
-        
-      
+    <summary type="html">&lt;p&gt;在写前端项目的时候总免不了要调用后端提供的接口，比如POST &lt;code&gt;/user/login&lt;/code&gt;，比较传统的方法就是使用XHR。不过，ES6引入了Promise，ES7引入了async/await，使得我们可以更优雅地完成异步操作，于是&lt;a href=&quot;https://github.com/axios/axios&quot;&gt;axios&lt;/a&gt;隆重登场（其实我个人并没有用过axios）。&lt;/p&gt;</summary>
     
     
     
@@ -248,16 +215,11 @@
     <link href="https://blog.ch34k.xyz/2020/06/20/UESTC-2459/"/>
     <id>https://blog.ch34k.xyz/2020/06/20/UESTC-2459/</id>
     <published>2020-06-20T03:00:59.000Z</published>
-    <updated>2021-03-06T11:32:09.595Z</updated>
+    <updated>2021-03-22T12:13:43.199Z</updated>
     
     
-      
-      
-        
-        
-    <summary type="html"></summary>
-        
-      
+    <summary type="html">&lt;h2 id=&quot;题目&quot;&gt;&lt;a href=&quot;#题目&quot; class=&quot;headerlink&quot; title=&quot;题目&quot;&gt;&lt;/a&gt;题目&lt;/h2&gt;&lt;p&gt;给两段字符串$A$和$B$，输出$A$中所有出现$B$的位置。&lt;/p&gt;
+&lt;h2 id=&quot;题解&quot;&gt;&lt;a href=&quot;#题解&quot; class=&quot;headerlink&quot; title=&quot;题解&quot;&gt;&lt;/a&gt;题解&lt;/h2&gt;&lt;p&gt;这题是老KMP了，不过还是说下怎么做吧&lt;del&gt;不然太水了&lt;/del&gt;。&lt;/p&gt;</summary>
     
     
     
@@ -281,16 +243,11 @@
     <link href="https://blog.ch34k.xyz/2020/06/19/UESTC-2382/"/>
     <id>https://blog.ch34k.xyz/2020/06/19/UESTC-2382/</id>
     <published>2020-06-19T08:00:59.000Z</published>
-    <updated>2021-03-06T11:32:09.642Z</updated>
+    <updated>2021-03-22T12:14:06.489Z</updated>
     
     
-      
-      
-        
-        
-    <summary type="html"></summary>
-        
-      
+    <summary type="html">&lt;h2 id=&quot;题目&quot;&gt;&lt;a href=&quot;#题目&quot; class=&quot;headerlink&quot; title=&quot;题目&quot;&gt;&lt;/a&gt;题目&lt;/h2&gt;&lt;p&gt;输入$n$条有向边，确定是否能一笔画，如果能则输出最大的“起点*终点“，否则输出$-1$。&lt;/p&gt;
+&lt;h2 id=&quot;题解&quot;&gt;&lt;a href=&quot;#题解&quot; class=&quot;headerlink&quot; title=&quot;题解&quot;&gt;&lt;/a&gt;题解&lt;/h2&gt;&lt;p&gt;欧拉图模板题。&lt;/p&gt;</summary>
     
     
     
