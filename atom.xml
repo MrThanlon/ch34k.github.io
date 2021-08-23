@@ -6,7 +6,7 @@
   <link href="https://blog.ch34k.xyz/atom.xml" rel="self"/>
   
   <link href="https://blog.ch34k.xyz/"/>
-  <updated>2021-03-22T12:09:03.454Z</updated>
+  <updated>2021-08-23T14:18:18.082Z</updated>
   <id>https://blog.ch34k.xyz/</id>
   
   <author>
@@ -15,6 +15,94 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>用C语言写堆</title>
+    <link href="https://blog.ch34k.xyz/2021/08/23/%E7%94%A8C%E8%AF%AD%E8%A8%80%E5%86%99%E5%A0%86/"/>
+    <id>https://blog.ch34k.xyz/2021/08/23/%E7%94%A8C%E8%AF%AD%E8%A8%80%E5%86%99%E5%A0%86/</id>
+    <published>2021-08-23T14:05:17.000Z</published>
+    <updated>2021-08-23T14:18:18.082Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;也就是优先队列，我们知道STL中提供了一个好用的优先队列&lt;code&gt;priority_queue&amp;lt;T&amp;gt;&lt;/code&gt;，C语言中起码有不少库（比如&lt;code&gt;librock&lt;/code&gt;）提供了这玩意，所以写这玩意纯属造无意义的轮子。但是我写这玩意主要是因为最近在面试，至少遇到了两次让手写一个堆（不过当时都没写出来，毕竟不会真的有人要手写STL提供的算法和数据结构吧？不会吧？不会吧？），闲着也是闲着，不如锻炼一下，堆还是很好写的。&lt;/p&gt;
+&lt;p&gt;我写的这个版本用&lt;code&gt;void*&lt;/code&gt;模拟泛型，同时能自动扩容，但是缺点也很多，就我自己的感觉是时间复杂度的常数肯定很大，虽然是$O(\log_2 n)$​​​​​，但是有大量的判断，而且插入位置也没有优化，只写了个简单的测试例，总之不推荐在生产环境用（STL不香吗？）。&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="数据结构" scheme="https://blog.ch34k.xyz/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"/>
+    
+    <category term="堆" scheme="https://blog.ch34k.xyz/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E5%A0%86/"/>
+    
+    
+    <category term="数据结构" scheme="https://blog.ch34k.xyz/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"/>
+    
+    <category term="堆" scheme="https://blog.ch34k.xyz/tags/%E5%A0%86/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>关于我把api.js封装成了node module这件事</title>
+    <link href="https://blog.ch34k.xyz/2021/06/21/%E5%85%B3%E4%BA%8E%E6%88%91%E6%8A%8Aapi-js%E5%B0%81%E8%A3%85%E6%88%90%E4%BA%86node-module%E8%BF%99%E4%BB%B6%E4%BA%8B/"/>
+    <id>https://blog.ch34k.xyz/2021/06/21/%E5%85%B3%E4%BA%8E%E6%88%91%E6%8A%8Aapi-js%E5%B0%81%E8%A3%85%E6%88%90%E4%BA%86node-module%E8%BF%99%E4%BB%B6%E4%BA%8B/</id>
+    <published>2021-06-21T08:52:42.000Z</published>
+    <updated>2021-08-23T14:15:37.413Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html"></summary>
+        
+      
+    
+    
+    
+    <category term="Web" scheme="https://blog.ch34k.xyz/categories/Web/"/>
+    
+    <category term="JavaScript" scheme="https://blog.ch34k.xyz/categories/Web/JavaScript/"/>
+    
+    <category term="Proxy" scheme="https://blog.ch34k.xyz/categories/Web/JavaScript/Proxy/"/>
+    
+    
+    <category term="JavaScript" scheme="https://blog.ch34k.xyz/tags/JavaScript/"/>
+    
+    <category term="Web" scheme="https://blog.ch34k.xyz/tags/Web/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>一个好用的字典树模板(C++)</title>
+    <link href="https://blog.ch34k.xyz/2021/06/21/%E4%B8%80%E4%B8%AA%E5%A5%BD%E7%94%A8%E7%9A%84%E5%AD%97%E5%85%B8%E6%A0%91%E6%A8%A1%E6%9D%BF-C/"/>
+    <id>https://blog.ch34k.xyz/2021/06/21/%E4%B8%80%E4%B8%AA%E5%A5%BD%E7%94%A8%E7%9A%84%E5%AD%97%E5%85%B8%E6%A0%91%E6%A8%A1%E6%9D%BF-C/</id>
+    <published>2021-06-21T08:46:13.000Z</published>
+    <updated>2021-06-21T08:48:55.333Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html"></summary>
+        
+      
+    
+    
+    
+    <category term="数据结构" scheme="https://blog.ch34k.xyz/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"/>
+    
+    <category term="字典树" scheme="https://blog.ch34k.xyz/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E5%AD%97%E5%85%B8%E6%A0%91/"/>
+    
+    
+    <category term="刷题" scheme="https://blog.ch34k.xyz/tags/%E5%88%B7%E9%A2%98/"/>
+    
+    <category term="ICPC" scheme="https://blog.ch34k.xyz/tags/ICPC/"/>
+    
+    <category term="数据结构" scheme="https://blog.ch34k.xyz/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"/>
+    
+    <category term="字典树" scheme="https://blog.ch34k.xyz/tags/%E5%AD%97%E5%85%B8%E6%A0%91/"/>
+    
+  </entry>
   
   <entry>
     <title>那些CSS动画</title>
@@ -190,7 +278,7 @@
     <link href="https://blog.ch34k.xyz/2020/06/22/%E5%A6%82%E4%BD%95%E4%BC%98%E9%9B%85%E5%9C%B0%E8%B0%83%E7%94%A8web%E6%8E%A5%E5%8F%A3-api-js/"/>
     <id>https://blog.ch34k.xyz/2020/06/22/%E5%A6%82%E4%BD%95%E4%BC%98%E9%9B%85%E5%9C%B0%E8%B0%83%E7%94%A8web%E6%8E%A5%E5%8F%A3-api-js/</id>
     <published>2020-06-22T07:27:05.000Z</published>
-    <updated>2021-03-22T12:08:39.667Z</updated>
+    <updated>2021-06-21T08:50:04.295Z</updated>
     
     
     <summary type="html">&lt;p&gt;在写前端项目的时候总免不了要调用后端提供的接口，比如POST &lt;code&gt;/user/login&lt;/code&gt;，比较传统的方法就是使用XHR。不过，ES6引入了Promise，ES7引入了async/await，使得我们可以更优雅地完成异步操作，于是&lt;a href=&quot;https://github.com/axios/axios&quot;&gt;axios&lt;/a&gt;隆重登场（其实我个人并没有用过axios）。&lt;/p&gt;</summary>
@@ -492,105 +580,6 @@
     <category term="动态规划" scheme="https://blog.ch34k.xyz/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/"/>
     
     <category term="斜率优化" scheme="https://blog.ch34k.xyz/tags/%E6%96%9C%E7%8E%87%E4%BC%98%E5%8C%96/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>UESTC 2398</title>
-    <link href="https://blog.ch34k.xyz/2020/05/23/UESTC-2398/"/>
-    <id>https://blog.ch34k.xyz/2020/05/23/UESTC-2398/</id>
-    <published>2020-05-23T02:24:55.000Z</published>
-    <updated>2021-03-06T11:32:09.630Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html"></summary>
-        
-      
-    
-    
-    
-    <category term="ICPC训练" scheme="https://blog.ch34k.xyz/categories/ICPC%E8%AE%AD%E7%BB%83/"/>
-    
-    <category term="动态规划" scheme="https://blog.ch34k.xyz/categories/ICPC%E8%AE%AD%E7%BB%83/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/"/>
-    
-    <category term="斜率优化" scheme="https://blog.ch34k.xyz/categories/ICPC%E8%AE%AD%E7%BB%83/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/%E6%96%9C%E7%8E%87%E4%BC%98%E5%8C%96/"/>
-    
-    
-    <category term="刷题" scheme="https://blog.ch34k.xyz/tags/%E5%88%B7%E9%A2%98/"/>
-    
-    <category term="动态规划" scheme="https://blog.ch34k.xyz/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/"/>
-    
-    <category term="斜率优化" scheme="https://blog.ch34k.xyz/tags/%E6%96%9C%E7%8E%87%E4%BC%98%E5%8C%96/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>UESTC 2402</title>
-    <link href="https://blog.ch34k.xyz/2020/05/08/UESTC-2402/"/>
-    <id>https://blog.ch34k.xyz/2020/05/08/UESTC-2402/</id>
-    <published>2020-05-08T05:06:22.000Z</published>
-    <updated>2021-03-06T11:32:09.615Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html"></summary>
-        
-      
-    
-    
-    
-    <category term="ICPC训练" scheme="https://blog.ch34k.xyz/categories/ICPC%E8%AE%AD%E7%BB%83/"/>
-    
-    <category term="数据结构" scheme="https://blog.ch34k.xyz/categories/ICPC%E8%AE%AD%E7%BB%83/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"/>
-    
-    <category term="珂朵莉树" scheme="https://blog.ch34k.xyz/categories/ICPC%E8%AE%AD%E7%BB%83/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E7%8F%82%E6%9C%B5%E8%8E%89%E6%A0%91/"/>
-    
-    
-    <category term="刷题" scheme="https://blog.ch34k.xyz/tags/%E5%88%B7%E9%A2%98/"/>
-    
-    <category term="数据结构" scheme="https://blog.ch34k.xyz/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"/>
-    
-    <category term="珂朵莉树" scheme="https://blog.ch34k.xyz/tags/%E7%8F%82%E6%9C%B5%E8%8E%89%E6%A0%91/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>UESTC 2367</title>
-    <link href="https://blog.ch34k.xyz/2020/05/07/UESTC-2367/"/>
-    <id>https://blog.ch34k.xyz/2020/05/07/UESTC-2367/</id>
-    <published>2020-05-07T12:46:21.000Z</published>
-    <updated>2021-03-06T11:32:09.591Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html"></summary>
-        
-      
-    
-    
-    
-    <category term="ICPC训练" scheme="https://blog.ch34k.xyz/categories/ICPC%E8%AE%AD%E7%BB%83/"/>
-    
-    <category term="数据结构" scheme="https://blog.ch34k.xyz/categories/ICPC%E8%AE%AD%E7%BB%83/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"/>
-    
-    <category term="分块" scheme="https://blog.ch34k.xyz/categories/ICPC%E8%AE%AD%E7%BB%83/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E5%88%86%E5%9D%97/"/>
-    
-    
-    <category term="刷题" scheme="https://blog.ch34k.xyz/tags/%E5%88%B7%E9%A2%98/"/>
-    
-    <category term="数据结构" scheme="https://blog.ch34k.xyz/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"/>
-    
-    <category term="分块" scheme="https://blog.ch34k.xyz/tags/%E5%88%86%E5%9D%97/"/>
     
   </entry>
   
