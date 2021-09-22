@@ -175,20 +175,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">49</span>
+          <span class="site-state-item-count">50</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">47</span>
+        <span class="site-state-item-count">48</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">55</span>
+        <span class="site-state-item-count">56</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -248,6 +248,115 @@
 
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://blog.ch34k.xyz/2020/05/05/UESTC-2362/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="MrThanlon">
+      <meta itemprop="description" content="代码，是连接碳基生命和硅基生命的桥梁">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="水厂日志">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2020/05/05/UESTC-2362/" class="post-title-link" itemprop="url">UESTC 2362</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2020-05-05 18:12:50" itemprop="dateCreated datePublished" datetime="2020-05-05T18:12:50+08:00">2020-05-05</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2021-03-06 19:32:09" itemprop="dateModified" datetime="2021-03-06T19:32:09+08:00">2021-03-06</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/ICPC%E8%AE%AD%E7%BB%83/" itemprop="url" rel="index"><span itemprop="name">ICPC训练</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/ICPC%E8%AE%AD%E7%BB%83/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" itemprop="url" rel="index"><span itemprop="name">数据结构</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/ICPC%E8%AE%AD%E7%BB%83/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E6%A0%91%E7%8A%B6%E6%95%B0%E7%BB%84/" itemprop="url" rel="index"><span itemprop="name">树状数组</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <blockquote>
+<p>关键字：前缀和；逆序对；树状数组；</p>
+</blockquote>
+<p>这题实属有丶东西。</p>
+<p>首先确定分母，显然$l$和$r$共有$\frac{n(n+1)}{2}$种取值，所以分母就是那么多。</p>
+<p>这题需要算法的部分主要在分子，即有多少个$(l,r)$对使得平均值小于等于$k$。</p>
+<p>首先为了方便，我们将输入的每个元素全部减去$k$，这样只需要判断$[l,r]$区间上的和是否小于等于0即可即可，于是很自然地，我们可以算一下前缀和，这里用$S_i$表示。</p>
+<p>那么对于$[l,r]$区间上的和，我们可以很方便地用$A=S_r-S_{l-1}$求出来，显然我们知道，$r\ge l$，而$l$和$r$都是整数，所以有$r&gt;l-1$，现在联立一下，得到<br>$$<br>\cases{<br>S_r-S_{l-1}\le0 \<br>r&gt;l-1<br>}<br>$$<br>这不就是妥妥的逆序对吗？也就是说，只要求出$S_i$的逆序对即可。</p>
+<p>一般求逆序对可以暴力（时间复杂度$O(n^2)$）、归并排序（时间复杂度$O(n\log_2n)$）、树状数组（时间复杂度$O(n\log_2n)$），因为是数据结构专题，很自然地就选树状数组了。</p>
+<p>求逆序对的思路参照<a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/shu-zu-zhong-de-ni-xu-dui-lcof/">leetcode 面试题51</a>，首先对输入的序列，可以从后向前遍历，设当前遍历的元素是$a_i$，那么我们只需要找到在$a_i$之后且小于等于$a_i$的元素个数。具体来说，我们可以用一个桶，并求出桶中$1$到$a_i$的区间和，然后另第$a_i$个元素自增即可，因为桶需要更新，所以可以用树状数组或者线段树来完成，查询和更新的复杂度都是$O(\log n)$。</p>
+<p>另外要注意，$a_i$的值可能很大，在题目中范围是1e9，然而我们并没有那么大的内存去开1e9长度的数组作为桶。实际上我们只要求逆序对的个数，对逆序对的具体值并不关心，只要他们的大小关系没问题就行，所以我们可以使用离散化算法，使得$a_i$的值缩小到$n$，具体做法是先拷贝到另一个数组，然后排序，再二分查找回来，就可以将原数组映射到大小为$n$的值域内。离散化算法的复杂度是$O(n\log n)$。</p>
+<p>最后的输出就没啥了，gcd求最大公约数，分子分母都除以最法公约数，加个斜杠输出。</p>
+<h2 id="细节"><a href="#细节" class="headerlink" title="细节"></a>细节</h2><ul>
+<li>int会溢出。</li>
+<li>答案为0单独判断，输出<code>0/1</code>。</li>
+<li>在求逆序对的时候如果$l-1$从1开始，那么$l$就得从0开始，所以得注意前缀和数组第一个元素，要么在前缀和数组头部添一个0，要么单独遍历$l=0$的情况。</li>
+</ul>
+<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><h3 id="AC代码"><a href="#AC代码" class="headerlink" title="AC代码"></a>AC代码</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// @author: hzy</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">pragma</span> G++ optimize(<span class="meta-string">&quot;O3&quot;</span>)</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cmath&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;queue&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;map&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;set&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;list&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;forward_list&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stack&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;unordered_set&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;vector&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">long</span> <span class="keyword">long</span> MAX = <span class="number">2e5</span> + <span class="number">7</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">long</span> <span class="keyword">long</span> <span class="title">gcd</span><span class="params">(<span class="keyword">long</span> <span class="keyword">long</span> a, <span class="keyword">long</span> <span class="keyword">long</span> b)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> a == <span class="number">0</span> ? b : gcd(b % a, a);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">BIT</span> &#123;</span></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">long</span> <span class="keyword">long</span>&gt; tree;</span><br><span class="line">    <span class="keyword">long</span> <span class="keyword">long</span> n;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    BIT(<span class="keyword">long</span> <span class="keyword">long</span> _n) : n(_n), tree(_n + <span class="number">1</span>) &#123;&#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">static</span> <span class="keyword">long</span> <span class="keyword">long</span> <span class="title">lowbit</span><span class="params">(<span class="keyword">long</span> <span class="keyword">long</span> x)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> x &amp; (-x);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 查询前缀和</span></span><br><span class="line">    <span class="function"><span class="keyword">long</span> <span class="keyword">long</span> <span class="title">query</span><span class="params">(<span class="keyword">long</span> <span class="keyword">long</span> x)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">long</span> <span class="keyword">long</span> ret = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">while</span> (x) &#123;</span><br><span class="line">            ret += tree[x];</span><br><span class="line">            x -= lowbit(x);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ret;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 自增1</span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">update</span><span class="params">(<span class="keyword">long</span> <span class="keyword">long</span> x)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">while</span> (x &lt;= n) &#123;</span><br><span class="line">            tree[x]++;</span><br><span class="line">            x += lowbit(x);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="built_in">std</span>::ios::sync_with_stdio(<span class="literal">false</span>);</span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">cin</span>.tie(<span class="number">0</span>);</span><br><span class="line">    <span class="keyword">long</span> <span class="keyword">long</span> n, k;</span><br><span class="line">    <span class="built_in">cin</span> &gt;&gt; n &gt;&gt; k;</span><br><span class="line">    vector&lt;long long&gt; sum(n + 1), arr(n + 1);</span><br><span class="line">    <span class="keyword">long</span> <span class="keyword">long</span> ans = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">long</span> <span class="keyword">long</span> tmp;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">long</span> <span class="keyword">long</span> i = <span class="number">1</span>; i &lt;= n; i++) &#123;</span><br><span class="line">        <span class="built_in">cin</span> &gt;&gt; tmp;</span><br><span class="line">        arr[i] = tmp - k;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// prefix sum</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">long</span> <span class="keyword">long</span> i = <span class="number">1</span>; i &lt;= n; i++) &#123;</span><br><span class="line">        sum[i] = arr[i] + sum[i - <span class="number">1</span>];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 求逆序对</span></span><br><span class="line">    <span class="comment">// 离散化</span></span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">long</span> <span class="keyword">long</span>&gt; tmpArr = sum;</span><br><span class="line">    <span class="comment">// for l=1</span></span><br><span class="line">    sort(tmpArr.begin(), tmpArr.end());</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">long</span> <span class="keyword">long</span> i = <span class="number">0</span>; i &lt;= n; i++) &#123;</span><br><span class="line">        sum[i] = lower_bound(tmpArr.begin(), tmpArr.end(), sum[i]) - tmpArr.begin() + <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 树状数组统计逆序对</span></span><br><span class="line">    <span class="function">BIT <span class="title">bit</span><span class="params">(n + <span class="number">1</span>)</span></span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">long</span> <span class="keyword">long</span> i = n; i &gt;= <span class="number">0</span>; i--) &#123;</span><br><span class="line">        ans += bit.query(sum[i]);</span><br><span class="line">        bit.update(sum[i]);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// cout &lt;&lt; ans &lt;&lt; endl;</span></span><br><span class="line">    <span class="comment">// return 0;</span></span><br><span class="line">    <span class="keyword">if</span> (ans == <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="built_in">cout</span> &lt;&lt; <span class="string">&quot;0/1&quot;</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">long</span> <span class="keyword">long</span> g = gcd(ans, n * (n + <span class="number">1</span>) / <span class="number">2</span>);</span><br><span class="line">        <span class="built_in">cout</span> &lt;&lt; ans / g &lt;&lt; <span class="string">&quot;/&quot;</span> &lt;&lt; n * (n + <span class="number">1</span>) / <span class="number">2</span> / g;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h3 id="测试例生成（Python）"><a href="#测试例生成（Python）" class="headerlink" title="测试例生成（Python）"></a>测试例生成（Python）</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">c</span>(<span class="params">n, k</span>):</span></span><br><span class="line">     a = [<span class="built_in">str</span>(random.randint(<span class="number">1</span>,<span class="number">2</span> * k)) <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(n)]</span><br><span class="line">     f = <span class="built_in">open</span>(<span class="string">&#x27;in&#x27;</span>, <span class="string">&#x27;w&#x27;</span>)</span><br><span class="line">     f.write(<span class="string">&quot;&#123;&#125; &#123;&#125;\r\n&#123;&#125;\r\n&quot;</span>.<span class="built_in">format</span>(n, k, <span class="string">&quot; &quot;</span>.join(a)))</span><br><span class="line">     f.close()</span><br></pre></td></tr></table></figure>
+
+<h3 id="暴力法（用于验证）"><a href="#暴力法（用于验证）" class="headerlink" title="暴力法（用于验证）"></a>暴力法（用于验证）</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// @author: hzy</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">pragma</span> G++ optimize(<span class="meta-string">&quot;O3&quot;</span>)</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cmath&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;queue&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;map&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;set&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;list&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;forward_list&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stack&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;unordered_set&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;vector&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">long</span> <span class="keyword">long</span> MAX = <span class="number">2e5</span> + <span class="number">7</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">long</span> <span class="keyword">long</span> <span class="title">gcd</span><span class="params">(<span class="keyword">long</span> <span class="keyword">long</span> a, <span class="keyword">long</span> <span class="keyword">long</span> b)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> a == <span class="number">0</span> ? b : gcd(b % a, a);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="built_in">std</span>::ios::sync_with_stdio(<span class="literal">false</span>);</span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">cin</span>.tie(<span class="number">0</span>);</span><br><span class="line">    <span class="keyword">long</span> <span class="keyword">long</span> n, k;</span><br><span class="line">    <span class="built_in">cin</span> &gt;&gt; n &gt;&gt; k;</span><br><span class="line">    vector&lt;long long&gt; sum(n + 1), arr(n + 1);</span><br><span class="line">    <span class="keyword">long</span> <span class="keyword">long</span> ans = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">long</span> <span class="keyword">long</span> tmp;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">long</span> <span class="keyword">long</span> i = <span class="number">1</span>; i &lt;= n; i++) &#123;</span><br><span class="line">        <span class="built_in">cin</span> &gt;&gt; tmp;</span><br><span class="line">        arr[i] = tmp - k;</span><br><span class="line">        <span class="keyword">if</span> (arr[i] &lt;= <span class="number">0</span>) &#123;</span><br><span class="line">            ans += <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// prefix sum</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">long</span> <span class="keyword">long</span> i = <span class="number">1</span>; i &lt;= n; i++) &#123;</span><br><span class="line">        sum[i] = arr[i] + sum[i - <span class="number">1</span>];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 暴力</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">long</span> <span class="keyword">long</span> l = <span class="number">1</span>; l &lt; n; l++) &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">long</span> <span class="keyword">long</span> r = l + <span class="number">1</span>; r &lt;= n; r++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (sum[r] - sum[l - <span class="number">1</span>] &lt;= <span class="number">0</span>) &#123;</span><br><span class="line">                ans += <span class="number">1</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// cout &lt;&lt; ans &lt;&lt; endl;</span></span><br><span class="line">    <span class="comment">// return 0;</span></span><br><span class="line">    <span class="keyword">if</span> (ans == <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="built_in">cout</span> &lt;&lt; <span class="string">&quot;0/1&quot;</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">long</span> <span class="keyword">long</span> g = gcd(ans, n * (n + <span class="number">1</span>) / <span class="number">2</span>);</span><br><span class="line">        <span class="built_in">cout</span> &lt;&lt; ans / g &lt;&lt; <span class="string">&quot;/&quot;</span> &lt;&lt; n * (n + <span class="number">1</span>) / <span class="number">2</span> / g;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -1034,99 +1143,6 @@
 <p>我还记得以前经常会很期待一些东西，比如电影、游戏、数码产品之类的，期待到晚上睡不着觉，想的都是现在能拿到多好啊。有时候确实拿到了，反而有些失望，和自己的期望差太多吧。</p>
 <p>大概这就是所谓的佛系青年？或许这是个贬义词，我也懒得去反对了吧。当然这也导致我在选择上更着重于稳定，比如选择完成度较高的产品，github上没有几百个commit的开源软件都不太敢用。现在只觉得，那些折腾来折腾去的事情，其实没有也罢。但是这似乎又陷入了一个矛盾，其实就我个人来说，学习的各类“旁门左道”都是折腾出来的，比如Linux，比如单片机，其实基本都没有系统学习过。</p>
 <p>虽然我大概搞清楚了变得佛系的原因，但是看起来我并没有能解决它的方法。有个学长现在在用一系列时间统计工具，对自己各项指标做量化，我觉得没必要，自己的情况自己再清楚不过了，成绩差难道不是因为没听课、没复习、没刷题么？听起来很可笑，但确实是这样，大多数时候我们走错道路，不是因为选择错了，而是我们在知道哪条路正确的时候，同样也知道那条路实在太难走而放弃。</p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://blog.ch34k.xyz/2019/07/14/%E5%9C%A8PX4Flow%E4%B8%8A%E4%BD%BF%E7%94%A8HC-SR04/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="MrThanlon">
-      <meta itemprop="description" content="代码，是连接碳基生命和硅基生命的桥梁">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="水厂日志">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2019/07/14/%E5%9C%A8PX4Flow%E4%B8%8A%E4%BD%BF%E7%94%A8HC-SR04/" class="post-title-link" itemprop="url">在PX4Flow上使用HC-SR04</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2019-07-14 22:05:58" itemprop="dateCreated datePublished" datetime="2019-07-14T22:05:58+08:00">2019-07-14</time>
-    </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-03-06 19:32:09" itemprop="dateModified" datetime="2021-03-06T19:32:09+08:00">2021-03-06</time>
-      </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E8%88%AA%E6%A8%A1/" itemprop="url" rel="index"><span itemprop="name">航模</span></a>
-        </span>
-          ，
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E8%88%AA%E6%A8%A1/%E9%A3%9E%E6%8E%A7/" itemprop="url" rel="index"><span itemprop="name">飞控</span></a>
-        </span>
-          ，
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E8%88%AA%E6%A8%A1/%E9%A3%9E%E6%8E%A7/%E5%85%89%E6%B5%81/" itemprop="url" rel="index"><span itemprop="name">光流</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>参照<a target="_blank" rel="noopener" href="https://blog.csdn.net/hxudhdjuf/article/details/79671892">https://blog.csdn.net/hxudhdjuf/article/details/79671892</a></p>
-<p>因为上面那个文章写的很乱，代码也不怎么规范，这里记录一下，顺便给后人排坑。</p>
-<p>在校队的时候申了一块PX4Flow，260多不带超声波，真特么贵，超声波要260多，原版的超声波型号是MB1240（这里给出<a target="_blank" rel="noopener" href="https://www.maxbotix.com/documents/XL-MaxSonar-EZ_Datasheet.pdf">Datasheet</a>），但不得不说效果真的很好，精度和测距范围都很棒。当然当时我是不知道的是PX4Flow如果不带超声波基本没法工作，代码的话我也看得不是很懂。淘宝上可以搜到300不到的PX4Flow，顺便校队里有一个用Pixhawk的无人机就是用的那个光流模块，当时真TM后悔。</p>
-<p>好吧闲话不多说，先给出修改原理。HC-SR04的驱动方法相当简单，就是在Trig引脚给一个脉冲，然后等待Echo引脚电平两次变化读取时间，就是发送和接收到超声波的间隔，根据空气音速就能算出距离。所以这里的思路就是用PX4Flow上的STM32F7单片机GPIO引脚来做驱动。</p>
-<p>连接方法如下，Trig接4脚（RX），Echo接2脚（PW），GND和VCC供电，分别可以接7脚和6脚，后面应该有GND和VDD的丝印。</p>
-<p>需要修改官方的代码，这里提供<a target="_blank" rel="noopener" href="https://github.com/MrThanlon/Flow">我修改之后的代码</a>，具体改了哪可以看commit log，这里就不在描述了，修改的部分是超声波的驱动<code>src/modules/flow/sonar.c</code>，以及在<code>src/modules/flow/module.mk</code>和<code>CMakeLists.txt</code>中加入exti和syscfg。</p>
 
       
     </div>

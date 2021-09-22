@@ -6,7 +6,7 @@
   <link href="https://blog.ch34k.xyz/atom.xml" rel="self"/>
   
   <link href="https://blog.ch34k.xyz/"/>
-  <updated>2021-08-23T14:18:18.082Z</updated>
+  <updated>2021-09-22T11:28:15.208Z</updated>
   <id>https://blog.ch34k.xyz/</id>
   
   <author>
@@ -15,6 +15,38 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>从0开始用C写一个后端框架</title>
+    <link href="https://blog.ch34k.xyz/2021/09/21/%E4%BB%8E0%E5%BC%80%E5%A7%8B%E7%94%A8C%E5%86%99%E4%B8%80%E4%B8%AA%E5%90%8E%E7%AB%AF%E6%A1%86%E6%9E%B6/"/>
+    <id>https://blog.ch34k.xyz/2021/09/21/%E4%BB%8E0%E5%BC%80%E5%A7%8B%E7%94%A8C%E5%86%99%E4%B8%80%E4%B8%AA%E5%90%8E%E7%AB%AF%E6%A1%86%E6%9E%B6/</id>
+    <published>2021-09-21T04:51:05.000Z</published>
+    <updated>2021-09-22T11:28:15.208Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;&lt;a href=&quot;https://github.com/MrThanlon/http-ev/tree/master&quot;&gt;项目地址&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&quot;引&quot;&gt;&lt;a href=&quot;#引&quot; class=&quot;headerlink&quot; title=&quot;引&quot;&gt;&lt;/a&gt;引&lt;/h2&gt;&lt;p&gt;Go有Gin，Java有Tomcat/Spring，Python有Django，PHP本身就是为后端而生，Node.js有http模块，而C/C++……有nginx(?)! 但是众所周知，nginx插件并不好写，而且nginx还要配置文件，实际上也没多少人用nginx插件来写Web后端。&lt;/p&gt;
+&lt;p&gt;所以我决定来做这件事，我对这个框架的目标是&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;高性能，既然是用C写，性能一定是优先地位&lt;/li&gt;
+&lt;li&gt;易用，类似于FaaS的开发和使用体验，如果还能有一个开发用的cli就更好了&lt;/li&gt;
+&lt;li&gt;灵活，低耦合，可插拔，高度自定义&lt;/li&gt;
+&lt;li&gt;轻量，少依赖&lt;/li&gt;
+&lt;li&gt;跨平台，至少支持Linux和macOS&lt;/li&gt;
+&lt;/ul&gt;</summary>
+    
+    
+    
+    <category term="Web" scheme="https://blog.ch34k.xyz/categories/Web/"/>
+    
+    <category term="Backend" scheme="https://blog.ch34k.xyz/categories/Web/Backend/"/>
+    
+    
+    <category term="Web" scheme="https://blog.ch34k.xyz/tags/Web/"/>
+    
+    <category term="Backend" scheme="https://blog.ch34k.xyz/tags/Backend/"/>
+    
+  </entry>
   
   <entry>
     <title>用C语言写堆</title>
@@ -547,39 +579,6 @@
     <category term="动态规划" scheme="https://blog.ch34k.xyz/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/"/>
     
     <category term="区间DP" scheme="https://blog.ch34k.xyz/tags/%E5%8C%BA%E9%97%B4DP/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>UESTC 2404</title>
-    <link href="https://blog.ch34k.xyz/2020/05/23/UESTC-2404/"/>
-    <id>https://blog.ch34k.xyz/2020/05/23/UESTC-2404/</id>
-    <published>2020-05-23T02:25:03.000Z</published>
-    <updated>2021-03-06T11:32:09.638Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html"></summary>
-        
-      
-    
-    
-    
-    <category term="ICPC训练" scheme="https://blog.ch34k.xyz/categories/ICPC%E8%AE%AD%E7%BB%83/"/>
-    
-    <category term="动态规划" scheme="https://blog.ch34k.xyz/categories/ICPC%E8%AE%AD%E7%BB%83/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/"/>
-    
-    <category term="树形DP" scheme="https://blog.ch34k.xyz/categories/ICPC%E8%AE%AD%E7%BB%83/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/%E6%A0%91%E5%BD%A2DP/"/>
-    
-    
-    <category term="刷题" scheme="https://blog.ch34k.xyz/tags/%E5%88%B7%E9%A2%98/"/>
-    
-    <category term="动态规划" scheme="https://blog.ch34k.xyz/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/"/>
-    
-    <category term="斜率优化" scheme="https://blog.ch34k.xyz/tags/%E6%96%9C%E7%8E%87%E4%BC%98%E5%8C%96/"/>
     
   </entry>
   
