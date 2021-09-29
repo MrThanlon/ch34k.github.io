@@ -1614,7 +1614,7 @@
 <h2 id="引"><a href="#引" class="headerlink" title="引"></a>引</h2><p>Go有Gin，Java有Tomcat/Spring，Python有Django，PHP本身就是为后端而生，Node.js有http模块，而C/C++……有nginx(?)! 但是众所周知，nginx插件并不好写，而且nginx还要配置文件，实际上也没多少人用nginx插件来写Web后端。</p>
 <p>所以我决定来做这件事，我对这个框架的目标是</p>
 <ul>
-<li>高性能，既然是用C写，性能一定是优先地位</li>
+<li>高性能，既然是用C写，性能一定是优先地位，争取暴打nginx</li>
 <li>易用，类似于FaaS的开发和使用体验，如果还能有一个开发用的cli就更好了</li>
 <li>灵活，低耦合，可插拔，高度自定义</li>
 <li>轻量，少依赖</li>
@@ -1622,17 +1622,23 @@
 </ul>
 <span id="more"></span>
 
-<h2 id="架构设计"><a href="#架构设计" class="headerlink" title="架构设计"></a>架构设计</h2><p>为了实现高性能，我们应该使用IO多路复用方案，例如Linux的epoll，BSD的kqueue，Windows的IOCP，好在libev可以做这件事，它在不同系统下会使用不同的系统调用。</p>
-<p>另一方面就是HTTP协议解析，众所周知HTTP适合人类阅读但并不适合机器解析，我打算使用node.js的llhttp做这一部分，它基于llparser，生成C代码状态机，性能是足够的，如果以后有机会可以考虑手写或者用flex&amp;bison。</p>
-<p>在操作socket方面，可以考虑使用mmap和sendfile来减少内核拷贝，也可以减少处理过程中请求和释放堆内存。</p>
-<p>对于FaaS来说，开发者只需要编写一个函数注册到某个路径上，接收请求参数，返回响应内容即可。我们的框架也应如此，所以在解析请求完成之后需要靠路径去分发请求，一个合理的想法是用字典树，他对于长度为$N$的字符串<strong>完整</strong>匹配的时间复杂度是$O(N)$，非常快，但是空间复杂度略高，不过既然是性能优先，那没事了。</p>
-<p>另外就是动态请求的问题，URL可能是动态的，我的想法是优先匹配最长的，例如开发者注册了<code>/user/profile</code>和<code>/user</code>，那么对于URL为<code>/user/profile/hzy</code>的请求则会调用前者提供的回调函数，而对于URL为<code>/user/pose</code>的则请求会调用后者，这样符合字典树的做法。不过有些时候开发者可能希望进行精确匹配，后期也许可以在设置中让开发者选择模糊匹配还是精确匹配。</p>
-<p>更进一步，我希望能引入类似于Flask中的蓝图的概念，不过从实现的角度来说，这也是增加开销的，实际上Flask的蓝图不能递归，是否真的有必要呢？以后再说吧。</p>
-<h3 id="单线程-VS-多线程"><a href="#单线程-VS-多线程" class="headerlink" title="单线程 VS 多线程"></a>单线程 VS 多线程</h3><p>既然使用了IO多路复用，那么我认为单线程是足够了的，框架本身的时间复杂度很低，所以不会有什么问题，不过如果请求量真的特别大，可以考虑使用多线程进行HTTP解析。</p>
-<p>但是对于请求处理函数，我认为对开发者的要求不能太高，不是所有开发者都熟悉异步编程，在这方面使用多线程比较合理。同时还要能够设置线程数量来应对高并发环境，可以选择直接丢弃或是进入队列。同时开发者可以设置一个子线程的数量，如果为0表示单线程模式运行，如果为-1表示无限制。</p>
-<h3 id="基础设施函数"><a href="#基础设施函数" class="headerlink" title="基础设施函数"></a>基础设施函数</h3><p>主要是考虑静态目录，开发者应该能够直接将某个URL注册为静态资源，我们可以通过提供一些基础设施函数的方式来实现这一部分，暂时还没想好具体怎么实现。</p>
-<h3 id="默认响应"><a href="#默认响应" class="headerlink" title="默认响应"></a>默认响应</h3><p>开发者提供的回调函数除了接收请求参数外，考虑到C语言的特性，应该再接收一个响应的上下文，通过操作这个上下文去返回响应和响应头（让开发者的函数返回一个不定长的结构可能太难了），函数本身返回状态码就好。</p>
-<h2 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h2><p>主要参考node.js的http模块。</p>
+<h2 id="架构设计"><a href="#架构设计" class="headerlink" title="架构设计"></a>架构设计</h2><h3 id="Socket"><a href="#Socket" class="headerlink" title="Socket"></a>Socket</h3><p>为了实现高性能，我们应该使用IO多路复用方案，例如Linux的epoll，BSD的kqueue，Windows的IOCP，好在libev可以做这件事，它在不同系统下会使用不同的系统调用。</p>
+<p>在操作socket方面，如果是静态文件可以使用sendfile来减少内核拷贝，也可以减少处理过程中请求和释放堆内存。</p>
+<h3 id="协议"><a href="#协议" class="headerlink" title="协议"></a>协议</h3><p>另一方面就是HTTP协议解析，众所周知HTTP适合人类阅读但并不适合机器解析，我打算使用node.js的llhttp做这一部分，它基于llparser，生成C代码状态机，性能是足够的，如果以后有机会可以考虑手写或者用flex&amp;bison。</p>
+<h3 id="开发体验"><a href="#开发体验" class="headerlink" title="开发体验"></a>开发体验</h3><p>对于FaaS来说，开发者只需要编写一个函数注册到某个路径上，接收请求参数，返回响应内容即可。我们的框架也应如此，所以在解析请求完成之后需要靠路径去分发请求，一个合理的想法是用字典树，他对于长度为$N$的字符串<strong>完整</strong>匹配的时间复杂度是$O(N)$，非常快，但是空间复杂度略高，不过既然是性能优先，那没事了。</p>
+<h3 id="动态URL"><a href="#动态URL" class="headerlink" title="动态URL"></a>动态URL</h3><p>另外就是动态请求的问题，URL可能是动态的，我的想法是优先匹配最长的，例如开发者注册了<code>/user/profile</code>和<code>/user</code>，那么对于URL为<code>/user/profile/hzy</code>的请求则会调用前者提供的回调函数，而对于URL为<code>/user/pose</code>的则请求会调用后者，这样符合字典树的做法。不过有些时候开发者可能希望进行精确匹配，后期也许可以在设置中让开发者选择模糊匹配还是精确匹配。</p>
+<h3 id="蓝图？"><a href="#蓝图？" class="headerlink" title="蓝图？"></a>蓝图？</h3><p>我希望能引入类似于Flask中的蓝图的概念，不过从实现的角度来说，这也是增加开销的，实际上Flask的蓝图不能递归，是否真的有必要呢？以后再说吧。</p>
+<h3 id="单线程-VS-多线程-VS-多进程"><a href="#单线程-VS-多线程-VS-多进程" class="headerlink" title="单线程 VS 多线程 VS 多进程"></a>单线程 VS 多线程 VS 多进程</h3><p>向nginx学习，使用多进程架构，父进程只管理子进程并<code>wait()</code>，子进程<code>accept()</code>，这样连入的客户端会随机发往一个子进程上，每个子进程使用IO多路复用接收请求。nginx引入了一个互斥锁来减少“惊群”的开销，但是我暂时没看懂他是怎么做的，就先暂时这样吧。</p>
+<p>当然进程数量也是可以设置的，如果开发者不希望使用多进程（例如开发调试的时候），那么就仅由主进程进行处理。既然使用了IO多路复用，那么单线程+CPU核心数的进程就足够了。</p>
+<p>CPU进行多线程时切换上下文的开销并不小，考虑到默认情况下已经有CPU核心数量的进程了，默认就单线程吧。</p>
+<p>不过对于不熟悉异步编程的开发者，多线程还是有必要的，需要一个线程安全的阻塞队列来分发请求。</p>
+<h3 id="基础设施函数"><a href="#基础设施函数" class="headerlink" title="基础设施函数"></a>基础设施函数</h3><p>主要是考虑静态目录，开发者应该能够直接将某个URL注册为静态资源，我们可以通过提供一些基础设施函数的方式来实现这一部分，用户只需要在handler中调用<code>http_send_dir()</code>即可将某个目录作为静态资源使用，同时还能提供部分文件类型的MIME。</p>
+<p>另外就是数据库的操作，如果能封装成异步调用就更爽了。</p>
+<h3 id="异步！异步！还是异步！"><a href="#异步！异步！还是异步！" class="headerlink" title="异步！异步！还是异步！"></a>异步！异步！还是异步！</h3><p>对于网站后端，一个很重要的操作就是对数据库的增删改查，实际上这属于IO操作，大多数的后端在这一部分都使用同步的方法，也就是等待数据库响应，那确实很方便，但是性能就不行了（多线程也可以解决，但是会引入另外的问题）。前面说过了，我们目前不打算支持多线程（即使将来支持多线程也不推荐使用），所以我们更应该使用异步的方式去进行数据库操作。那么为了实现异步，用户提供的回调函数应该是</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">handler</span><span class="params">(<span class="keyword">http_context_t</span> *context)</span></span>;</span><br></pre></td></tr></table></figure>
+
+<p>当完成请求时，调用<code>http_next(context)</code>进行后续的操作。</p>
+<p>所以为什么不直接让函数返回要响应的内容呢？这就是关键点了，因为对于异步函数来说，我们并不知道它什么时候才实际完成，所以我们将这个返回的时机留给用户来决定，也方便用户执行异步调用。可惜C语言没有提供像js一样的async/await语法糖和闭包，不然写起来应该很爽。</p>
 ]]></content>
       <categories>
         <category>Web</category>
