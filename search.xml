@@ -1724,6 +1724,8 @@
     <url>/2022/01/17/%E4%BD%BF%E7%94%A8shader%E5%8A%A0%E9%80%9F%E4%B8%89%E7%BB%B4%E7%82%B9%E6%BA%90%E9%98%B5%E4%BB%BF%E7%9C%9F/</url>
     <content><![CDATA[<p><a href="https://github.com/MrThanlon/array-field/">项目地址</a>/<a href="https://mrthanlon.github.io/array-field/">预览1</a>/<a href="https://codepen.io/mrthanlon/pen/KKXYVXN">预览2</a></p>
 <h1 id="引"><a href="#引" class="headerlink" title="引"></a>引</h1><p>之前做了一个二维的点源阵仿真，还是挺简单的，D3.js直接画就完事了，但是这远远不够，工程上更多会考虑三维的情况。之前看了闫令琪老师的GAMES101和GAMES202，想着能不能趁着寒假在家用webgl做一个三维版本的。</p>
+<span id="more"></span>
+
 <h1 id="前置知识"><a href="#前置知识" class="headerlink" title="前置知识"></a>前置知识</h1><h2 id="二维情况"><a href="#二维情况" class="headerlink" title="二维情况"></a>二维情况</h2><p>虽然代码里写的应该挺清楚了，不过这里还是稍微整理一下，公式推导比较复杂，二维的也不是关键，所以这里直接给出结果，</p>
 <p>点源阵方向图可以认为是一个半径变化的圆，我们需要知道所有点源的坐标（为了方便使用极坐标系）$(d_i,\theta_i)$和相位$\Phi_i$，对于任意方向$\phi$，方向图在这个方向的半径由以下公式给出<br>$$<br>r_\phi=|\exp(j\cdot\sum d_i\cos(\phi-\theta_i)+\Phi_i)| \<br>=\sqrt{\cos^2(\sum d_i\cos(\phi-\theta_i)+\Phi_i)+\sin^2(\sum d_i\cos(\phi-\theta_i)+\Phi_i)}<br>$$<br>其中$j$为虚数单位，</p>
 <p>显然，当有$N$个点源和$M$个方向要计算的时候，复杂度为$O(MN)$，对于二维的情况$M$只需要几百即可达到肉眼看不出瑕疵的效果，对于CPU来说可以算是小菜一碟了。</p>
