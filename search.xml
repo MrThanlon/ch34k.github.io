@@ -1733,7 +1733,7 @@
 <p>现在我们计算$(\phi_i,\theta_i)$与$(\phi,\theta)$的夹角，用中学学过的向量知识我们知道，设他们的夹角是$\psi_i$那么有<br>$$<br>\cos\psi_i=\frac{\vec{u}\cdot\vec{v}}{|\vec{u}|\cdot|\vec{v}|}<br>$$<br>其中$\vec{u}$表示方向$(\phi_i,\theta_i)$的向量，$\vec{v}$表示$(\phi,\theta)$方向的向量，为了方便乘法计算我们变换到空间直角坐标系，并令$\vec{u}$和$\vec{v}$都为单位向量，得到<br>$$<br>\cos\psi_i=\sin\theta_i\cos\phi_i\sin\theta\cos\phi+\sin\theta_i\sin\phi_i\sin\theta\sin\phi+\cos\theta_i\cos\theta<br>$$<br>于是我们可以直接带入到之前二维的半径公式上，注意到二维中计算夹角很简单，只需要$\phi-\theta_i$，即现在我们将它用$\psi_i$进行替换，可得到三维情况下的半径公式<br>$$<br>r_{\phi,\theta}=|\exp(j\cdot \sum d_i\cos\psi_i+\Phi_i)| \<br>=\sqrt{\cos^2(\sum d_i\cos\psi_i+\Phi_i)+\sin^2(\sum d_i\cos\psi_i+\Phi_i)}<br>$$</p>
 <h1 id="GPU编程与三维模型展示"><a href="#GPU编程与三维模型展示" class="headerlink" title="GPU编程与三维模型展示"></a>GPU编程与三维模型展示</h1><p>为了方便我就直接用three.js了，它能够很方便地利用WebGL展示三维模型，同时也支持自行编写着色器程序（ShaderMaterial）。</p>
 <p>按我自己实验，要想达到比较好的效果，采样点会上万，这样的计算量对于CPU来说很难做到实时计算了，因此我们需要通过并行计算更强大的GPU来完成。</p>
-<h2 id="使用顶点着色器（vertex-shader）"><a href="#使用顶点着色器（vertex-shader）" class="headerlink" title="使用顶点着色器（vertex shader）"></a>使用顶点着色器（vertex shader）</h2><p>在三维渲染中，顶点着色器主要完成MVP(Model, View, Perspect)矩阵变换，当然我们也可以夹一些私货进去，例如修改顶点的位置坐标。</p>
+<h2 id="TODO-使用顶点着色器（vertex-shader）"><a href="#TODO-使用顶点着色器（vertex-shader）" class="headerlink" title="TODO: 使用顶点着色器（vertex shader）"></a>TODO: 使用顶点着色器（vertex shader）</h2><p>在三维渲染中，顶点着色器主要完成MVP(Model, View, Perspect)矩阵变换，当然我们也可以夹一些私货进去，例如修改顶点的位置坐标。</p>
 <p>为了进行计算和渲染，我们需要一个合适的三维模型，有些同学想既然二维是圆，那么三维自然就是球了，但是我们不能使用球面坐标，因为它并不均匀，为了使得模型更加均匀，我们使用的是正二十面体细分为球体，好在three.js中刚好提供了正二十面体的构造器（IcosahedronGeometry），而且支持细分，所以我们直接用它就好了。（关于为什么用正二十面体而不是正四/六/八/十二面体，因为正四/八面体细分之后还是不均匀，而正六/十二面体的面不是三角形，WebGL只能渲染三角形）。</p>
 <h2 id="TODO-使用计算着色器（compute-shader）"><a href="#TODO-使用计算着色器（compute-shader）" class="headerlink" title="TODO: 使用计算着色器（compute shader）"></a>TODO: 使用计算着色器（compute shader）</h2><p>只是得到一个图案可不能叫仿真，我们有时候还要关心点源阵的实际参数，例如主波束宽度，定向性等。</p>
 <p>可惜的是顶点着色器在计算完成后结果就直接传到片段着色器（fragment shader）中了，CPU是取不回来的，而如果既要使用GPU加速，又能够对计算结果进行分析的话，现代GPU编程给我们提供了一个更自由的工具，也就是计算着色器。关于计算着色器我不打算在本文中详细介绍，有兴趣的同学可以自行搜索相关内容。</p>
@@ -1747,6 +1747,88 @@
       <tags>
         <tag>Web</tag>
         <tag>WebGL</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>原子操作与无锁队列</title>
+    <url>/2022/02/26/%E5%8E%9F%E5%AD%90%E6%93%8D%E4%BD%9C%E4%B8%8E%E6%97%A0%E9%94%81%E9%98%9F%E5%88%97/</url>
+    <content><![CDATA[<p>关于无锁数据结构有很多介绍了，如果想获得开箱即用的方案可以直接找liblfds，不过考虑到liblfds常年没维护，所以很多时候还得自己写，这里记录一下如何用原子操作实现无锁队列。</p>
+<h2 id="队列"><a href="#队列" class="headerlink" title="队列"></a>队列</h2><h3 id="简单队列"><a href="#简单队列" class="headerlink" title="简单队列"></a>简单队列</h3><p>真的是很简单了，就是一个链表，我们使用结构体定义该链表的节点和链表本身</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">queue_node</span> &#123;</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">queue_node</span>* <span class="title">next</span>;</span></span><br><span class="line">    <span class="keyword">void</span>* data;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">queue</span> &#123;</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">queue_node</span> <span class="title">dummy</span>;</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">queue_node</span>* <span class="title">tail</span>;</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">init_queue</span><span class="params">(struct <span class="built_in">queue</span>* <span class="built_in">queue</span>)</span> </span>&#123;</span><br><span class="line">    <span class="built_in">queue</span>-&gt;dummy.next = <span class="literal">NULL</span>;</span><br><span class="line">    <span class="built_in">queue</span>-&gt;tail = &amp;<span class="built_in">queue</span>-&gt;dummy;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>有两种操作</p>
+<ul>
+<li><p>入队，就是把节点添加到尾部</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">enqueue</span><span class="params">(struct <span class="built_in">queue</span>* <span class="built_in">queue</span>, struct queue_node* node)</span> </span>&#123;</span><br><span class="line">  node-&gt;next = <span class="literal">NULL</span>;</span><br><span class="line">  <span class="built_in">queue</span>-&gt;tail-&gt;next = node;</span><br><span class="line">  <span class="built_in">queue</span>-&gt;tail = node;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li><p>出队，就是将头部节点移出</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="function">struct queue_node* <span class="title">dequeue</span><span class="params">(struct <span class="built_in">queue</span>* <span class="built_in">queue</span>)</span> </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (&amp;<span class="built_in">queue</span>-&gt;dummy == <span class="built_in">queue</span>-&gt;tail) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">NULL</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  <span class="class"><span class="keyword">struct</span> <span class="title">queue_node</span>* <span class="title">old_head</span> =</span> <span class="built_in">queue</span>-&gt;dummy.next;</span><br><span class="line">  <span class="built_in">queue</span>-&gt;dummy.next = old_head-&gt;next;</span><br><span class="line">  <span class="keyword">return</span> old_head;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+<p>当然也可以反过来，入队从头部插入，出队从尾部移出，本文不介绍这种方法。</p>
+<h3 id="并行-并发环境"><a href="#并行-并发环境" class="headerlink" title="并行/并发环境"></a>并行/并发环境</h3><p>我们可以发现，入队和出队都至少需要两条指令，所以这样的代码在并行或者并发环境下就可能会出现一致性问题，所以我们通常会引入同步机制（例如互斥量）来保证一致性，但互斥量不是免费的午餐，加锁和释放都有一定开销，能不能借助CPU的原子指令来完成这些操作呢？答案是可以的。</p>
+<h2 id="原子指令"><a href="#原子指令" class="headerlink" title="原子指令"></a>原子指令</h2><p>所谓原子，即不可分割的意思（当然我们知道实际上原子还能分为原子核和电子），在计算机中通常表示指令要么完成要么失败，不会发生只完成一半的情况。</p>
+<h3 id="并行和并发"><a href="#并行和并发" class="headerlink" title="并行和并发"></a>并行和并发</h3><p>一个很常见的例子就是如何给变量自增，很多大聪明可能觉得这怎么会是问题呢？直接i++不就完事了？当然，对于单线程的情况下，确实很简单，但是如果有多个线程同时对同一个变量进行操作，那结果可能就不正确了。</p>
+<p>例如现在x=0，有两个线程A和B同时执行x++，正确的结果应该是2，但是很有可能结果是1，原因是一般来说自增运算并不是原子的。这里要引入内存和寄存器的概念，在CPU中，访问寄存器是最快的，通常只需要一个时钟周期，但是访问内存通常需要几百个时钟周期（缓存未命中），而我们的变量通常是放在内存里的，所以对于自增操作，首先需要从内存读取到寄存器，然后对寄存器中的值+1，最后再写回内存，如果从汇编语言来看就很清楚了，比如函数中x++的汇编可能是这样的</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">mov	-4(%rbp), %eax</span><br><span class="line">add	$1, %eax</span><br><span class="line">mov	%eax, -4(%rbp)</span><br></pre></td></tr></table></figure>
+
+<p>可以发现总共有三条汇编指令，假设A和B线程执行顺序</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">A B</span><br><span class="line">1   -&gt; A线程访存，A.eax&#x3D;0</span><br><span class="line">  1 -&gt; B线程访存，B.eax&#x3D;0</span><br><span class="line">2   -&gt; A线程执行自增1，A.eax&#x3D;1</span><br><span class="line">  2 -&gt; B线程执行自增1，B.eax&#x3D;1</span><br><span class="line">3   -&gt; A线程写存，由于A.eax&#x3D;1，所以内存中的值变成1</span><br><span class="line">  3 -&gt; B线程写存，由于B.eax&#x3D;1，所以内存中的值还是1</span><br></pre></td></tr></table></figure>
+
+<h3 id="互斥量"><a href="#互斥量" class="headerlink" title="互斥量"></a>互斥量</h3><p>聪明的小伙伴应该已经想到了，我们可以用互斥量（mutex，也可以叫互斥锁）保护x++这个语句，这样在某个线程完成自增前，另一个线程会被阻塞，使得自增操作“变成”原子操作。</p>
+<p>同理对于任何需要防止被中断的操作，都可以使用互斥量来完成。</p>
+<h3 id="CPU提供的原子操作"><a href="#CPU提供的原子操作" class="headerlink" title="CPU提供的原子操作"></a>CPU提供的原子操作</h3><p>互斥量并不是免费的午餐，加锁和释放都有一定的开销，实际上大多数CPU提供了一些指令可以帮助我们同时完成多项本来需要多条指令才能完成操作，我们将其称为原子指令，GCC编译器提供了一大票原子指令，你可以点击<a href="https://gcc.gnu.org/onlinedocs/gcc/_005f_005fatomic-Builtins.html">这里</a>查看，对于无锁队列，涉及的主要是两个</p>
+<ul>
+<li><p>交换（Exchange），gcc中是<code>__atomic_exchange_n</code>和<code>__atomic_exchange</code></p>
+<ul>
+<li><p><code>__atomic_exchange_n</code>接收一个指针ptr和值val，会对*ptr和val进行交换，相当于将</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line">type tmp = *ptr;</span><br><span class="line">*ptr = val;</span><br><span class="line"><span class="keyword">return</span> tmp;</span><br></pre></td></tr></table></figure>
+
+<p>合并为一条指令。</p>
+</li>
+<li><p><code>__atomic_exchange</code>与上面那个相同，但是返回值通过指针传入。</p>
+</li>
+</ul>
+</li>
+<li><p>比较并交换（Compare And Swap，简称CAS），gcc中是<code>__atomic_compare_exchange_n</code>和<code>__atomic_compare_exchange</code></p>
+<ul>
+<li><p><code>__atomic_compare_exchange_n</code>接收两个指针ptr和expected和一个值desired，会比较*ptr与*expected是否相等，如果相等则将desired写入*ptr，否则将*ptr写入*expected，相当于将</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span> (*ptr == *expected) &#123;</span><br><span class="line">  *ptr = desired;</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">  *expected = *ptr;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>合并为一条指令。</p>
+</li>
+<li><p><code>__atomic_compare_exchange</code>与上面那个等同，但desired通过指针传入。</p>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="无锁队列"><a href="#无锁队列" class="headerlink" title="无锁队列"></a>无锁队列</h2><p>终于进入正题了，现在我们尝试用原子指令实现不需要互斥量的入队和出队函数。</p>
+<h3 id="入队"><a href="#入队" class="headerlink" title="入队"></a>入队</h3><p>观察入队函数可以发现，只要执行修改的两条指令中间不被其他线程的入队函数打断就不会出现一致性问题，在看二、三条指令，其实就是将new_node与tail进行了一次交换，并将原tail的next设置为new_node，我们可以用原子指令中的交换来完成。改写如下</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">enqueue</span><span class="params">(struct <span class="built_in">queue</span>* <span class="built_in">queue</span>, struct queue_node* node)</span> </span>&#123;</span><br><span class="line">    node-&gt;next = <span class="literal">NULL</span>;</span><br><span class="line">    <span class="comment">// let queue-&gt;tail = node，and let the old queue-&gt;tail-&gt;next point to node</span></span><br><span class="line">    __atomic_exchange_n(&amp;<span class="built_in">queue</span>-&gt;tail, node, __ATOMIC_RELAXED)-&gt;next = node;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="疑问"><a href="#疑问" class="headerlink" title="疑问"></a>疑问</h4><h5 id="如果不用原子指令？"><a href="#如果不用原子指令？" class="headerlink" title="如果不用原子指令？"></a>如果不用原子指令？</h5><p>有大聪明可能会问，那如果直接先<code>queue-&gt;tail = node;</code>，再回去找父节点让它的<code>next</code>指向<code>node</code>不也可以吗？也就是</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">queue_node</span>* <span class="title">old_tail</span> =</span> <span class="built_in">queue</span>-&gt;tail;</span><br><span class="line"><span class="built_in">queue</span>-&gt;tail = node;</span><br><span class="line">old_tail-&gt;next = node;</span><br></pre></td></tr></table></figure>
+
+<p>这里会出现一个问题，那就是<code>old_tail</code>是不是真的是原来那个<code>old_tail</code>，在并行/并发的情况下，很可能执行完<code>old_tail = queue-&gt;tail;</code>后其他线程刚好执行完入队，那么就会导致<code>queue-&gt;tail</code>发生改变，于是<code>old_tail</code>就不是原来那个<code>old_tail</code>了。</p>
+<h5 id="atomic-exchange-n-xxx-gt-next-node-并不是原子的，为什么没有影响？"><a href="#atomic-exchange-n-xxx-gt-next-node-并不是原子的，为什么没有影响？" class="headerlink" title="__atomic_exchange_n(xxx)-&gt;next = node; 并不是原子的，为什么没有影响？"></a><code>__atomic_exchange_n(xxx)-&gt;next = node;</code> 并不是原子的，为什么没有影响？</h5><p>大聪明们也许注意到了，确实，这并不是在原子操作中的，但也确实不会发生一致性问题。注意到原子交换返回的一定是交换出来的那个<code>queue-&gt;tail</code>，不会是其他节点，所以即使中间被其他线程打断，这个赋值也不会有问题。</p>
+<h3 id="出队"><a href="#出队" class="headerlink" title="出队"></a>出队</h3><p>如果不检查队列非空，那么与入队一样可以直接用交换实现出队，但显然我们不应该允许空队列出队，所以出队函数稍微复杂一些。</p>
+<p>我们首先要获得头节点的指针，并将其与尾节点指针比较，如果两者不相等（非空）那么就将头节点与头节点的下一个节点进行交换并返回头节点，否则返回NULL。</p>
+<p>然而遗憾的是，CAS和交换都并不能直接做这么一件事，我们只能缓存head，然后在判断完成非空时再比较head是不是原来那个head，如果是则交换出去，不是则继续尝试出队或返回NULL。改写如下</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="function">node* <span class="title">dequeue</span><span class="params">(struct <span class="built_in">list</span>* <span class="built_in">queue</span>)</span> </span>&#123;</span><br><span class="line">  <span class="class"><span class="keyword">struct</span> <span class="title">list_node</span>* <span class="title">head</span> =</span> <span class="built_in">queue</span>-&gt;head;</span><br><span class="line">  <span class="keyword">do</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> ((<span class="keyword">volatile</span> struct list_node*)head == (<span class="keyword">volatile</span> struct list_node*)<span class="built_in">queue</span>-&gt;tail) &#123;</span><br><span class="line">      <span class="comment">// 空队列，返回NULL</span></span><br><span class="line">      <span class="keyword">return</span> <span class="literal">NULL</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 如果head还是queue-&gt;head则queue-&gt;head = head-&gt;next，否则head = queue-&gt;head并重新判断</span></span><br><span class="line">  &#125; <span class="keyword">while</span> (!__atomic_compare_exchange_n(&amp;<span class="built_in">queue</span>-&gt;head, &amp;head, head-&gt;next, __ATOMIC_RELAXED));</span><br><span class="line">  <span class="keyword">return</span> head;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="volatile？"><a href="#volatile？" class="headerlink" title="volatile？"></a>volatile？</h4><p>还记得刚才寄存器与内存的同步问题吗？我们的编译器很聪明，编译器当然知道寄存器比内存快，所以编译器并不会在每次赋值的时候都真的去写存，因为编译器发现后面可能还会用到这个变量，所以编译器会等到真的需要写存的时候才会去写存。</p>
+<p>但是编译器可能不知道<code>tail</code>这个变量会同时被多个线程访问，有可能别的线程入队时修改了内存中的<code>tail</code>，但是寄存器里的<code>tail</code>还是原来那个，所以我们需要告诉编译器别自作聪明，每次判断<code>head==queue-&gt;tail</code>的时候都给我从内存里拿，于是我们就可以用<code>volatile</code>关键字来标记<code>tail</code>，这样编译器会取消这一步的常量优化了。</p>
+<h3 id="ABA问题"><a href="#ABA问题" class="headerlink" title="ABA问题"></a>ABA问题</h3><p>TODO: </p>
+<h2 id="没有银弹"><a href="#没有银弹" class="headerlink" title="没有银弹"></a>没有银弹</h2><h3 id="自旋锁"><a href="#自旋锁" class="headerlink" title="自旋锁"></a>自旋锁</h3><p>有聪明的小伙伴可能发现了，出队的那个循环不就相当于自旋锁吗？正确的喵，就是自旋锁。</p>
+<p>那么这个自旋锁会长时间阻塞吗？答案是不会，原子操作还是很快的，只要没有其他线程在出队就能成功，注意到如果队列为空会直接返回NULL，所以这并不是阻塞队列哦。</p>
+<h3 id="原子指令开销"><a href="#原子指令开销" class="headerlink" title="原子指令开销"></a>原子指令开销</h3><p>既然原子指令这么好用，为什么大多数能用到的逻辑不使用原子指令呢？</p>
+<p>其实原子指令也不是免费的午餐，但比互斥量便宜点。从CPU实现来说，如果遇到原子指令，那么CPU通常会阻塞其他核心访存，本质上也是锁，不过是硬件锁，相对互斥量来说开销会小一些。</p>
+<h3 id="阻塞队列"><a href="#阻塞队列" class="headerlink" title="阻塞队列"></a>阻塞队列</h3><p>对于生产者/消费者模型，生产者入队，消费者出队，我们更需要的可能是阻塞队列，也就是当消费速度大于生产速度时，队列为空，那么消费者应该阻塞直到生产者生产，而不是直接返回NULL。</p>
+]]></content>
+      <categories>
+        <category>并行与并发</category>
+      </categories>
+      <tags>
+        <tag>并行</tag>
+        <tag>并发</tag>
       </tags>
   </entry>
 </search>
