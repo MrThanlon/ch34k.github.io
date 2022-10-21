@@ -6,7 +6,7 @@
   <link href="https://blog.ch34k.xyz/atom.xml" rel="self"/>
   
   <link href="https://blog.ch34k.xyz/"/>
-  <updated>2022-08-18T11:04:16.044Z</updated>
+  <updated>2022-10-21T14:31:41.898Z</updated>
   <id>https://blog.ch34k.xyz/</id>
   
   <author>
@@ -15,6 +15,30 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>要把前端和后端写在同一个文件里</title>
+    <link href="https://blog.ch34k.xyz/2022/10/21/%E8%A6%81%E6%8A%8A%E5%89%8D%E7%AB%AF%E5%92%8C%E5%90%8E%E7%AB%AF%E5%86%99%E5%9C%A8%E5%90%8C%E4%B8%80%E4%B8%AA%E6%96%87%E4%BB%B6%E9%87%8C/"/>
+    <id>https://blog.ch34k.xyz/2022/10/21/%E8%A6%81%E6%8A%8A%E5%89%8D%E7%AB%AF%E5%92%8C%E5%90%8E%E7%AB%AF%E5%86%99%E5%9C%A8%E5%90%8C%E4%B8%80%E4%B8%AA%E6%96%87%E4%BB%B6%E9%87%8C/</id>
+    <published>2022-10-21T12:44:55.000Z</published>
+    <updated>2022-10-21T14:31:41.898Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;假如我们需要设计一个需要密码才能登录的页面，某些偷懒的大聪明可以很容易地写出这样的代码：&lt;/p&gt;
+&lt;figure class=&quot;highlight javascript&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;login&lt;/span&gt;(&lt;span class=&quot;params&quot;&gt;password&lt;/span&gt;) &lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&lt;span class=&quot;keyword&quot;&gt;if&lt;/span&gt; (password === &lt;span class=&quot;string&quot;&gt;&amp;#x27;fuck&amp;#x27;&lt;/span&gt;) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		&lt;span class=&quot;keyword&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;string&quot;&gt;&amp;#x27;hello&amp;#x27;&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&amp;#125; &lt;span class=&quot;keyword&quot;&gt;else&lt;/span&gt; &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		&lt;span class=&quot;keyword&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;string&quot;&gt;&amp;#x27;wrong password&amp;#x27;&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;built_in&quot;&gt;document&lt;/span&gt;.getElementById(&lt;span class=&quot;string&quot;&gt;&amp;#x27;login-button&amp;#x27;&lt;/span&gt;).addEventListener(&lt;span class=&quot;string&quot;&gt;&amp;#x27;click&amp;#x27;&lt;/span&gt;, &lt;span class=&quot;keyword&quot;&gt;async&lt;/span&gt; () =&amp;gt; &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&lt;span class=&quot;keyword&quot;&gt;const&lt;/span&gt; password = &lt;span class=&quot;built_in&quot;&gt;document&lt;/span&gt;.getElementById(&lt;span class=&quot;string&quot;&gt;&amp;#x27;password&amp;#x27;&lt;/span&gt;).value;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	alert(&lt;span class=&quot;keyword&quot;&gt;await&lt;/span&gt; login(password));&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;);&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;</summary>
+    
+    
+    
+    <category term="Web" scheme="https://blog.ch34k.xyz/categories/Web/"/>
+    
+    <category term="JavaScript" scheme="https://blog.ch34k.xyz/categories/Web/JavaScript/"/>
+    
+    
+    <category term="JavaScript" scheme="https://blog.ch34k.xyz/tags/JavaScript/"/>
+    
+    <category term="Web" scheme="https://blog.ch34k.xyz/tags/Web/"/>
+    
+  </entry>
   
   <entry>
     <title>原子操作与无锁队列</title>
@@ -523,39 +547,6 @@
     <category term="动态规划" scheme="https://blog.ch34k.xyz/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/"/>
     
     <category term="LCS" scheme="https://blog.ch34k.xyz/tags/LCS/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>UESTC 2430</title>
-    <link href="https://blog.ch34k.xyz/2020/05/23/UESTC-2430/"/>
-    <id>https://blog.ch34k.xyz/2020/05/23/UESTC-2430/</id>
-    <published>2020-05-23T02:25:24.000Z</published>
-    <updated>2021-03-06T11:32:09.637Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html"></summary>
-        
-      
-    
-    
-    
-    <category term="ICPC训练" scheme="https://blog.ch34k.xyz/categories/ICPC%E8%AE%AD%E7%BB%83/"/>
-    
-    <category term="动态规划" scheme="https://blog.ch34k.xyz/categories/ICPC%E8%AE%AD%E7%BB%83/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/"/>
-    
-    <category term="背包DP" scheme="https://blog.ch34k.xyz/categories/ICPC%E8%AE%AD%E7%BB%83/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/%E8%83%8C%E5%8C%85DP/"/>
-    
-    
-    <category term="刷题" scheme="https://blog.ch34k.xyz/tags/%E5%88%B7%E9%A2%98/"/>
-    
-    <category term="动态规划" scheme="https://blog.ch34k.xyz/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/"/>
-    
-    <category term="背包DP" scheme="https://blog.ch34k.xyz/tags/%E8%83%8C%E5%8C%85DP/"/>
     
   </entry>
   

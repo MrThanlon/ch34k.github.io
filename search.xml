@@ -1832,4 +1832,68 @@
         <tag>并发</tag>
       </tags>
   </entry>
+  <entry>
+    <title>要把前端和后端写在同一个文件里</title>
+    <url>/2022/10/21/%E8%A6%81%E6%8A%8A%E5%89%8D%E7%AB%AF%E5%92%8C%E5%90%8E%E7%AB%AF%E5%86%99%E5%9C%A8%E5%90%8C%E4%B8%80%E4%B8%AA%E6%96%87%E4%BB%B6%E9%87%8C/</url>
+    <content><![CDATA[<p>假如我们需要设计一个需要密码才能登录的页面，某些偷懒的大聪明可以很容易地写出这样的代码：</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">login</span>(<span class="params">password</span>) </span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (password === <span class="string">&#x27;fuck&#x27;</span>) &#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="string">&#x27;hello&#x27;</span>;</span><br><span class="line">	&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="string">&#x27;wrong password&#x27;</span>;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">document</span>.getElementById(<span class="string">&#x27;login-button&#x27;</span>).addEventListener(<span class="string">&#x27;click&#x27;</span>, <span class="keyword">async</span> () =&gt; &#123;</span><br><span class="line">	<span class="keyword">const</span> password = <span class="built_in">document</span>.getElementById(<span class="string">&#x27;password&#x27;</span>).value;</span><br><span class="line">	alert(<span class="keyword">await</span> login(password));</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<span id="more"></span>
+
+<p>如果读者有一定的Web开发经验，一定能一眼看出这段代码很好地解释了什么叫掩耳盗铃。</p>
+<p>当然，如果你还看不出，那么我们稍微提示一下</p>
+<blockquote>
+<p>前端代码在浏览器中运行，用户可以很容易地拿到前端代码。</p>
+</blockquote>
+<p>所以只需要稍微分析一下，就能直接获得正确的密码“fuck“，这种在前端进行验证的行为显然只有大聪明才能写出来。</p>
+<h2 id="那么，如果我们把验证部分放到后端进行呢？"><a href="#那么，如果我们把验证部分放到后端进行呢？" class="headerlink" title="那么，如果我们把验证部分放到后端进行呢？"></a>那么，如果我们把验证部分放到后端进行呢？</h2><p>好，你成功领悟到了前后端分离的核心思想，于是我们吭哧吭哧地搭了一个后台服务器，再吭哧吭哧地写API文档，最后吭哧吭哧地联调上线，最后在某个通宵的夜里，当所有功能正常通过测试，我们终于可以坐下来歇一口气：#&amp;¥*@&amp;#&amp;¥*&amp;%<em>(@&amp;#</em>$$*#%@……</p>
+<h2 id="那么，我为什么不能直接在前端写后端的代码呢？"><a href="#那么，我为什么不能直接在前端写后端的代码呢？" class="headerlink" title="那么，我为什么不能直接在前端写后端的代码呢？"></a>那么，我为什么不能直接在前端写后端的代码呢？</h2><p>于是你得到了<a href="https://remix.run/">Remix</a>。</p>
+<p>……</p>
+<p>哈哈，开个玩笑，Remix虽然部分实现了这么个操作，但我认为依然不够灵活，因此，我尝试了设计一个编译器/框架/库库（总之随便你怎么叫吧，我就叫编译器了），让开发者可以同时在一个文件里写前和后端代码，并在编译时分离出前端和后端代码，进行分别部署。</p>
+<h2 id="那么，它怎么用呢？"><a href="#那么，它怎么用呢？" class="headerlink" title="那么，它怎么用呢？"></a>那么，它怎么用呢？</h2><p>啊，实际上我还没写完，你问的太快了。</p>
+<p>当然，在我写完之前，我觉得有必要整理一下当前的需求，并设计相应的语法出来。</p>
+<h3 id="1-在注释中添加-remux-lt-名字-gt-标记该代码运行在哪个端上"><a href="#1-在注释中添加-remux-lt-名字-gt-标记该代码运行在哪个端上" class="headerlink" title="1. 在注释中添加 @remux &lt;名字&gt; 标记该代码运行在哪个端上"></a>1. 在注释中添加 @remux &lt;名字&gt; 标记该代码运行在哪个端上</h3><p>我们以上面的代码为例，进行如下修改</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">// @remux server</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">login</span>(<span class="params">password</span>) </span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (password === <span class="string">&#x27;fuck&#x27;</span>) &#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="string">&#x27;hello&#x27;</span>;</span><br><span class="line">	&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="string">&#x27;wrong password&#x27;</span>;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// @remux client</span></span><br><span class="line"><span class="built_in">document</span>.getElementById(<span class="string">&#x27;login-button&#x27;</span>).addEventListener(<span class="string">&#x27;click&#x27;</span>, <span class="keyword">async</span> () =&gt; &#123;</span><br><span class="line">	<span class="keyword">const</span> password = <span class="built_in">document</span>.getElementById(<span class="string">&#x27;password&#x27;</span>).value;</span><br><span class="line">	alert(<span class="keyword">await</span> login(password));</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>好，现在编译器就知道了，**<code>login</code>函数在服务器上运行，下面那条语句只会在客户端上运行，在服务端上会被删除**。</p>
+<p>于是我们发现了新的问题，客户端的函数怎么可能直接调用服务器上的函数呢？！所以接下来，我们需要使用RPC（Remote Process Call，远程过程调用）对非本端的函数进行封装。</p>
+<h3 id="2-非本端的函数会封装成RPC"><a href="#2-非本端的函数会封装成RPC" class="headerlink" title="2. 非本端的函数会封装成RPC"></a>2. 非本端的函数会封装成RPC</h3><p>好吧，就算函数没问题了，但是变量怎么办呢？例如下面的代码</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">// @remux server</span></span><br><span class="line"><span class="keyword">let</span> aServerVar = <span class="number">114514</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// @remux client</span></span><br><span class="line">aServerVar += <span class="number">1</span>;</span><br></pre></td></tr></table></figure>
+
+<p>我们看到，经过编译后，<code>aServerVar</code>这个变量的声明在客户端上会消失，这就导致接下来<code>aServerVar += 1;</code>中的变量未声明而执行出错，我们不希望这种情况发生，因此我们给编译器设下第3条规则</p>
+<h3 id="3-非本端的变量声明会被封装为Proxy并实现RPC"><a href="#3-非本端的变量声明会被封装为Proxy并实现RPC" class="headerlink" title="3. 非本端的变量声明会被封装为Proxy并实现RPC"></a>3. 非本端的变量声明会被封装为Proxy并实现RPC</h3><p>RPC真是太棒了，可是编译器<strong>并不关心开发者使用什么RPC方案</strong>，所以我们决定把RPC的具体实现留给开发者，编译器本身只负责封装</p>
+<h3 id="4-与标记名关联的函数会被作为RPC客户端调用"><a href="#4-与标记名关联的函数会被作为RPC客户端调用" class="headerlink" title="4. 与标记名关联的函数会被作为RPC客户端调用"></a>4. 与标记名关联的函数会被作为RPC客户端调用</h3><p>具体来说呢，在客户端上，上面的<code>login</code>函数会被封装成</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">login</span>(<span class="params">...args</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">await</span> clientInvoke(</span><br><span class="line">        <span class="string">&#x27;function&#x27;</span>,    <span class="comment">// this is a function RPC</span></span><br><span class="line">        <span class="string">&#x27;server&#x27;</span>,      <span class="comment">// the remote is server</span></span><br><span class="line">        <span class="string">&#x27;login&#x27;</span>,       <span class="comment">// function name is login</span></span><br><span class="line">        args           <span class="comment">// the arguments</span></span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>而对于变量声明，则会封装成</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> aServerVar = <span class="keyword">new</span> <span class="built_in">Proxy</span>(</span><br><span class="line">    [<span class="string">&#x27;server&#x27;</span>, <span class="string">&#x27;aServerVar&#x27;</span>],</span><br><span class="line">    <span class="keyword">new</span> <span class="built_in">Proxy</span>(<span class="function">() =&gt;</span> &#123;&#125;, &#123;</span><br><span class="line">        <span class="keyword">async</span> <span class="function"><span class="title">apply</span>(<span class="params">target, func, args</span>)</span> &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">await</span> clientInvoke(&#123;</span><br><span class="line">                <span class="string">&#x27;proxy&#x27;</span>,   <span class="comment">// this is a proxy RPC</span></span><br><span class="line">                <span class="string">&#x27;server&#x27;</span>,  <span class="comment">// the remote is server</span></span><br><span class="line">                func,      <span class="comment">// the proxy handler name</span></span><br><span class="line">                args       <span class="comment">// handler arguments</span></span><br><span class="line">            &#125;)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+
+<p>而对于被调用的端，存在编译器提供的函数用于接收调用</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 这是编译器提供的！不需要开发者自己写</span></span><br><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">serverHandler</span>(<span class="params">mode, func, args</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (mode === <span class="string">&#x27;function&#x27;</span>) &#123;</span><br><span class="line">        <span class="keyword">switch</span> (func) &#123;</span><br><span class="line">            ...</span><br><span class="line">        &#125;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        ...</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>是不是很简单？所以开发者只需要实现一下<code>xxxInvoke</code>函数，并写好相应的RPC服务（甚至可以直接在这个文件里写好），把参数一股脑传给<code>yyyHandler</code>，然后返回到<code>xxxInvoke</code>就完成啦，RPC从未如此简单。</p>
+<p>也许对于一些没写过RPC的小白，这可能有一定困难，因此我们会尝试提供一个专为该编译器设计的RPC实现，以方便需要快速上手的玩家们。</p>
+<p>当然，这也就意味着在<code>server</code>端上，<code>clientInvoke</code>和<code>clientHandler</code>是完全没必要的，所以</p>
+<h3 id="5-非本端的RPC函数会被删除"><a href="#5-非本端的RPC函数会被删除" class="headerlink" title="5. 非本端的RPC函数会被删除"></a>5. 非本端的RPC函数会被删除</h3><p>我们还希望所有端都能共用一些代码，例如某些类型的声明、公共的函数、公共的变量等，所以</p>
+<h3 id="6-未标记的代码所有端上都会执行"><a href="#6-未标记的代码所有端上都会执行" class="headerlink" title="6. 未标记的代码所有端上都会执行"></a>6. 未标记的代码所有端上都会执行</h3><p>但是有些代码我们压根就不希望被其他端调用，例如私有的函数或是变量，尽管可以在RPC层面做限制（RPC必须有限制，不然会产生任意执行漏洞），但是我们还是可以让编译器做一些处理，在此，我想出了两种方案</p>
+<ul>
+<li><p>使用块语句，例如</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">// @remux server</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">aPrivateFunction</span> (<span class="params"></span>) </span>&#123;&#125;</span><br><span class="line">    <span class="keyword">let</span> aPrivateVar = <span class="number">1919810</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这种方式的好处是不会破坏JavaScript语法，坏处是可能无法实现某些功能，例如在公共函数中调用私有函数或变量（当然反过来没问题，在私有语句中调用公共函数或变量）</p>
+</li>
+<li><p>使用额外的标记，例如<code>// @remux server private</code>声明私有的变量和函数，这样在其他端上会被抹去，而不是封装成RPC，但是这种做法会对语法造成一定的破坏，这是我不太希望看到的，尽管编译器可以对不正确的变量或函数使用进行警告或报错，但依然会对开发者在编写程序上造成一定的困惑</p>
+</li>
+</ul>
+<p>对于这个需求的实现方法我还在犹豫不决，因此，如果你有好的想法欢迎在下方留言处指点，或者直接与我交流，总之，在此保留第7条规则。</p>
+]]></content>
+      <categories>
+        <category>Web</category>
+        <category>JavaScript</category>
+      </categories>
+      <tags>
+        <tag>JavaScript</tag>
+        <tag>Web</tag>
+      </tags>
+  </entry>
 </search>
