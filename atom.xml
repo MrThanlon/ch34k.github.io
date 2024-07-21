@@ -6,7 +6,7 @@
   <link href="https://blog.ch34k.xyz/atom.xml" rel="self"/>
   
   <link href="https://blog.ch34k.xyz/"/>
-  <updated>2023-10-16T10:40:51.330Z</updated>
+  <updated>2024-07-21T07:25:12.577Z</updated>
   <id>https://blog.ch34k.xyz/</id>
   
   <author>
@@ -15,6 +15,27 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>棋王</title>
+    <link href="https://blog.ch34k.xyz/2024/07/21/%E6%A3%8B%E7%8E%8B/"/>
+    <id>https://blog.ch34k.xyz/2024/07/21/%E6%A3%8B%E7%8E%8B/</id>
+    <published>2024-07-21T07:18:28.000Z</published>
+    <updated>2024-07-21T07:25:12.577Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html"></summary>
+        
+      
+    
+    
+    
+    
+  </entry>
   
   <entry>
     <title>把函数指针封装为闭包</title>
@@ -505,34 +526,6 @@
     <category term="KMP" scheme="https://blog.ch34k.xyz/tags/KMP/"/>
     
     <category term="字符串" scheme="https://blog.ch34k.xyz/tags/%E5%AD%97%E7%AC%A6%E4%B8%B2/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>UESTC 2382</title>
-    <link href="https://blog.ch34k.xyz/2020/06/19/UESTC-2382/"/>
-    <id>https://blog.ch34k.xyz/2020/06/19/UESTC-2382/</id>
-    <published>2020-06-19T08:00:59.000Z</published>
-    <updated>2021-03-22T12:14:06.489Z</updated>
-    
-    
-    <summary type="html">&lt;h2 id=&quot;题目&quot;&gt;&lt;a href=&quot;#题目&quot; class=&quot;headerlink&quot; title=&quot;题目&quot;&gt;&lt;/a&gt;题目&lt;/h2&gt;&lt;p&gt;输入$n$条有向边，确定是否能一笔画，如果能则输出最大的“起点*终点“，否则输出$-1$。&lt;/p&gt;
-&lt;h2 id=&quot;题解&quot;&gt;&lt;a href=&quot;#题解&quot; class=&quot;headerlink&quot; title=&quot;题解&quot;&gt;&lt;/a&gt;题解&lt;/h2&gt;&lt;p&gt;欧拉图模板题。&lt;/p&gt;</summary>
-    
-    
-    
-    <category term="ICPC训练" scheme="https://blog.ch34k.xyz/categories/ICPC%E8%AE%AD%E7%BB%83/"/>
-    
-    <category term="图论" scheme="https://blog.ch34k.xyz/categories/ICPC%E8%AE%AD%E7%BB%83/%E5%9B%BE%E8%AE%BA/"/>
-    
-    <category term="欧拉图" scheme="https://blog.ch34k.xyz/categories/ICPC%E8%AE%AD%E7%BB%83/%E5%9B%BE%E8%AE%BA/%E6%AC%A7%E6%8B%89%E5%9B%BE/"/>
-    
-    
-    <category term="刷题" scheme="https://blog.ch34k.xyz/tags/%E5%88%B7%E9%A2%98/"/>
-    
-    <category term="欧拉图" scheme="https://blog.ch34k.xyz/tags/%E6%AC%A7%E6%8B%89%E5%9B%BE/"/>
-    
-    <category term="图论" scheme="https://blog.ch34k.xyz/tags/%E5%9B%BE%E8%AE%BA/"/>
     
   </entry>
   
