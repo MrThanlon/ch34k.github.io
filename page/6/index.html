@@ -175,14 +175,14 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">57</span>
+          <span class="site-state-item-count">58</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">52</span>
+        <span class="site-state-item-count">55</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
@@ -254,6 +254,105 @@
 
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://blog.ch34k.xyz/2019/06/12/PMW3901/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="MrThanlon">
+      <meta itemprop="description" content="代码，是连接碳基生命和硅基生命的桥梁">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="水厂日志">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2019/06/12/PMW3901/" class="post-title-link" itemprop="url">PMW3901</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2019-06-12 17:25:43" itemprop="dateCreated datePublished" datetime="2019-06-12T17:25:43+08:00">2019-06-12</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2021-03-06 19:32:09" itemprop="dateModified" datetime="2021-03-06T19:32:09+08:00">2021-03-06</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E8%88%AA%E6%A8%A1/" itemprop="url" rel="index"><span itemprop="name">航模</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E8%88%AA%E6%A8%A1/%E9%A3%9E%E6%8E%A7/" itemprop="url" rel="index"><span itemprop="name">飞控</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E8%88%AA%E6%A8%A1/%E9%A3%9E%E6%8E%A7/%E5%85%89%E6%B5%81/" itemprop="url" rel="index"><span itemprop="name">光流</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>这里记录下PMW3901的应用笔记，开发平台为真特么爽的树莓派，使用spidev这个python库。</p>
+<p>PMW3901是一个性能还不错的硬件光流方案，来自Pixart厂，使用SPI协议传输，我自己试了下跑个100Hz简直不要太轻松，虽然精度比起OpenCV里面的各种算法差了不少，但是好在小巧而且不需要高性能处理器。（虽然我们今天使用的树莓派就算是性能挺高的处理器了。。。）</p>
+<h2 id="硬件连接"><a href="#硬件连接" class="headerlink" title="硬件连接"></a>硬件连接</h2><p>当然是接到SPI上啦，参考<a target="_blank" rel="noopener" href="https://pinout.xyz/pinout/spi">这里</a>。片选我接的是CE0，当然你要接到CE1也可以，代码稍微改一下就好。注意使用的是SPI0而不是SPI1，因为我们使用的是MODE3，而恰好树莓派的SPI1对MODE3有bug，截止目前这个bug仍未修复。</p>
+<h2 id="软件环境"><a href="#软件环境" class="headerlink" title="软件环境"></a>软件环境</h2><p>我使用的是raspbian操作系统，spi设备会被挂载到<code>/dev/spidev*.*</code>。你可以用以下命令检查</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ls /dev/spidev*</span><br></pre></td></tr></table></figure>
+
+<p>如果是其他的操作系统，我不保证能正常运行。</p>
+<h3 id="安装spidev"><a href="#安装spidev" class="headerlink" title="安装spidev"></a>安装<code>spidev</code></h3><p>如果你还没有安装的话，可以执行下面的命令来安装。我们使用python3，所以这里是<code>pip3</code>，如果你仍然在使用python2，我建议你现在更换。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo pip3 install spidev</span><br></pre></td></tr></table></figure>
+
+<h2 id="协议分析"><a href="#协议分析" class="headerlink" title="协议分析"></a>协议分析</h2><p>开发一个芯片必备的是什么？datasheet！</p>
+<p>对于PMW3901，我们同样需要它的datasheet。比较可惜的是，Pixart似乎不太情愿提供，反正我找了很久都没找到下载datasheet的按钮，后来还是找淘宝卖家要的。</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 

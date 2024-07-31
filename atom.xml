@@ -6,7 +6,7 @@
   <link href="https://blog.ch34k.xyz/atom.xml" rel="self"/>
   
   <link href="https://blog.ch34k.xyz/"/>
-  <updated>2024-07-21T07:28:58.881Z</updated>
+  <updated>2024-07-31T13:25:33.617Z</updated>
   <id>https://blog.ch34k.xyz/</id>
   
   <author>
@@ -17,11 +17,36 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>一坛猪油</title>
+    <link href="https://blog.ch34k.xyz/2024/07/31/%E4%B8%80%E5%9D%9B%E7%8C%AA%E6%B2%B9/"/>
+    <id>https://blog.ch34k.xyz/2024/07/31/%E4%B8%80%E5%9D%9B%E7%8C%AA%E6%B2%B9/</id>
+    <published>2024-07-31T13:20:25.000Z</published>
+    <updated>2024-07-31T13:25:33.617Z</updated>
+    
+    
+    <summary type="html">&lt;blockquote&gt;
+&lt;p&gt;作者：迟子建&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;带着仨孩子出门真不容易啊。一会儿这个说饿了，一会儿那个说要拉屎撒尿，一会儿另一个又说冷了。我是一会儿找吃的，一会儿领着他们上厕所，一会儿又翻衣服。天黑以后，车厢里的灯就暗了，小东西们折腾累了，老大斜倚着车窗，老二躺在坐席上，老三在我怀中，都睡了。我不敢睡，怕迷糊过去后，丢了东西和孩子。熬了一宿，天亮时，我们到了嫩江。&lt;/p&gt;
+&lt;p&gt;“文革”前，老大参加工作了，在小岔河林场当木材检尺员。老二喜欢上学，我们就让他在开库康上中学。老姑娘在小岔河上小学，她一拿课本就迷糊，脑瓜不灵便，程英说别的孩子记一个生字三五分钟就够了，她呢，一天也学不会一个字，都五年级了，没有一篇课文能读连贯。不过她手工活儿巧，会钩窗帘，织毛衣，还能裁剪衣裳，我想女孩子会这些就不愁嫁人了。最让人省心的是蚂蚁，他功课好，又勤快，还仁义。学校冬天得生炉子，他那个教室的炉子，都是他烧的。每天天还没亮，他就去烧炉子了。等到上课时，教室就暖和了。&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="小说" scheme="https://blog.ch34k.xyz/categories/%E5%B0%8F%E8%AF%B4/"/>
+    
+    <category term="迟子建" scheme="https://blog.ch34k.xyz/categories/%E5%B0%8F%E8%AF%B4/%E8%BF%9F%E5%AD%90%E5%BB%BA/"/>
+    
+    
+    <category term="小说" scheme="https://blog.ch34k.xyz/tags/%E5%B0%8F%E8%AF%B4/"/>
+    
+  </entry>
+  
+  <entry>
     <title>棋王</title>
     <link href="https://blog.ch34k.xyz/2024/07/21/%E6%A3%8B%E7%8E%8B/"/>
     <id>https://blog.ch34k.xyz/2024/07/21/%E6%A3%8B%E7%8E%8B/</id>
     <published>2024-07-21T07:18:28.000Z</published>
-    <updated>2024-07-21T07:28:58.881Z</updated>
+    <updated>2024-07-31T13:24:28.947Z</updated>
     
     
     <summary type="html">&lt;blockquote&gt;
@@ -32,6 +57,12 @@
     
     
     
+    <category term="小说" scheme="https://blog.ch34k.xyz/categories/%E5%B0%8F%E8%AF%B4/"/>
+    
+    <category term="阿城" scheme="https://blog.ch34k.xyz/categories/%E5%B0%8F%E8%AF%B4/%E9%98%BF%E5%9F%8E/"/>
+    
+    
+    <category term="小说" scheme="https://blog.ch34k.xyz/tags/%E5%B0%8F%E8%AF%B4/"/>
     
   </entry>
   
@@ -496,34 +527,6 @@
     <category term="JavaScript" scheme="https://blog.ch34k.xyz/tags/JavaScript/"/>
     
     <category term="Web" scheme="https://blog.ch34k.xyz/tags/Web/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>UESTC 2459</title>
-    <link href="https://blog.ch34k.xyz/2020/06/20/UESTC-2459/"/>
-    <id>https://blog.ch34k.xyz/2020/06/20/UESTC-2459/</id>
-    <published>2020-06-20T03:00:59.000Z</published>
-    <updated>2021-03-22T12:13:43.199Z</updated>
-    
-    
-    <summary type="html">&lt;h2 id=&quot;题目&quot;&gt;&lt;a href=&quot;#题目&quot; class=&quot;headerlink&quot; title=&quot;题目&quot;&gt;&lt;/a&gt;题目&lt;/h2&gt;&lt;p&gt;给两段字符串$A$和$B$，输出$A$中所有出现$B$的位置。&lt;/p&gt;
-&lt;h2 id=&quot;题解&quot;&gt;&lt;a href=&quot;#题解&quot; class=&quot;headerlink&quot; title=&quot;题解&quot;&gt;&lt;/a&gt;题解&lt;/h2&gt;&lt;p&gt;这题是老KMP了，不过还是说下怎么做吧&lt;del&gt;不然太水了&lt;/del&gt;。&lt;/p&gt;</summary>
-    
-    
-    
-    <category term="ICPC训练" scheme="https://blog.ch34k.xyz/categories/ICPC%E8%AE%AD%E7%BB%83/"/>
-    
-    <category term="字符串与搜索" scheme="https://blog.ch34k.xyz/categories/ICPC%E8%AE%AD%E7%BB%83/%E5%AD%97%E7%AC%A6%E4%B8%B2%E4%B8%8E%E6%90%9C%E7%B4%A2/"/>
-    
-    <category term="KMP" scheme="https://blog.ch34k.xyz/categories/ICPC%E8%AE%AD%E7%BB%83/%E5%AD%97%E7%AC%A6%E4%B8%B2%E4%B8%8E%E6%90%9C%E7%B4%A2/KMP/"/>
-    
-    
-    <category term="刷题" scheme="https://blog.ch34k.xyz/tags/%E5%88%B7%E9%A2%98/"/>
-    
-    <category term="KMP" scheme="https://blog.ch34k.xyz/tags/KMP/"/>
-    
-    <category term="字符串" scheme="https://blog.ch34k.xyz/tags/%E5%AD%97%E7%AC%A6%E4%B8%B2/"/>
     
   </entry>
   

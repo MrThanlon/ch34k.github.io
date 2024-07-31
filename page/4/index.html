@@ -175,14 +175,14 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">57</span>
+          <span class="site-state-item-count">58</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">52</span>
+        <span class="site-state-item-count">55</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
@@ -254,6 +254,108 @@
 
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://blog.ch34k.xyz/2020/05/08/UESTC-2402/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="MrThanlon">
+      <meta itemprop="description" content="代码，是连接碳基生命和硅基生命的桥梁">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="水厂日志">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2020/05/08/UESTC-2402/" class="post-title-link" itemprop="url">UESTC 2402</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2020-05-08 13:06:22" itemprop="dateCreated datePublished" datetime="2020-05-08T13:06:22+08:00">2020-05-08</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2021-03-06 19:32:09" itemprop="dateModified" datetime="2021-03-06T19:32:09+08:00">2021-03-06</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/ICPC%E8%AE%AD%E7%BB%83/" itemprop="url" rel="index"><span itemprop="name">ICPC训练</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/ICPC%E8%AE%AD%E7%BB%83/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" itemprop="url" rel="index"><span itemprop="name">数据结构</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/ICPC%E8%AE%AD%E7%BB%83/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E7%8F%82%E6%9C%B5%E8%8E%89%E6%A0%91/" itemprop="url" rel="index"><span itemprop="name">珂朵莉树</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><p>这次在每一轮游戏中，綾波需要使用鱼雷把一个区间[l,r]内的所有点的数值变为c，每改变一个点的数值需要消耗一枚特制鱼雷。</p>
+<p>尽管如此，在知道了墙面上各点初始数值和每轮的任务后，綾波还是希望指挥官能帮她计算她各轮需要的鱼雷数量的说。呐，快来帮帮綾波吧。</p>
+<h2 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h2><p>参照出题人题解PPT。</p>
+<p>出题人告诉我们这题可以分块也可以用珂朵莉树。</p>
+<p>分块实在太恶心了，所以我就试了下所谓的珂朵莉树，没有去看OI-WiKi，凭着感觉写的，没有用std::set而是用的std::map，当然他们内部也差不多，只是std::map可以很容易地带上一个载荷。</p>
+<p>首先是初始化，把所有连续的部分都装进去。</p>
+<p>对于每次查询，用二分查找到对对应的块，整块的就直接加到<code>ans</code>，其他的部分单独处理。</p>
+<p>因为第一次写这种结构，还出了不少bug。</p>
+<p>第一次查询和修改的复杂度都是$O(n)$，之后每次查询和修改的理想复杂度都是$O(\log_2n)$，因为总共$m$次查询，所以总的复杂度大概是$O(m\log_2n)$。</p>
+<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><p>有个宏定义<code>DISPLAY_A</code>用于在每次查询后打印完整的数组。</p>
+<h3 id="AC代码"><a href="#AC代码" class="headerlink" title="AC代码"></a>AC代码</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// @author: hzy</span></span><br><span class="line"><span class="comment">//#pragma G++ optimize(&quot;O3&quot;)</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cmath&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;ctime&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;queue&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;map&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;set&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;list&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;forward_list&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stack&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;unordered_set&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;limits.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> DISPLAY_A 0</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Node</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="keyword">int</span> left, right;</span><br><span class="line">    <span class="keyword">int</span> val;</span><br><span class="line"></span><br><span class="line">    Node(<span class="keyword">int</span> left, <span class="keyword">int</span> val, <span class="keyword">int</span> right) : left(left), val(val), right(right) &#123;&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    Node(<span class="keyword">int</span> left, <span class="keyword">int</span> val) : left(left), val(val), right(left) &#123;&#125;</span><br><span class="line"></span><br><span class="line">    Node(<span class="keyword">int</span> left) : left(left), val(<span class="number">0</span>), right(left) &#123;&#125;</span><br><span class="line"></span><br><span class="line">    Node() : left(<span class="number">0</span>), val(<span class="number">0</span>), right(<span class="number">1</span>) &#123;&#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">bool</span> <span class="keyword">operator</span>&lt;(Node node) <span class="keyword">const</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>-&gt;left &lt; node.left;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> arr[<span class="number">100000</span> + <span class="number">7</span>];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="built_in">std</span>::ios::sync_with_stdio(<span class="literal">false</span>);</span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">cin</span>.tie(<span class="number">0</span>);</span><br><span class="line">    <span class="keyword">int</span> n, m;</span><br><span class="line">    <span class="keyword">int</span> l, r, c;</span><br><span class="line">    <span class="built_in">map</span>&lt;<span class="keyword">int</span>, Node&gt; tree;</span><br><span class="line">    <span class="built_in">cin</span> &gt;&gt; n;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; i++) &#123;</span><br><span class="line">        <span class="built_in">cin</span> &gt;&gt; arr[i];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; i++) &#123;</span><br><span class="line">        <span class="keyword">int</span> right = i;</span><br><span class="line">        <span class="keyword">int</span> i2 = i + <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">for</span> (; i2 &lt;= n; i2++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (arr[i2] != arr[i2 - <span class="number">1</span>]) &#123;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                right += <span class="number">1</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        tree[i] = Node(i, arr[i], right);</span><br><span class="line">        i = i2 - <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">cin</span> &gt;&gt; m;</span><br><span class="line">    <span class="keyword">while</span> (m--) &#123;</span><br><span class="line">        <span class="keyword">int</span> ans = <span class="number">0</span>;</span><br><span class="line">        <span class="built_in">cin</span> &gt;&gt; l &gt;&gt; r &gt;&gt; c;</span><br><span class="line">        <span class="keyword">auto</span> it = tree.lower_bound(l);</span><br><span class="line">        <span class="keyword">auto</span> st = it;</span><br><span class="line">        <span class="keyword">if</span> (it-&gt;first != l) &#123;</span><br><span class="line">            st--;</span><br><span class="line">            <span class="comment">// 前面的区域</span></span><br><span class="line">            <span class="keyword">if</span> (st-&gt;second.val != c) &#123;</span><br><span class="line">                <span class="keyword">if</span> (st-&gt;second.right &gt; r) &#123;</span><br><span class="line">                    ans += r - l + <span class="number">1</span>;</span><br><span class="line">                    tree[r + <span class="number">1</span>] = Node(r + <span class="number">1</span>, st-&gt;second.val, st-&gt;second.right);</span><br><span class="line">                &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                    ans += st-&gt;second.right - l + <span class="number">1</span>;</span><br><span class="line">                &#125;</span><br><span class="line">                st-&gt;second.right = l - <span class="number">1</span>;</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                l = st-&gt;first;</span><br><span class="line">                <span class="keyword">if</span> (r &lt; st-&gt;second.right) &#123;</span><br><span class="line">                    r = st-&gt;second.right;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 覆盖的部分</span></span><br><span class="line">        <span class="keyword">for</span> (; it-&gt;second.right &lt;= r &amp;&amp; it != tree.end();) &#123;</span><br><span class="line">            <span class="keyword">auto</span> &amp;node = it-&gt;second;</span><br><span class="line">            <span class="keyword">if</span> (node.val != c) &#123;</span><br><span class="line">                ans += node.right - node.left + <span class="number">1</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            it++;</span><br><span class="line">            tree.erase(prev(it));</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 后面的区域</span></span><br><span class="line">        <span class="keyword">auto</span> et = it;</span><br><span class="line">        <span class="keyword">if</span> (et-&gt;first &lt;= r &amp;&amp; et != tree.end()) &#123;</span><br><span class="line">            <span class="keyword">if</span> (et-&gt;second.val != c) &#123;</span><br><span class="line">                ans += r - et-&gt;first + <span class="number">1</span>;</span><br><span class="line">                <span class="keyword">if</span> (et-&gt;second.right - et-&gt;first &gt; <span class="number">0</span>) &#123;</span><br><span class="line">                    <span class="comment">// 长度大于1的时候才行，不然会错位</span></span><br><span class="line">                    tree[r + <span class="number">1</span>] = Node(r + <span class="number">1</span>, et-&gt;second.val, et-&gt;second.right);</span><br><span class="line">                &#125;</span><br><span class="line">                tree.erase(et);</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                r = et-&gt;second.right;</span><br><span class="line">                tree.erase(et);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        tree[l] = Node(l, c, r);</span><br><span class="line"><span class="meta">#<span class="meta-keyword">if</span> DISPLAY_A</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">auto</span> itt:tree) &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> i = itt.second.left; i &lt;= itt.second.right; i++) &#123;</span><br><span class="line">                <span class="built_in">cout</span> &lt;&lt; itt.second.val &lt;&lt; <span class="string">&quot; &quot;</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br><span class="line">        <span class="built_in">cout</span> &lt;&lt; ans &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="测试例生成（Python）"><a href="#测试例生成（Python）" class="headerlink" title="测试例生成（Python）"></a>测试例生成（Python）</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">z</span>(<span class="params">n, m, <span class="built_in">max</span>=<span class="number">2</span> ** <span class="number">31</span> - <span class="number">1</span>, filename=<span class="string">&#x27;in&#x27;</span></span>):</span></span><br><span class="line">    n = <span class="built_in">int</span>(n)</span><br><span class="line">    m = <span class="built_in">int</span>(m)</span><br><span class="line">    fi = <span class="built_in">open</span>(filename, <span class="string">&#x27;w&#x27;</span>)</span><br><span class="line">    fi.write(<span class="string">&quot;&#123;&#125;\r\n&#123;&#125;\r\n&#123;&#125;\r\n&#123;&#125;\r\n&quot;</span>.<span class="built_in">format</span>(</span><br><span class="line">        n, <span class="string">&quot; &quot;</span>.join([<span class="built_in">str</span>(random.randint(-<span class="built_in">max</span>, <span class="built_in">max</span>)) <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(n)]),</span><br><span class="line">        m,</span><br><span class="line">        <span class="string">&quot;\r\n&quot;</span>.join([</span><br><span class="line">            <span class="string">&quot;&#123;&#125; &#123;&#125; &#123;&#125;&quot;</span>.<span class="built_in">format</span>(</span><br><span class="line">                random.randint(<span class="number">1</span>, n // <span class="number">2</span>),</span><br><span class="line">                random.randint(n // <span class="number">2</span>, n),</span><br><span class="line">                random.randint(-<span class="built_in">max</span>, <span class="built_in">max</span>),</span><br><span class="line">            ) <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(m)</span><br><span class="line">        ])</span><br><span class="line">    ))</span><br><span class="line">    fi.close()</span><br></pre></td></tr></table></figure>
+
+<h3 id="暴力验证"><a href="#暴力验证" class="headerlink" title="暴力验证"></a>暴力验证</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// @author: hzy</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">pragma</span> G++ optimize(<span class="meta-string">&quot;O3&quot;</span>)</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cmath&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;ctime&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;queue&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;map&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;set&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;list&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;forward_list&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stack&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;unordered_set&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;limits.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> DISPLAY_A 1</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">int</span> arr[<span class="number">100000</span> + <span class="number">7</span>];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="built_in">std</span>::ios::sync_with_stdio(<span class="literal">false</span>);</span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">cin</span>.tie(<span class="number">0</span>);</span><br><span class="line">    <span class="keyword">int</span> n, m;</span><br><span class="line">    <span class="keyword">int</span> l, r, c;</span><br><span class="line">    <span class="built_in">cin</span> &gt;&gt; n;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; i++) &#123;</span><br><span class="line">        <span class="built_in">cin</span> &gt;&gt; arr[i];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">cin</span> &gt;&gt; m;</span><br><span class="line">    <span class="keyword">while</span> (m--) &#123;</span><br><span class="line">        <span class="built_in">cin</span> &gt;&gt; l &gt;&gt; r &gt;&gt; c;</span><br><span class="line">        <span class="keyword">int</span> ans = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = l; i &lt;= r; i++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (c != arr[i]) &#123;</span><br><span class="line">                ans += <span class="number">1</span>;</span><br><span class="line">                arr[i] = c;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">if</span> DISPLAY_A</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; i++) &#123;</span><br><span class="line">            <span class="built_in">cout</span> &lt;&lt; arr[i] &lt;&lt; <span class="string">&quot; &quot;</span>;</span><br><span class="line">        &#125;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br><span class="line">        <span class="built_in">cout</span> &lt;&lt; ans &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -1168,102 +1270,6 @@
 
 <h2 id="彩蛋"><a href="#彩蛋" class="headerlink" title="彩蛋"></a>彩蛋</h2><p>吐个槽，我在本机上测试1e6的数据量，默认编译器是clang++ 11.0.3 with LLVM，跑了两秒多，换成g++9瞬间提升到0.08秒，绝了。</p>
 <p>破案了，macOS上的clang++默认使用libc++，这个库无法通过一般方法关闭流同步，而g++使用的是libstdc++，就没有这个问题。</p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://blog.ch34k.xyz/2020/05/05/UESTC-2361/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="MrThanlon">
-      <meta itemprop="description" content="代码，是连接碳基生命和硅基生命的桥梁">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="水厂日志">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2020/05/05/UESTC-2361/" class="post-title-link" itemprop="url">UESTC 2361</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2020-05-05 18:11:04" itemprop="dateCreated datePublished" datetime="2020-05-05T18:11:04+08:00">2020-05-05</time>
-    </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-03-06 19:32:09" itemprop="dateModified" datetime="2021-03-06T19:32:09+08:00">2021-03-06</time>
-      </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/ICPC%E8%AE%AD%E7%BB%83/" itemprop="url" rel="index"><span itemprop="name">ICPC训练</span></a>
-        </span>
-          ，
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/ICPC%E8%AE%AD%E7%BB%83/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" itemprop="url" rel="index"><span itemprop="name">数据结构</span></a>
-        </span>
-          ，
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/ICPC%E8%AE%AD%E7%BB%83/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E5%B9%B6%E6%9F%A5%E9%9B%86/" itemprop="url" rel="index"><span itemprop="name">并查集</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <blockquote>
-<p>关键字：并查集；</p>
-</blockquote>
-<h2 id="快慢指针法"><a href="#快慢指针法" class="headerlink" title="快慢指针法"></a>快慢指针法</h2><p>这个方法来自于判断链表中是否存在环，原理很直观，就是加入一个移动较慢的指针（一般是快指针速度的一半），如果链表中有环的话，就会导致两个指针出发了一段时间后“撞”在一起。所以只要在出发后判断两个指针是否相等即可确定链表中是否有环。</p>
-<h2 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h2><p>并查集模板题，快慢指针法判断是否成环，再加个路径压缩就完事。复杂度$o(n)$，这题限时是200ms，太极限了。</p>
-<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><h3 id="AC代码"><a href="#AC代码" class="headerlink" title="AC代码"></a>AC代码</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// @author: hzy</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">pragma</span> G++ optimize(<span class="meta-string">&quot;O3&quot;</span>)</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cmath&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;map&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;set&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stack&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;unordered_set&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;vector&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> a[<span class="number">1000000</span>];</span><br><span class="line"><span class="keyword">int</span> isLoop = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">findSet</span><span class="params">(<span class="keyword">int</span> fast, <span class="keyword">int</span> slow, <span class="keyword">bool</span> moveSlow = <span class="literal">false</span>, <span class="keyword">int</span> step = <span class="number">0</span>)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (fast == a[fast]) &#123;</span><br><span class="line">        isLoop = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">return</span> fast;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        fast = a[fast];</span><br><span class="line">        <span class="keyword">if</span> (moveSlow) &#123;</span><br><span class="line">            slow = a[slow];</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">if</span> (step &amp;&amp; fast == slow) &#123;</span><br><span class="line">                <span class="comment">// loop</span></span><br><span class="line">                isLoop = <span class="number">1</span>;</span><br><span class="line">                <span class="keyword">return</span> fast;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> findSet(fast, slow, !moveSlow, step + <span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">mergeSet</span><span class="params">(<span class="keyword">int</span> x)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (x == a[x]) &#123;</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">int</span> t = a[x];</span><br><span class="line">    a[x] = x;</span><br><span class="line">    mergeSet(t);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="comment">// std::ios::sync_with_stdio(false);</span></span><br><span class="line">    <span class="comment">// std::cin.tie(0);</span></span><br><span class="line">    <span class="keyword">int</span> n;</span><br><span class="line">    <span class="built_in">cin</span> &gt;&gt; n;</span><br><span class="line">    <span class="keyword">int</span> ans = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; i++) &#123;</span><br><span class="line">        <span class="comment">//cin &gt;&gt; a[i];</span></span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>, a + i);</span><br><span class="line">        <span class="keyword">if</span> (a[i] == i) &#123;</span><br><span class="line">            ans += <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; i++) &#123;</span><br><span class="line">        <span class="keyword">if</span> (a[i] == i) &#123;</span><br><span class="line">            <span class="keyword">continue</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        findSet(i, i);</span><br><span class="line">        <span class="keyword">if</span> (isLoop) &#123;</span><br><span class="line">            <span class="comment">// new loop</span></span><br><span class="line">            ans += <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// compress</span></span><br><span class="line">        mergeSet(i);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; ans;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>其中的<code>findSet</code>函数用于查找根结点，成环的话会返回环上某一点，具体是哪个这里不展开说，同时会标记<code>isLoop</code>变量。</p>
-<p><code>mergeSet</code>用于路径压缩，如果我们只关心一个结点的根结点，在<code>findSet</code>完成之后直接把根结点设为它的父结点，这样如果以后还有结点在<code>findSet</code>过程中路过这个结点就可以快速找到根结点了，再引申一下，如果将路径上所有的结点都重新设置父亲结点，就可以加快经过那些结点的<code>findSet</code>。再优化一下，<code>ans+=1</code>之后，这个结点的根结点其实也不重要了，它的子结点必然不需要<code>ans+=1</code>，所以直接把路径上每个结点都设为根节点，速度又能提升一些。</p>
 
       
     </div>
